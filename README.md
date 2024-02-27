@@ -1,2 +1,2 @@
-# catpstone2024
+# capstone2024
  
