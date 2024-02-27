@@ -1,0 +1,201 @@
+[
+    {
+      "ProductID": 1,
+      "ProductName": "스타일리시 자켓",
+      "Price": 79.99,
+      "StockQuantity": 50,
+      "CategoryID": 1,
+      "BrandID": 1,
+      "Description": "유행을 따라가는 스타일리시한 자켓입니다.",
+      "CreateDate": "2024-01-10 10:45:00",
+      "ImagePath": "/images/jacket1.jpg"
+    },
+    {
+      "ProductID": 2,
+      "ProductName": "편안한 청바지",
+      "Price": 59.99,
+      "StockQuantity": 80,
+      "CategoryID": 1,
+      "BrandID": 2,
+      "Description": "편안하고 스타일리시한 청바지입니다.",
+      "CreateDate": "2024-01-10 11:15:00",
+      "ImagePath": "/images/jeans1.jpg"
+    },
+    {
+      "ProductID": 3,
+      "ProductName": "여성용 원피스",
+      "Price": 89.99,
+      "StockQuantity": 30,
+      "CategoryID": 2,
+      "BrandID": 3,
+      "Description": "우아하고 세련된 여성용 원피스입니다.",
+      "CreateDate": "2024-01-10 11:45:00",
+      "ImagePath": "/images/dress1.jpg"
+    },
+    {
+      "ProductID": 4,
+      "ProductName": "스포츠 티셔츠",
+      "Price": 29.99,
+      "StockQuantity": 120,
+      "CategoryID": 3,
+      "BrandID": 4,
+      "Description": "활동적인 라이프스타일에 어울리는 스포츠 티셔츠입니다.",
+      "CreateDate": "2024-01-10 12:00:00",
+      "ImagePath": "/images/tshirt1.jpg"
+    },
+    {
+      "ProductID": 5,
+      "ProductName": "가을용 스웨터",
+      "Price": 69.99,
+      "StockQuantity": 60,
+      "CategoryID": 1,
+      "BrandID": 2,
+      "Description": "가을철에 딱 맞는 스타일리시한 스웨터입니다.",
+      "CreateDate": "2024-01-10 12:30:00",
+      "ImagePath": "/images/sweater1.jpg"
+    },
+    {
+      "ProductID": 6,
+      "ProductName": "모던한 남성 셔츠",
+      "Price": 49.99,
+      "StockQuantity": 90,
+      "CategoryID": 1,
+      "BrandID": 1,
+      "Description": "모던한 디자인의 남성용 셔츠입니다.",
+      "CreateDate": "2024-01-10 13:00:00",
+      "ImagePath": "/images/shirt1.jpg"
+    },
+    {
+      "ProductID": 7,
+      "ProductName": "힙합 스니커즈",
+      "Price": 99.99,
+      "StockQuantity": 40,
+      "CategoryID": 4,
+      "BrandID": 5,
+      "Description": "스타일리시하고 편안한 힙합 스니커즈입니다.",
+      "CreateDate": "2024-01-10 13:30:00",
+      "ImagePath": "/images/sneakers1.jpg"
+    },
+    {
+      "ProductID": 8,
+      "ProductName": "럭셔리 가방",
+      "Price": 129.99,
+      "StockQuantity": 20,
+      "CategoryID": 5,
+      "BrandID": 6,
+      "Description": "고급스러운 느낌의 럭셔리 가방입니다.",
+      "CreateDate": "2024-01-10 14:00:00",
+      "ImagePath": "/images/bag1.jpg"
+    },
+    {
+      "ProductID": 9,
+      "ProductName": "캐주얼 모자",
+      "Price": 39.99,
+      "StockQuantity": 70,
+      "CategoryID": 3,
+      "BrandID": 4,
+      "Description": "캐주얼한 룩에 잘 어울리는 모자입니다.",
+      "CreateDate": "2024-01-10 14:30:00",
+      "ImagePath": "/images/hat1.jpg"
+    },
+    {
+      "ProductID": 10,
+      "ProductName": "여름용 비치웨어",
+      "Price": 59.99,
+      "StockQuantity": 50,
+      "CategoryID": 2,
+      "BrandID": 3,
+      "Description": "해변에서 멋진 여름을 보낼 수 있는 비치웨어입니다.",
+      "CreateDate": "2024-01-10 15:00:00",
+      "ImagePath": "/images/beachwear1.jpg"
+    },
+    {
+        "ProductID": 11,
+        "ProductName": "여성용 가을 코트",
+        "Price": 109.99,
+        "StockQuantity": 40,
+        "CategoryID": 1,
+        "BrandID": 3,
+        "Description": "고급스러운 느낌의 여성용 가을 코트입니다.",
+        "CreateDate": "2024-01-11 09:45:00",
+        "ImagePath": "/images/coat1.jpg"
+      },
+      {
+        "ProductID": 12,
+        "ProductName": "여성용 스커트",
+        "Price": 49.99,
+        "StockQuantity": 60,
+        "CategoryID": 1,
+        "BrandID": 2,
+        "Description": "여성용 스커트입니다.",
+        "CreateDate": "2024-01-11 10:15:00",
+        "ImagePath": "/images/skirt1.jpg"
+      },
+      {
+        "ProductID": 13,
+        "ProductName": "남성용 가디건",
+        "Price": 79.99,
+        "StockQuantity": 30,
+        "CategoryID": 1,
+        "BrandID": 1,
+        "Description": "편안하고 스타일리시한 남성용 가디건입니다.",
+        "CreateDate": "2024-01-11 10:45:00",
+        "ImagePath": "/images/cardigan1.jpg"
+      },
+      {
+        "ProductID": 14,
+        "ProductName": "럭셔리 목걸이",
+        "Price": 159.99,
+        "StockQuantity": 15,
+        "CategoryID": 6,
+        "BrandID": 7,
+        "Description": "고급스러운 느낌의 럭셔리 목걸이입니다.",
+        "CreateDate": "2024-01-11 11:00:00",
+        "ImagePath": "/images/necklace1.jpg"
+      },
+      {
+        "ProductID": 15,
+        "ProductName": "여름용 모자",
+        "Price": 29.99,
+        "StockQuantity": 80,
+        "CategoryID": 3,
+        "BrandID": 4,
+        "Description": "시원한 여름을 위한 스타일리시한 모자입니다.",
+        "CreateDate": "2024-01-11 11:30:00",
+        "ImagePath": "/images/hat2.jpg"
+      },
+      {
+        "ProductID": 16,
+        "ProductName": "스트라이프 티셔츠",
+        "Price": 34.99,
+        "StockQuantity": 100,
+        "CategoryID": 3,
+        "BrandID": 5,
+        "Description": "스트라이프 패턴의 편안한 티셔츠입니다.",
+        "CreateDate": "2024-01-11 12:00:00",
+        "ImagePath": "/images/tshirt2.jpg"
+      },
+      {
+        "ProductID": 17,
+        "ProductName": "겨울용 울 스카프",
+        "Price": 44.99,
+        "StockQuantity": 50,
+        "CategoryID": 1,
+        "BrandID": 3,
+        "Description": "겨울철 따뜻하게 감싸줄 울 스카프입니다.",
+        "CreateDate": "2024-01-11 12:30:00",
+        "ImagePath": "/images/scarf1.jpg"
+      },
+      {
+        "ProductID": 18,
+        "ProductName": "캐주얼 데님 팬츠",
+        "Price": 54.99,
+        "StockQuantity": 70,
+        "CategoryID": 1,
+        "BrandID": 2,
+        "Description": "캐주얼한 룩에 어울리는 데님 팬츠입니다.",
+        "CreateDate": "2024-01-11 13:00:00",
+        "ImagePath": "/images/jeans2.jpg"
+      }
+  ]
+  
