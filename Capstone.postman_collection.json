@@ -1,0 +1,637 @@
+{
+	"info": {
+		"_postman_id": "fcdae1b0-b201-48cf-bfb1-05e6dbc48995",
+		"name": "Capstone",
+		"description": "Create: POST\n\nRead: GET\n\nUpdate: PUT\n\nDelete: DELETE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25051750"
+	},
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Add Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Second Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"1234\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customers",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"123\",\r\n    \"name\": \"123\",\r\n    \"address\": \"123\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/customers/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Customers",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "POST [http://localhost:8080/customers](http://localhost:8080/customers)\n\n\\-> body: json\n\nGET [http://localhost:8080/customers/{email}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/customers](http://localhost:8080/customers)\n\nPUT [http://localhost:8080/customers/{email}](http://localhost:8080/customers/{email})  \n\\-> body: json\n\nDELETE [http://localhost:8080/customers/{email}](http://localhost:8080/customers/{email})\n\n\\-> Customer 삭제 시 해당 Customer가 올린 Clothes 삭제"
+		},
+		{
+			"name": "Clothes",
+			"item": [
+				{
+					"name": "Add Clothes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"123\",\r\n    \"value\": 10000,\r\n    \"size\": \"XL\",\r\n    \"color\": \"white\",\r\n    \"seller\": {\r\n        \"email\": \"123\",\r\n        \"password\": \"1234\",\r\n        \"name\": \"1234\",\r\n        \"address\": \"1234\",\r\n        \"phone\": \"010-1234-1234\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Second Clothes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"100\",\r\n    \"value\": 1000,\r\n    \"size\": \"L\",\r\n    \"color\": \"white\",\r\n    \"seller\": {\r\n        \"email\": \"1234\",\r\n        \"password\": \"1234\",\r\n        \"name\": \"1234\",\r\n        \"address\": \"1234\",\r\n        \"phone\": \"010-1234-1234\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clothes By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clothes By Seller",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"1234\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes/seller",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"seller"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Clothes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Clothes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"123\",\r\n    \"value\": 10000,\r\n    \"size\": \"XL\",\r\n    \"color\": \"grey\",\r\n    \"seller\": {\r\n        \"email\": \"123\",\r\n        \"password\": \"1234\",\r\n        \"name\": \"1234\",\r\n        \"address\": \"1234\",\r\n        \"phone\": \"010-1234-1234\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Clothes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "POST [http://localhost:8080/clothes](http://localhost:8080/customers)\n\n\\-> body: json\n\n\\-> body.seller: Customer 엔티티 중 하나\n\nGET [http://localhost:8080/clothes/{clothes_id}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/clothes/seller/{email}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/clothes](http://localhost:8080/customers)\n\nPUT [http://localhost:8080/clothes/{clothes_id}](http://localhost:8080/customers/{email})  \n\\-> body: json\n\nDELETE [http://localhost:8080/clothes/{clothes_id}](http://localhost:8080/customers/{email})\n\n\\-> Clothes 삭제 시 해당 Clothes에 속한 Clothes Categories 삭제"
+		},
+		{
+			"name": "ClothesCategories",
+			"item": [
+				{
+					"name": "Add Clothes Categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clothes\": {\r\n        \"clothes_id\": 9,\r\n        \"name\": \"123\",\r\n        \"value\": 10000,\r\n        \"size\": \"XL\",\r\n        \"color\": \"white\",\r\n        \"seller\": {\r\n            \"email\": \"123\",\r\n            \"password\": \"1234\",\r\n            \"name\": \"1234\",\r\n            \"address\": \"1234\",\r\n            \"phone\": \"010-1234-1234\"\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"category_id\": 1,\r\n        \"name\": \"male\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes_categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes_categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Second Clothes Categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"clothes\": {\r\n        \"clothes_id\": 9,\r\n        \"name\": \"123\",\r\n        \"value\": 10000,\r\n        \"size\": \"XL\",\r\n        \"color\": \"white\",\r\n        \"seller\": {\r\n            \"email\": \"123\",\r\n            \"password\": \"1234\",\r\n            \"name\": \"1234\",\r\n            \"address\": \"1234\",\r\n            \"phone\": \"010-1234-1234\"\r\n        }\r\n    },\r\n    \"category\": {\r\n        \"category_id\": 2,\r\n        \"name\": \"female\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothes_categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes_categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clothes By Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes_categories/category/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes_categories",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories By Clothes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes_categories/clothes/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes_categories",
+								"clothes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Clothes Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes_categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes_categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Clothes Categories By Ids",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes_categories/9/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes_categories",
+								"9",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "POST [http://localhost:8080/clothes_categories](http://localhost:8080/clothes_categories)\n\n\\-> body: json\n\n\\-> body.clothes: Clothes 엔티티 중 하나\n\n\\-> body.category: Categories 엔티티 중 하나\n\nGET [http://localhost:8080/clothes_categories/category/{category_id}](http://localhost:8080/clothes_categories/category/1)\n\nGET [http://localhost:8080/clothes_categories/clothes/{clothes_id}](http://localhost:8080/customers)\n\nGET [http://localhost:8080/clothes_categories](http://localhost:8080/customers)\n\nDELETE [http://localhost:8080/clothes_categories/{clothes_id}/{category_id}](http://localhost:8080/customers/{email})"
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Second Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"female\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Category By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categories/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/categories/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categories/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "POST [http://localhost:8080/categories](http://localhost:8080/customers)\n\n\\-> body: json\n\nGET [http://localhost:8080/categories/{category_id}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/categories](http://localhost:8080/customers)\n\nPUT [http://localhost:8080/categories/{category_id}](http://localhost:8080/customers/{email})  \n\\-> body: json\n\nDELETE [http://localhost:8080/categories/{category_id}](http://localhost:8080/customers/{email})\n\n\\-> Category 삭제 시 해당 Category에 속한 Clothes Categories 삭제"
+		}
+	]
+}
