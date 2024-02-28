@@ -9,9 +9,12 @@ import com.example.demo.dto.ClothesDto;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesCategories;
 import com.example.demo.entity.ClothesCategoriesId;
+import com.example.demo.entity.ClothesImages;
+import com.example.demo.entity.ClothesImagesId;
 import com.example.demo.entity.Customer;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.ClothesCategoriesRepository;
+import com.example.demo.repository.ClothesImagesRepository;
 import com.example.demo.repository.ClothesRepository;
 import com.example.demo.service.ClothesService;
 import com.example.mapper.ClothesMapper;
@@ -23,6 +26,7 @@ import lombok.AllArgsConstructor;
 public class ClothesServiceImpl implements ClothesService {
     private ClothesRepository clothesRepository;
     private ClothesCategoriesRepository clothesCategoriesRepository;
+    private ClothesImagesRepository clothesImagesRepository;
 
     @Override
     public ClothesDto createClothes(ClothesDto clothesDto) {
@@ -78,6 +82,12 @@ public class ClothesServiceImpl implements ClothesService {
         clothesCategories.forEach(clothesCategory -> {
             ClothesCategoriesId clothesCategoriesId = new ClothesCategoriesId(clothesCategory.getClothes(), clothesCategory.getCategory());
             clothesCategoriesRepository.deleteById(clothesCategoriesId);
+        });
+
+        List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothes);
+        clothesImages.forEach(clothesImage -> {
+            ClothesImagesId clothesImagesId = new ClothesImagesId(clothesImage.getClothes(), clothesImage.getImageUrl());
+            clothesImagesRepository.deleteById(clothesImagesId);
         });
         
         clothesRepository.deleteById(clothesId);

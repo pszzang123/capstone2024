@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -15,12 +16,11 @@ import lombok.Setter;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClothesCategoriesId implements Serializable {
+public class ClothesImagesId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "clothes_id")
     private Clothes clothes;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @Column(name = "image_url")
+    private String imageUrl;
 }
