@@ -25,7 +25,10 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
 
     @Override
     public ClothesImagesDto createClothesImages(ClothesImagesDto clothesImagesDto) {
-        ClothesImages clothesImages = ClothesImagesMapper.mapToClothesImages(clothesImagesDto);
+        Clothes clothes_info = clothesRepository.findById(clothesImagesDto.getClothesId()).orElseThrow(() -> 
+            new ResourceNotFoundException("Clothes are not exist with given id : " + clothesImagesDto.getClothesId())
+        );
+        ClothesImages clothesImages = ClothesImagesMapper.mapToClothesImages(clothesImagesDto, clothes_info);
         ClothesImages savedClothesImages = clothesImagesRepository.save(clothesImages);
         return ClothesImagesMapper.mapToClothesImagesDto(savedClothesImages);
     }

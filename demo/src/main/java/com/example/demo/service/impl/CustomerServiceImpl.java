@@ -1,17 +1,22 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CustomerDto;
-import com.example.demo.entity.Clothes;
+import com.example.demo.entity.Cart;
+import com.example.demo.entity.CartId;
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Seller;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.ClothesRepository;
+import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.SellerRepository;
 import com.example.demo.service.CustomerService;
+import com.example.demo.service.SellerService;
 import com.example.mapper.CustomerMapper;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +25,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
-    private ClothesRepository clothesRepository;
+    private SellerRepository sellerRepository;
+    private CartRepository cartRepository;
+    private SellerService sellerService;
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
@@ -62,13 +69,22 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String customerEmail) {
+        List<Cart> carts = null;
         Customer customer = customerRepository.findById(customerEmail).orElseThrow(() -> 
-            new ResourceNotFoundException("Customer is not exists with given id : " + customerEmail)
+            new ResourceNotFoundException("Clothes are not exist with given id : " + customerEmail)
         );
-
-        List<Clothes> clothes = clothesRepository.findAllBySeller(customer);
-        clothes.forEach(cloth -> clothesRepository.delete(cloth));
+        carts = cartRepository.findAllByCustomer(customer);
+        if (carts != null) {
+            carts.forEach((cart) -> {
+                CartId cartId = new CartId(cart.getCustomer(), cart.getClothes());
+                cartRepository.deleteById(cartId);
+            });
+        }
         
+        Optional<Seller> sellerEntity = sellerRepository.findById(customerEmail);
+        if (sellerEntity.isPresent()) {
+            sellerService.deleteSeller(customerEmail);
+        }
         customerRepository.deleteById(customerEmail);
     }
 }

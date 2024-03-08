@@ -22,7 +22,7 @@ import lombok.Setter;
 public class Clothes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long clothes_id;
+    private Long clothesId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -36,7 +36,13 @@ public class Clothes {
     @Column(name = "color", nullable = false)
     private String color;
 
+    @Column(name = "detail")
+    private String detail;
+
+    @Column(name = "remaining")
+    private Long remaining;
+
     @ManyToOne
-    @JoinColumn(name = "seller_email", referencedColumnName = "email_id")
-    private Customer seller;
+    @JoinColumn(name = "seller_email", referencedColumnName = "seller_email")
+    private Seller seller;
 }

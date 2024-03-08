@@ -6,14 +6,14 @@ import com.example.demo.entity.Category;
 public class CategoryMapper {
     public static CategoryDto mapToCategoryDto(Category category) {
         return new CategoryDto(
-            category.getCategory_id(),
+            category.getCategoryId(),
             category.getName()
         );
     }
 
     public static Category mapToCategory(CategoryDto categoryDto) {
         return new Category(
-            categoryDto.getCategory_id(),
+            categoryDto.getCategoryId(),
             categoryDto.getName()
         );
     }

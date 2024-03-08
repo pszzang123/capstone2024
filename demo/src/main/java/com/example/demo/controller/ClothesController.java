@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClothesDto;
-import com.example.demo.entity.Customer;
+import com.example.demo.entity.Seller;
 import com.example.demo.service.ClothesService;
-import com.example.demo.service.CustomerService;
-import com.example.mapper.CustomerMapper;
+import com.example.demo.service.SellerService;
+import com.example.mapper.SellerMapper;
 
 import lombok.AllArgsConstructor;
 
@@ -28,7 +28,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/clothes")
 public class ClothesController {
     private ClothesService clothesService;
-    private CustomerService customerService;
+    private SellerService sellerService;
 
     @PostMapping
     public ResponseEntity<ClothesDto> createClothes(@RequestBody ClothesDto clothesDto) {
@@ -44,7 +44,7 @@ public class ClothesController {
 
     @GetMapping("seller/{email}")
     public ResponseEntity<List<ClothesDto>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
-        Customer seller = CustomerMapper.mapToCustomer(customerService.getCustomerByEmail(sellerEmail));
+        Seller seller = SellerMapper.mapToSeller(sellerService.getSellerByEmail(sellerEmail));
         List<ClothesDto> clothes = clothesService.getClothesBySeller(seller);
         return ResponseEntity.ok(clothes);
     }

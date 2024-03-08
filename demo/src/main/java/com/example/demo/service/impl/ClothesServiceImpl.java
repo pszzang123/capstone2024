@@ -6,16 +6,20 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ClothesDto;
+import com.example.demo.entity.Cart;
+import com.example.demo.entity.CartId;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesCategories;
 import com.example.demo.entity.ClothesCategoriesId;
 import com.example.demo.entity.ClothesImages;
 import com.example.demo.entity.ClothesImagesId;
-import com.example.demo.entity.Customer;
+import com.example.demo.entity.Seller;
 import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ClothesCategoriesRepository;
 import com.example.demo.repository.ClothesImagesRepository;
 import com.example.demo.repository.ClothesRepository;
+import com.example.demo.repository.SellerRepository;
 import com.example.demo.service.ClothesService;
 import com.example.mapper.ClothesMapper;
 
@@ -27,10 +31,15 @@ public class ClothesServiceImpl implements ClothesService {
     private ClothesRepository clothesRepository;
     private ClothesCategoriesRepository clothesCategoriesRepository;
     private ClothesImagesRepository clothesImagesRepository;
+    private SellerRepository sellerRepository;
+    private CartRepository cartRepository;
 
     @Override
     public ClothesDto createClothes(ClothesDto clothesDto) {
-        Clothes clothes = ClothesMapper.mapToClothes(clothesDto);
+        Seller seller_info = sellerRepository.findById(clothesDto.getSellerEmail()).orElseThrow(() ->
+            new ResourceNotFoundException("Seller is not exist with given id : " + clothesDto.getSellerEmail())
+        );
+        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, seller_info);
         Clothes savedClothes = clothesRepository.save(clothes);
         return ClothesMapper.mapToClothesDto(savedClothes);
     }
@@ -45,7 +54,7 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public List<ClothesDto> getClothesBySeller(Customer seller) {
+    public List<ClothesDto> getClothesBySeller(Seller seller) {
         List<Clothes> clothes = clothesRepository.findAllBySeller(seller);
         return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
     }
@@ -66,6 +75,8 @@ public class ClothesServiceImpl implements ClothesService {
         clothes.setName(updatedClothes.getName());
         clothes.setSize(updatedClothes.getSize());
         clothes.setValue(updatedClothes.getValue());
+        clothes.setDetail(updatedClothes.getDetail());
+        clothes.setRemaining(updatedClothes.getRemaining());
 
         Clothes updatedClothesObj = clothesRepository.save(clothes);
 
@@ -77,6 +88,15 @@ public class ClothesServiceImpl implements ClothesService {
         Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(() -> 
             new ResourceNotFoundException("Clothes are not exists with given id : " + clothesId)
         );
+
+        List<Cart> carts = null;
+        carts = cartRepository.findAllByClothes(clothes);
+        if (carts != null) {
+            carts.forEach((cart) -> {
+                CartId cartId = new CartId(cart.getCustomer(), cart.getClothes());
+                cartRepository.deleteById(cartId);
+            });
+        }
 
         List<ClothesCategories> clothesCategories = clothesCategoriesRepository.findAllByClothes(clothes);
         clothesCategories.forEach(clothesCategory -> {

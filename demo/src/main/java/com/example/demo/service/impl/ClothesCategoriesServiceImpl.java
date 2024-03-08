@@ -32,7 +32,13 @@ public class ClothesCategoriesServiceImpl implements ClothesCategoriesService {
 
     @Override
     public ClothesCategoriesDto createClothesCategories(ClothesCategoriesDto clothesCategoriesDto) {
-        ClothesCategories clothesCategories = ClothesCategoriesMapper.mapToClothesCategories(clothesCategoriesDto);
+        Clothes clothes = clothesRepository.findById(clothesCategoriesDto.getClothesId()).orElseThrow(() -> 
+            new ResourceNotFoundException("Clothes are not exist with given id : " + clothesCategoriesDto.getClothesId())
+        );
+        Category category = categoryRepository.findById(clothesCategoriesDto.getCategoryId()).orElseThrow(() -> 
+            new ResourceNotFoundException("Category is not exist with given id : " + clothesCategoriesDto.getCategoryId())
+        );
+        ClothesCategories clothesCategories = ClothesCategoriesMapper.mapToClothesCategories(clothes, category);
         ClothesCategories savedClothesCategories = clothesCategoriesRepository.save(clothesCategories);
         return ClothesCategoriesMapper.mapToClothesCategoriesDto(savedClothesCategories);
     }

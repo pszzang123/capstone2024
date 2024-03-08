@@ -2,27 +2,32 @@ package com.example.mapper;
 
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.entity.Clothes;
+import com.example.demo.entity.Seller;
 
 public class ClothesMapper {
     public static ClothesDto mapToClothesDto(Clothes clothes) {
         return new ClothesDto(
-            clothes.getClothes_id(),
+            clothes.getClothesId(),
             clothes.getName(),
             clothes.getValue(),
             clothes.getSize(),
             clothes.getColor(),
-            clothes.getSeller()
+            clothes.getDetail(),
+            clothes.getRemaining(),
+            clothes.getSeller().getSellerEmail()
         );
     }
 
-    public static Clothes mapToClothes(ClothesDto clothesDto) {
+    public static Clothes mapToClothes(ClothesDto clothesDto, Seller seller_info) {
         return new Clothes(
-            clothesDto.getClothes_id(),
+            clothesDto.getClothesId(),
             clothesDto.getName(),
             clothesDto.getValue(),
             clothesDto.getSize(),
             clothesDto.getColor(),
-            clothesDto.getSeller()
+            clothesDto.getDetail(),
+            clothesDto.getRemaining(),
+            seller_info
         );
     }
 }
