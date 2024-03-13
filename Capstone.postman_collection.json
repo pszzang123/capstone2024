@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"123\",\r\n    \"name\": \"123\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -161,7 +161,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customers/1234",
+							"raw": "http://localhost:8080/customers/123",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -169,7 +169,7 @@
 							"port": "8080",
 							"path": [
 								"customers",
-								"1234"
+								"123"
 							]
 						}
 					},
@@ -188,7 +188,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"seller\": {\r\n        \"email\": \"123\",\r\n        \"password\": \"1234\",\r\n        \"name\": \"1234\",\r\n        \"address\": \"1234\",\r\n        \"phone\": \"010-1234-1234\"\r\n    },\r\n    \"sellerEmail\": \"123\",\r\n    \"name\": \"company1\"\r\n}",
+							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\",\r\n    \"companyName\": \"company1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -216,7 +216,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"seller\": {\r\n        \"email\": \"1234\",\r\n        \"password\": \"1234\",\r\n        \"name\": \"1234\",\r\n        \"address\": \"1234\",\r\n        \"phone\": \"010-1234-1234\"\r\n    },\r\n    \"sellerEmail\": \"1234\",\r\n    \"name\": \"company2\"\r\n}",
+							"raw": "{\r\n    \"email\": \"1234\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\",\r\n    \"companyName\": \"company2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -326,7 +326,7 @@
 					"response": []
 				}
 			],
-			"description": "POST [http://localhost:8080/sellers](http://localhost:8080/customers)\n\n\\-> body: json\n\n\\-> body.seller: Customer 엔티티 없어도 생성 가능, Customer와 영속화\n\n\\-> body.seller_email: Customer 엔티티의 email_id\n\n\\-> Customer 없이 생성 시 Customer에 자동 데이터 추가\n\nGET [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/sellers](http://localhost:8080/customers)\n\nPUT [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})  \n\\-> body: json\n\nDELETE [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})\n\n\\-> Seller 삭제 시 해당 Seller가 올린 Clothes 삭제"
+			"description": "POST [http://localhost:8080/sellers](http://localhost:8080/customers)\n\n\\-> body: json\n\nGET [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/sellers](http://localhost:8080/customers)\n\nPUT [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})  \n\\-> body: json\n\nDELETE [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})\n\n\\-> Seller 삭제 시 해당 Seller가 올린 Clothes 삭제"
 		},
 		{
 			"name": "Clothes",

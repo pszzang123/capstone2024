@@ -1,11 +1,8 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,14 +16,22 @@ import lombok.Setter;
 @Entity
 @Table(name = "sellers")
 public class Seller {
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @PrimaryKeyJoinColumn(name = "seller_email", referencedColumnName = "email_id")
-    private Customer seller;
-
     @Id
-    @Column(name = "seller_email", nullable = false)
-    private String sellerEmail;
+    @Column(name = "email_id", nullable = false, unique = true)
+    private String email;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "company_name", nullable = false)
+    private String companyName;
 }

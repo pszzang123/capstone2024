@@ -14,7 +14,7 @@ public class ClothesMapper {
             clothes.getColor(),
             clothes.getDetail(),
             clothes.getRemaining(),
-            clothes.getSeller().getSellerEmail()
+            clothes.getSeller().getEmail()
         );
     }
 

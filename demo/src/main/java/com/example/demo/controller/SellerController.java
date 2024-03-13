@@ -35,8 +35,8 @@ public class SellerController {
 
     // Build Get Employee REST API
     @GetMapping("{id}")
-    public ResponseEntity<SellerDto> getSellerByEmail(@PathVariable("id") String customerEmail) {
-        SellerDto sellerDto = sellerService.getSellerByEmail(customerEmail);
+    public ResponseEntity<SellerDto> getSellerByEmail(@PathVariable("id") String email) {
+        SellerDto sellerDto = sellerService.getSellerByEmail(email);
         return ResponseEntity.ok(sellerDto);
     }
 
@@ -49,15 +49,15 @@ public class SellerController {
 
     // Build Update Employee REST API
     @PutMapping("{id}")
-    public ResponseEntity<SellerDto> updateSeller(@PathVariable("id") String customerEmail, @RequestBody SellerDto updatedSeller) {
-        SellerDto sellerDto = sellerService.updateSeller(customerEmail, updatedSeller);
+    public ResponseEntity<SellerDto> updateSeller(@PathVariable("id") String email, @RequestBody SellerDto updatedSeller) {
+        SellerDto sellerDto = sellerService.updateSeller(email, updatedSeller);
         return ResponseEntity.ok(sellerDto);
     }
 
     // Build Delete Employee REST API
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable("id") String customerEmail) {
-        sellerService.deleteSeller(customerEmail);
+    public ResponseEntity<String> deleteCustomer(@PathVariable("id") String email) {
+        sellerService.deleteSeller(email);
         return ResponseEntity.ok("Seller deleted successfully.");
     }
 }

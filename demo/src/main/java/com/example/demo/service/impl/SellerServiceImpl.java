@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -26,15 +27,21 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public SellerDto createSeller(SellerDto sellerDto) {
-        Seller seller = SellerMapper.mapToSeller(sellerDto);
-        Seller savedSeller = sellerRepository.save(seller);
-        return SellerMapper.mapToSellerDto(savedSeller);
+        Optional<Seller> seller_check = sellerRepository.findById(sellerDto.getEmail());
+        if (!seller_check.isPresent()) {
+            Seller seller = SellerMapper.mapToSeller(sellerDto);
+            Seller savedSeller = sellerRepository.save(seller);
+            return SellerMapper.mapToSellerDto(savedSeller);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
-    public SellerDto getSellerByEmail(String customerEmail) {
-        Seller seller = sellerRepository.findById(customerEmail).orElseThrow(() -> 
-            new ResourceNotFoundException("Seller is not exists with given id : " + customerEmail)
+    public SellerDto getSellerByEmail(String email) {
+        Seller seller = sellerRepository.findById(email).orElseThrow(() -> 
+            new ResourceNotFoundException("Seller is not exists with given id : " + email)
         );
         
         return SellerMapper.mapToSellerDto(seller);
@@ -47,13 +54,12 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public SellerDto updateSeller(String customerEmail, SellerDto updatedSeller) {
-        Seller seller = sellerRepository.findById(customerEmail).orElseThrow(() -> 
-            new ResourceNotFoundException("Seller is not exists with given id : " + customerEmail)
+    public SellerDto updateSeller(String email, SellerDto updatedSeller) {
+        Seller seller = sellerRepository.findById(email).orElseThrow(() -> 
+            new ResourceNotFoundException("Seller is not exists with given id : " + email)
         );
-        
-        seller.setSellerEmail(updatedSeller.getSellerEmail());
-        seller.setName(updatedSeller.getName());
+
+        seller.setCompanyName(updatedSeller.getCompanyName());
 
         Seller updatedSellerObj = sellerRepository.save(seller);
 
@@ -61,14 +67,14 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public void deleteSeller(String customerEmail) {
-        Seller seller = sellerRepository.findById(customerEmail).orElseThrow(() -> 
-            new ResourceNotFoundException("Seller is not exists with given id : " + customerEmail)
+    public void deleteSeller(String email) {
+        Seller seller = sellerRepository.findById(email).orElseThrow(() -> 
+            new ResourceNotFoundException("Seller is not exists with given id : " + email)
         );
 
         List<Clothes> clothes = clothesRepository.findAllBySeller(seller);
         clothes.forEach(cloth -> clothesService.deleteClothes(cloth.getClothesId()));
         
-        sellerRepository.deleteById(customerEmail);
+        sellerRepository.deleteById(email);
     }
 }

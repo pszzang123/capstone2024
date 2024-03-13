@@ -10,13 +10,10 @@ import com.example.demo.dto.CustomerDto;
 import com.example.demo.entity.Cart;
 import com.example.demo.entity.CartId;
 import com.example.demo.entity.Customer;
-import com.example.demo.entity.Seller;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.CustomerRepository;
-import com.example.demo.repository.SellerRepository;
 import com.example.demo.service.CustomerService;
-import com.example.demo.service.SellerService;
 import com.example.mapper.CustomerMapper;
 
 import lombok.AllArgsConstructor;
@@ -25,15 +22,19 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
-    private SellerRepository sellerRepository;
     private CartRepository cartRepository;
-    private SellerService sellerService;
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
-        Customer customer = CustomerMapper.mapToCustomer(customerDto);
-        Customer savedCustomer = customerRepository.save(customer);
-        return CustomerMapper.mapToCustomerDto(savedCustomer);
+        Optional<Customer> customer_check = customerRepository.findById(customerDto.getEmail());
+        if (!customer_check.isPresent()) {
+            Customer customer = CustomerMapper.mapToCustomer(customerDto);
+            Customer savedCustomer = customerRepository.save(customer);
+            return CustomerMapper.mapToCustomerDto(savedCustomer);
+        }
+        else {
+            return null;
+        }
     }
 
     @Override
@@ -80,11 +81,7 @@ public class CustomerServiceImpl implements CustomerService {
                 cartRepository.deleteById(cartId);
             });
         }
-        
-        Optional<Seller> sellerEntity = sellerRepository.findById(customerEmail);
-        if (sellerEntity.isPresent()) {
-            sellerService.deleteSeller(customerEmail);
-        }
+
         customerRepository.deleteById(customerEmail);
     }
 }

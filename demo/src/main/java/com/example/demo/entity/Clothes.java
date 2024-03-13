@@ -43,6 +43,6 @@ public class Clothes {
     private Long remaining;
 
     @ManyToOne
-    @JoinColumn(name = "seller_email", referencedColumnName = "seller_email")
+    @JoinColumn(name = "seller_email", referencedColumnName = "email_id")
     private Seller seller;
 }

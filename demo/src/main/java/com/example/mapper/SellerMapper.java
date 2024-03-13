@@ -6,17 +6,23 @@ import com.example.demo.entity.Seller;
 public class SellerMapper {
     public static SellerDto mapToSellerDto(Seller seller) {
         return new SellerDto(
-            seller.getSeller(),
-            seller.getSellerEmail(),
-            seller.getName()
+            seller.getEmail(),
+            seller.getPassword(),
+            seller.getName(),
+            seller.getAddress(),
+            seller.getPhone(),
+            seller.getCompanyName()
         );
     }
 
     public static Seller mapToSeller(SellerDto sellerDto) {
         return new Seller(
-            sellerDto.getSeller(),
-            sellerDto.getSellerEmail(),
-            sellerDto.getName()
+            sellerDto.getEmail(),
+            sellerDto.getPassword(),
+            sellerDto.getName(),
+            sellerDto.getAddress(),
+            sellerDto.getPhone(),
+            sellerDto.getCompanyName()
         );
     }
 }
