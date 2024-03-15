@@ -38,6 +38,13 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public Boolean checkCustomerByEmail(String customerEmail) {
+        Optional<Customer> checkCustomer = customerRepository.findById(customerEmail);
+        Boolean isPresent = checkCustomer.isPresent();
+        return isPresent;
+    }
+
+    @Override
     public CustomerDto getCustomerByEmail(String customerEmail) {
         Customer customer = customerRepository.findById(customerEmail).orElseThrow(() -> 
             new ResourceNotFoundException("Customer is not exists with given id : " + customerEmail)

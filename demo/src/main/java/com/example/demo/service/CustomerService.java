@@ -7,6 +7,8 @@ import com.example.demo.dto.CustomerDto;
 public interface CustomerService {
     CustomerDto createCustomer(CustomerDto customerDto);
 
+    Boolean checkCustomerByEmail(String customerEmail);
+
     CustomerDto getCustomerByEmail(String customerEmail);
 
     List<CustomerDto> getAllCustomers();

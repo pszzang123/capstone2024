@@ -39,10 +39,16 @@ public class CustomerController {
     }
 
     @GetMapping("{id}/{password}")
-    public ResponseEntity<Boolean> getCustomerByLoginInfo(@PathVariable("id") String customerEmail, @PathVariable("password") String customerPassword) {
+    public ResponseEntity<Boolean> checkCustomerByLoginInfo(@PathVariable("id") String customerEmail, @PathVariable("password") String customerPassword) {
         CustomerDto customerDto = customerService.getCustomerByEmail(customerEmail);
         Boolean isTrue = (customerDto.getPassword().equals(customerPassword));
         return ResponseEntity.ok(isTrue);
+    }
+
+    @GetMapping("email/{id}")
+    public ResponseEntity<Boolean> checkCustomerByEmail(@PathVariable("id") String customerEmail, @PathVariable("password") String customerPassword) {
+        Boolean isPresent = customerService.checkCustomerByEmail(customerEmail);
+        return ResponseEntity.ok(isPresent);
     }
 
     @GetMapping
