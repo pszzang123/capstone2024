@@ -87,6 +87,27 @@
 					"response": []
 				},
 				{
+					"name": "Check Email's Presence",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/customers/email/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"customers",
+								"email",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Check Login Info",
 					"request": {
 						"method": "GET",

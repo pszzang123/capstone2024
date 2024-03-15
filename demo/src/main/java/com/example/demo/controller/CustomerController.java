@@ -46,7 +46,7 @@ public class CustomerController {
     }
 
     @GetMapping("email/{id}")
-    public ResponseEntity<Boolean> checkCustomerByEmail(@PathVariable("id") String customerEmail, @PathVariable("password") String customerPassword) {
+    public ResponseEntity<Boolean> checkCustomerByEmail(@PathVariable("id") String customerEmail) {
         Boolean isPresent = customerService.checkCustomerByEmail(customerEmail);
         return ResponseEntity.ok(isPresent);
     }

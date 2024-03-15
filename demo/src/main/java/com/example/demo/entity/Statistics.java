@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import org.hibernate.annotations.Cascade;
+import java.sql.Date;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
