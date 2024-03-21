@@ -9,14 +9,13 @@ import com.example.demo.dto.ClothesDto;
 import com.example.demo.entity.Cart;
 import com.example.demo.entity.CartId;
 import com.example.demo.entity.Clothes;
-import com.example.demo.entity.ClothesCategories;
-import com.example.demo.entity.ClothesCategoriesId;
+import com.example.demo.entity.ClothesDetail;
 import com.example.demo.entity.ClothesImages;
 import com.example.demo.entity.ClothesImagesId;
 import com.example.demo.entity.Seller;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
-import com.example.demo.repository.ClothesCategoriesRepository;
+import com.example.demo.repository.ClothesDetailRepository;
 import com.example.demo.repository.ClothesImagesRepository;
 import com.example.demo.repository.ClothesRepository;
 import com.example.demo.repository.SellerRepository;
@@ -29,8 +28,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ClothesServiceImpl implements ClothesService {
     private ClothesRepository clothesRepository;
-    private ClothesCategoriesRepository clothesCategoriesRepository;
     private ClothesImagesRepository clothesImagesRepository;
+    private ClothesDetailRepository clothesDetailRepository;
     private SellerRepository sellerRepository;
     private CartRepository cartRepository;
 
@@ -71,12 +70,11 @@ public class ClothesServiceImpl implements ClothesService {
             () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
         );
 
-        clothes.setColor(updatedClothes.getColor());
         clothes.setName(updatedClothes.getName());
-        clothes.setSize(updatedClothes.getSize());
-        clothes.setValue(updatedClothes.getValue());
         clothes.setDetail(updatedClothes.getDetail());
-        clothes.setRemaining(updatedClothes.getRemaining());
+        clothes.setGenderCategory(updatedClothes.getGenderCategory());
+        clothes.setLargeCategory(updatedClothes.getLargeCategory());
+        clothes.setSmallCategory(updatedClothes.getSmallCategory());
 
         Clothes updatedClothesObj = clothesRepository.save(clothes);
 
@@ -93,21 +91,18 @@ public class ClothesServiceImpl implements ClothesService {
         carts = cartRepository.findAllByClothes(clothes);
         if (carts != null) {
             carts.forEach((cart) -> {
-                CartId cartId = new CartId(cart.getCustomer(), cart.getClothes());
-                cartRepository.deleteById(cartId);
+                cartRepository.delete(cart);
             });
         }
 
-        List<ClothesCategories> clothesCategories = clothesCategoriesRepository.findAllByClothes(clothes);
-        clothesCategories.forEach(clothesCategory -> {
-            ClothesCategoriesId clothesCategoriesId = new ClothesCategoriesId(clothesCategory.getClothes(), clothesCategory.getCategory());
-            clothesCategoriesRepository.deleteById(clothesCategoriesId);
-        });
-
         List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothes);
         clothesImages.forEach(clothesImage -> {
-            ClothesImagesId clothesImagesId = new ClothesImagesId(clothesImage.getClothes(), clothesImage.getImageUrl());
-            clothesImagesRepository.deleteById(clothesImagesId);
+            clothesImagesRepository.delete(clothesImage);
+        });
+
+        List<ClothesDetail> clothesDetails = clothesDetailRepository.findAllByClothes(clothes);
+        clothesDetails.forEach(clothesDetail -> {
+            clothesDetailRepository.delete(clothesDetail);
         });
         
         clothesRepository.deleteById(clothesId);

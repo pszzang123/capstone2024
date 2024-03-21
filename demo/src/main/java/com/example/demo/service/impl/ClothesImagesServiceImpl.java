@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,16 +26,27 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
 
     @Override
     public ClothesImagesDto createClothesImages(ClothesImagesDto clothesImagesDto) {
+        Boolean addable = true;
+
         Clothes clothes_info = clothesRepository.findById(clothesImagesDto.getClothesId()).orElseThrow(() -> 
             new ResourceNotFoundException("Clothes are not exist with given id : " + clothesImagesDto.getClothesId())
         );
+        List<ClothesImages> clothesImagesSet = clothesImagesRepository.findAllByClothes(clothes_info);
+        for(ClothesImages clothesImages : clothesImagesSet) {
+            addable = clothesImages.getOrder() != clothesImagesDto.getOrder();
+            if (!addable) {
+                break;
+            } else {
+                continue;
+            }
+        }
         ClothesImages clothesImages = ClothesImagesMapper.mapToClothesImages(clothesImagesDto, clothes_info);
-        ClothesImages savedClothesImages = clothesImagesRepository.save(clothesImages);
+        ClothesImages savedClothesImages = addable ? clothesImagesRepository.save(clothesImages) : null;
         return ClothesImagesMapper.mapToClothesImagesDto(savedClothesImages);
     }
 
     @Override
-    public List<String> getImageUrlsByClothesId(Long clothesId) {
+    public List<ClothesImagesDto> getImageUrlsByClothesId(Long clothesId) {
         List<ClothesImages> clothesImages = null;
         try{
             Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(() -> 
@@ -46,15 +58,45 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
             return null;
         }
 
-        List<String> imageUrls = clothesImages.stream().map((clothesImage) -> clothesImage.getImageUrl()).collect(Collectors.toList());
+        List<ClothesImagesDto> clothesImagesDtos = clothesImages.stream().map((clothesImage) -> ClothesImagesMapper.mapToClothesImagesDto(clothesImage)).collect(Collectors.toList());
         
-        return imageUrls;
+        return clothesImagesDtos;
     }
 
     @Override
     public List<ClothesImagesDto> getAllClothesImages() {
         List<ClothesImages> clothesImages = clothesImagesRepository.findAll();
         return clothesImages.stream().map((clothesImage) -> ClothesImagesMapper.mapToClothesImagesDto(clothesImage)).collect(Collectors.toList());
+    }
+
+    public List<ClothesImagesDto> changeClothesImagesOrder(Long clothesId, String imageUrl1, String imageUrl2) {
+        Clothes clothes_info = clothesRepository.findById(clothesId).orElseThrow(
+            () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
+        );
+
+        ClothesImagesId clothesImagesId1 = new ClothesImagesId(clothes_info, imageUrl1);
+        ClothesImagesId clothesImagesId2 = new ClothesImagesId(clothes_info, imageUrl2);
+
+        ClothesImages clothesImages1 = clothesImagesRepository.findById(clothesImagesId1).orElseThrow(() -> 
+            new ResourceNotFoundException("Image is not exist with given id : " + clothesImagesId1)
+        );
+
+        ClothesImages clothesImages2 = clothesImagesRepository.findById(clothesImagesId2).orElseThrow(() -> 
+            new ResourceNotFoundException("Image is not exist with given id : " + clothesImagesId2)
+        );
+
+        Long order = clothesImages1.getOrder();
+        clothesImages1.setOrder(clothesImages2.getOrder());
+        clothesImages2.setOrder(order);
+
+        ClothesImages updatedClothesImagesObj1 = clothesImagesRepository.save(clothesImages1);
+        ClothesImages updatedClothesImagesObj2 = clothesImagesRepository.save(clothesImages2);
+
+        List<ClothesImagesDto> updates = new ArrayList<>();
+        updates.add(ClothesImagesMapper.mapToClothesImagesDto(updatedClothesImagesObj1));
+        updates.add(ClothesImagesMapper.mapToClothesImagesDto(updatedClothesImagesObj2));
+
+        return updates;
     }
 
     @Override

@@ -8,14 +8,16 @@ public class ClothesImagesMapper {
     public static ClothesImagesDto mapToClothesImagesDto(ClothesImages clothesImages) {
         return new ClothesImagesDto(
             clothesImages.getClothes().getClothesId(),
-            clothesImages.getImageUrl()
+            clothesImages.getImageUrl(),
+            clothesImages.getOrder()
         );
     }
 
-    public static ClothesImages mapToClothesImages(ClothesImagesDto clothesImagesDto, Clothes clothes_info) {
+    public static ClothesImages mapToClothesImages(ClothesImagesDto clothesImagesDto, Clothes clothesInfo) {
         return new ClothesImages(
-            clothes_info,
-            clothesImagesDto.getImageUrl()
+            clothesInfo,
+            clothesImagesDto.getImageUrl(),
+            clothesImagesDto.getOrder()
         );
     }
 }

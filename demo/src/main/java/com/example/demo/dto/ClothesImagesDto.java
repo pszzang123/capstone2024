@@ -12,4 +12,5 @@ import lombok.Setter;
 public class ClothesImagesDto {
     private Long clothesId;
     private String imageUrl;
+    private Long order;
 }

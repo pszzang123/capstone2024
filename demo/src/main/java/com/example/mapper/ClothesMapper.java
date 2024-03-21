@@ -9,25 +9,23 @@ public class ClothesMapper {
         return new ClothesDto(
             clothes.getClothesId(),
             clothes.getName(),
-            clothes.getValue(),
-            clothes.getSize(),
-            clothes.getColor(),
             clothes.getDetail(),
-            clothes.getRemaining(),
+            clothes.getGenderCategory(),
+            clothes.getLargeCategory(),
+            clothes.getSmallCategory(),
             clothes.getSeller().getEmail()
         );
     }
 
-    public static Clothes mapToClothes(ClothesDto clothesDto, Seller seller_info) {
+    public static Clothes mapToClothes(ClothesDto clothesDto, Seller sellerInfo) {
         return new Clothes(
             clothesDto.getClothesId(),
             clothesDto.getName(),
-            clothesDto.getValue(),
-            clothesDto.getSize(),
-            clothesDto.getColor(),
             clothesDto.getDetail(),
-            clothesDto.getRemaining(),
-            seller_info
+            clothesDto.getGenderCategory(),
+            clothesDto.getLargeCategory(),
+            clothesDto.getSmallCategory(),
+            sellerInfo
         );
     }
 }

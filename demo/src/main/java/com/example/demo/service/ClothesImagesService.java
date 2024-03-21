@@ -7,9 +7,11 @@ import com.example.demo.dto.ClothesImagesDto;
 public interface ClothesImagesService {
     ClothesImagesDto createClothesImages(ClothesImagesDto clothesImagesDto);
 
-    List<String> getImageUrlsByClothesId(Long clothesId);
+    List<ClothesImagesDto> getImageUrlsByClothesId(Long clothesId);
 
     List<ClothesImagesDto> getAllClothesImages();
 
-    void deleteClothesImagesById(Long categoryId, String imageUrl);
+    List<ClothesImagesDto> changeClothesImagesOrder(Long clothesId, String imageUrl1, String imageUrl2);
+
+    void deleteClothesImagesById(Long clothesId, String imageUrl);
 }

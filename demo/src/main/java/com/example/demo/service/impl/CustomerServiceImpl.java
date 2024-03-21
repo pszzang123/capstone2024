@@ -84,8 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
         carts = cartRepository.findAllByCustomer(customer);
         if (carts != null) {
             carts.forEach((cart) -> {
-                CartId cartId = new CartId(cart.getCustomer(), cart.getClothes());
-                cartRepository.deleteById(cartId);
+                cartRepository.delete(cart);
             });
         }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +33,8 @@ public class ClothesImagesController {
     }
 
     @GetMapping("/{clothes_id}")
-    public ResponseEntity<List<String>> getImageUrlByClothesId(@PathVariable("clothes_id") Long clothesId) {
-        List<String> imageUrls = clothesImagesService.getImageUrlsByClothesId(clothesId);
+    public ResponseEntity<List<ClothesImagesDto>> getImageUrlByClothesId(@PathVariable("clothes_id") Long clothesId) {
+        List<ClothesImagesDto> imageUrls = clothesImagesService.getImageUrlsByClothesId(clothesId);
         return ResponseEntity.ok(imageUrls);
     }
 
@@ -41,6 +42,12 @@ public class ClothesImagesController {
     public ResponseEntity<List<ClothesImagesDto>> getAllClothesImages() {
         List<ClothesImagesDto> clothesImages = clothesImagesService.getAllClothesImages();
         return ResponseEntity.ok(clothesImages);
+    }
+
+    @PutMapping("{clothes_id}/{url1}/{url2}")
+    public ResponseEntity<List<ClothesImagesDto>> updateClothes(@PathVariable("clothes_id") Long clothesId, @PathVariable("url1") String url1, @PathVariable("url2") String url2) {
+        List<ClothesImagesDto> clothesImagesDtos = clothesImagesService.changeClothesImagesOrder(clothesId, url1, url2);
+        return ResponseEntity.ok(clothesImagesDtos);
     }
 
     @DeleteMapping("{clothes_id}/{image_url}")

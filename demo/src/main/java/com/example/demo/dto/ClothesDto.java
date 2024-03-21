@@ -12,10 +12,9 @@ import lombok.Setter;
 public class ClothesDto {
     private Long clothesId;
     private String name;
-    private Long value;
-    private String size;
-    private String color;
     private String detail;
-    private Long remaining;
+    private Integer genderCategory;
+    private Integer largeCategory;
+    private Integer smallCategory;
     private String sellerEmail;
 }

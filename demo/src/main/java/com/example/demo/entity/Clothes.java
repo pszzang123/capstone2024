@@ -22,25 +22,23 @@ import lombok.Setter;
 public class Clothes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clothes_id")
     private Long clothesId;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "value", nullable = false)
-    private Long value;
-
-    @Column(name = "size", nullable = false)
-    private String size;
-
-    @Column(name = "color", nullable = false)
-    private String color;
-
     @Column(name = "detail")
     private String detail;
 
-    @Column(name = "remaining")
-    private Long remaining;
+    @Column(name = "gender_category")
+    private Integer genderCategory;
+
+    @Column(name = "large_category")
+    private Integer largeCategory;
+
+    @Column(name = "small_category")
+    private Integer smallCategory;
 
     @ManyToOne
     @JoinColumn(name = "seller_email", referencedColumnName = "email_id")

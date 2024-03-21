@@ -14,10 +14,10 @@ public class CartMapper {
         );
     }
 
-    public static Cart mapToCart(CartDto cart, Customer customer_info, Clothes clothes_info) {
+    public static Cart mapToCart(CartDto cart, Customer customerInfo, Clothes clothesInfo) {
         return new Cart(
-            customer_info,
-            clothes_info,
+            customerInfo,
+            clothesInfo,
             cart.getQuantity()
         );
     }
