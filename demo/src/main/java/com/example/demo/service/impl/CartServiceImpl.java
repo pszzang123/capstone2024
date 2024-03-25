@@ -9,12 +9,16 @@ import com.example.demo.dto.CartDto;
 import com.example.demo.entity.Cart;
 import com.example.demo.entity.CartId;
 import com.example.demo.entity.Clothes;
+import com.example.demo.entity.ClothesDetail;
+import com.example.demo.entity.ClothesImages;
 import com.example.demo.entity.Customer;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
-import com.example.demo.repository.ClothesRepository;
+import com.example.demo.repository.ClothesDetailRepository;
+import com.example.demo.repository.ClothesImagesRepository;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.service.CartService;
+import com.example.demo.vo.CartVo;
 import com.example.mapper.CartMapper;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +26,8 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class CartServiceImpl implements CartService {
-    private ClothesRepository clothesRepository;
+    private ClothesDetailRepository clothesDetailRepository;
+    private ClothesImagesRepository clothesImagesRepository;
     private CustomerRepository customerRepository;
     private CartRepository cartRepository;
 
@@ -31,8 +36,8 @@ public class CartServiceImpl implements CartService {
         Customer customer_info = customerRepository.findById(cartDto.getCustomerEmail()).orElseThrow(() ->
             new ResourceNotFoundException("Seller is not exist with given id : " + cartDto.getCustomerEmail())
         );
-        Clothes clothes_info = clothesRepository.findById(cartDto.getClothesId()).orElseThrow(() ->
-            new ResourceNotFoundException("Seller is not exist with given id : " + cartDto.getClothesId())
+        ClothesDetail clothes_info = clothesDetailRepository.findById(cartDto.getDetailId()).orElseThrow(() ->
+            new ResourceNotFoundException("Seller is not exist with given id : " + cartDto.getDetailId())
         );
         Cart cart = CartMapper.mapToCart(cartDto, customer_info, clothes_info);
         Cart savedCart = cartRepository.save(cart);
@@ -40,7 +45,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartDto> getCartByCustomerEmail(String customerEmail) {
+    public List<CartVo> getCartByCustomerEmail(String customerEmail) {
         List<Cart> carts = null;
         try{
             Customer customer = customerRepository.findById(customerEmail).orElseThrow(() -> 
@@ -52,9 +57,22 @@ public class CartServiceImpl implements CartService {
             return null;
         }
 
-        List<CartDto> cartDtos = carts.stream().map((cart) -> CartMapper.mapToCartDto(cart)).collect(Collectors.toList());
+        List<CartVo> cartVos = carts.stream().map((cart) -> {
+            String imageUrl = "";
+            Clothes clothesInfo = cart.getClothesDetail().getClothes();
+            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothesInfo);
+            for (ClothesImages clothesImage : clothesImages) {
+                if (clothesImage.getOrder() == 1) {
+                    imageUrl = clothesImage.getImageUrl();
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return CartMapper.mapToCartVo(cart, imageUrl);
+        }).collect(Collectors.toList());
         
-        return cartDtos;
+        return cartVos;
     }
 
     @Override
@@ -64,18 +82,18 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartDto updateCart(String customerEmail, Long clothesId, CartDto updatedCart) {
+    public CartDto updateCart(String customerEmail, Long detailId, CartDto updatedCart) {
         Customer customer_info = customerRepository.findById(customerEmail).orElseThrow(
             () -> new ResourceNotFoundException("Customer is not exist with given id : " + customerEmail)
         );
 
-        Clothes clothes_info = clothesRepository.findById(clothesId).orElseThrow(
-            () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
+        ClothesDetail clothes_info = clothesDetailRepository.findById(detailId).orElseThrow(
+            () -> new ResourceNotFoundException("Clothes are not exist with given id : " + detailId)
         );
 
         CartId cartId = new CartId(customer_info, clothes_info);
         Cart cart = cartRepository.findById(cartId).orElseThrow(
-            () -> new ResourceNotFoundException("Cart is not exist with given id : " + customerEmail + ", " + clothesId)
+            () -> new ResourceNotFoundException("Cart is not exist with given id : " + customerEmail + ", " + detailId)
         );
 
         cart.setQuantity(updatedCart.getQuantity());
@@ -91,7 +109,7 @@ public class CartServiceImpl implements CartService {
             () -> new ResourceNotFoundException("Customer is not exist with given id : " + customerEmail)
         );
 
-        Clothes clothes_info = clothesRepository.findById(clothesId).orElseThrow(
+        ClothesDetail clothes_info = clothesDetailRepository.findById(clothesId).orElseThrow(
             () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
         );
 

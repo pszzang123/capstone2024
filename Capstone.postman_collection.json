@@ -542,7 +542,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"clothesId\": 2,\r\n    \"imageUrl\": \"asdf\",\r\n    \"order\": 1\r\n}",
+							"raw": "{\r\n    \"clothesId\": 1,\r\n    \"imageUrl\": \"asdf\",\r\n    \"order\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -570,7 +570,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"clothesId\": 2,\r\n    \"imageUrl\": \"zxcv\",\r\n    \"order\": 2\r\n}",
+							"raw": "{\r\n    \"clothesId\": 1,\r\n    \"imageUrl\": \"zxcv\",\r\n    \"order\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -686,7 +686,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"color\": \"white\",\r\n    \"size\": \"XL\",\r\n    \"remaining\": 0,\r\n    \"value\": 1000,\r\n    \"clothesId\": 1\r\n}",
+							"raw": "{\r\n    \"color\": \"white\",\r\n    \"size\": \"XL\",\r\n    \"remaining\": 0,\r\n    \"price\": 1000,\r\n    \"clothesId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -714,7 +714,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"color\": \"Black\",\r\n    \"size\": \"L\",\r\n    \"remaining\": 10,\r\n    \"value\": 2000,\r\n    \"clothesId\": 1\r\n}",
+							"raw": "{\r\n    \"color\": \"Black\",\r\n    \"size\": \"L\",\r\n    \"remaining\": 10,\r\n    \"price\": 2000,\r\n    \"clothesId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -842,7 +842,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/detail/1",
+							"raw": "http://localhost:8080/detail/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -850,7 +850,7 @@
 							"port": "8080",
 							"path": [
 								"detail",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -868,7 +868,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"clothesId\": 1,\r\n    \"quantity\": 1\r\n}",
+							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"detailId\": 3,\r\n    \"quantity\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -896,7 +896,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"clothesId\": 2,\r\n    \"quantity\": 1\r\n}",
+							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"detailId\": 4,\r\n    \"quantity\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -992,7 +992,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cart/123/1",
+							"raw": "http://localhost:8080/cart/123/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1001,7 +1001,7 @@
 							"path": [
 								"cart",
 								"123",
-								"1"
+								"3"
 							]
 						}
 					},

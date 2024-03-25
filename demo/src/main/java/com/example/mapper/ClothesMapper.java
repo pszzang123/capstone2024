@@ -3,6 +3,7 @@ package com.example.mapper;
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.Seller;
+import com.example.demo.vo.CartVo;
 
 public class ClothesMapper {
     public static ClothesDto mapToClothesDto(Clothes clothes) {

@@ -87,21 +87,20 @@ public class ClothesServiceImpl implements ClothesService {
             new ResourceNotFoundException("Clothes are not exists with given id : " + clothesId)
         );
 
-        List<Cart> carts = null;
-        carts = cartRepository.findAllByClothes(clothes);
-        if (carts != null) {
-            carts.forEach((cart) -> {
-                cartRepository.delete(cart);
-            });
-        }
-
         List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothes);
         clothesImages.forEach(clothesImage -> {
             clothesImagesRepository.delete(clothesImage);
         });
-
+        
         List<ClothesDetail> clothesDetails = clothesDetailRepository.findAllByClothes(clothes);
         clothesDetails.forEach(clothesDetail -> {
+            List<Cart> carts = null;
+            carts = cartRepository.findAllByClothesDetail(clothesDetail);
+            if (carts != null) {
+                carts.forEach((cart) -> {
+                    cartRepository.delete(cart);
+                });
+            }
             clothesDetailRepository.delete(clothesDetail);
         });
         

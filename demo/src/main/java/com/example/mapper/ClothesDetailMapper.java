@@ -11,7 +11,7 @@ public class ClothesDetailMapper {
             clothesDetail.getColor(),
             clothesDetail.getSize(),
             clothesDetail.getRemaining(),
-            clothesDetail.getValue(),
+            clothesDetail.getPrice(),
             clothesDetail.getClothes().getClothesId()
         );
     }
@@ -22,7 +22,7 @@ public class ClothesDetailMapper {
             clothesDetailDto.getColor(),
             clothesDetailDto.getSize(),
             clothesDetailDto.getRemaining(),
-            clothesDetailDto.getValue(),
+            clothesDetailDto.getPrice(),
             clothesInfo
         );
     }

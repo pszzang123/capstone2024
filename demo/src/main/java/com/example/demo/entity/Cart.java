@@ -29,8 +29,8 @@ public class Cart {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "clothes_id")
-    private Clothes clothes;
+    @JoinColumn(name = "detail_id")
+    private ClothesDetail clothesDetail;
 
     @Column(name = "quantity")
     private Long quantity;

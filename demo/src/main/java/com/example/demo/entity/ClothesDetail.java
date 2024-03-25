@@ -34,8 +34,8 @@ public class ClothesDetail {
     @Column(name = "remaining")
     private Long remaining;
 
-    @Column(name = "value")
-    private Long value;
+    @Column(name = "price")
+    private Long price;
 
     @ManyToOne
     @JoinColumn(name = "clothes_id", referencedColumnName = "clothes_id")

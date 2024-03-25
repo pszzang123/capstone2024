@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,11 +9,13 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClothesDetailDto {
+public class CartVo {
+    private String customerEmail;
     private Long detailId;
+    private String name;
     private String color;
     private String size;
-    private Long remaining;
     private Long price;
-    private Long clothesId;
+    private String imageUrl;
+    private Long quantity;
 }

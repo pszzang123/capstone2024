@@ -21,6 +21,6 @@ public class CartId implements Serializable {
     private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "clothes_id")
-    private Clothes clothes;
+    @JoinColumn(name = "detail_id")
+    private ClothesDetail clothesDetail;
 }

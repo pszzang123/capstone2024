@@ -3,11 +3,12 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.dto.CartDto;
+import com.example.demo.vo.CartVo;
 
 public interface CartService {
     CartDto createCart(CartDto cartDto);
 
-    List<CartDto> getCartByCustomerEmail(String customerEmail);
+    List<CartVo> getCartByCustomerEmail(String customerEmail);
 
     List<CartDto> getAllCarts();
 

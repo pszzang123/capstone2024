@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ClothesDetailDto;
+import com.example.demo.entity.Cart;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesDetail;
 import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ClothesDetailRepository;
 import com.example.demo.repository.ClothesRepository;
 import com.example.demo.service.ClothesDetailService;
@@ -21,6 +23,7 @@ import lombok.AllArgsConstructor;
 public class ClothesDetailServiceImpl implements ClothesDetailService {
     private ClothesDetailRepository clothesDetailRepository;
     private ClothesRepository clothesRepository;
+    private CartRepository cartRepository;
 
     @Override
     public ClothesDetailDto createClothesDetail(ClothesDetailDto clothesDetailDto) {
@@ -62,7 +65,7 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
         clothesDetail.setColor(updatedClothesDetail.getColor());
         clothesDetail.setSize(updatedClothesDetail.getSize());
         clothesDetail.setRemaining(updatedClothesDetail.getRemaining());
-        clothesDetail.setValue(updatedClothesDetail.getValue());
+        clothesDetail.setPrice(updatedClothesDetail.getPrice());
 
         ClothesDetail updatedClothesDetailObj = clothesDetailRepository.save(clothesDetail);
 
@@ -71,9 +74,17 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
 
     @Override
     public void deleteClothesDetail(Long detailId) {
-        clothesDetailRepository.findById(detailId).orElseThrow(() -> 
+        ClothesDetail clothesDetail = clothesDetailRepository.findById(detailId).orElseThrow(() -> 
             new ResourceNotFoundException("Clothes Detail is not exists with given id : " + detailId)
         );
+
+        List<Cart> carts = null;
+        carts = cartRepository.findAllByClothesDetail(clothesDetail);
+        if (carts != null) {
+            carts.forEach((cart) -> {
+                cartRepository.delete(cart);
+            });
+        }
         
         clothesDetailRepository.deleteById(detailId);
     }

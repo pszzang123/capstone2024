@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CartDto;
 import com.example.demo.service.CartService;
+import com.example.demo.vo.CartVo;
 
 import lombok.AllArgsConstructor;
 
@@ -33,9 +34,9 @@ public class CartController {
     }
 
     @GetMapping("{email}")
-    public ResponseEntity<List<CartDto>> getCartByCustomerEmail(@PathVariable("email") String customerEmail) {
-        List<CartDto> cartDto = cartService.getCartByCustomerEmail(customerEmail);
-        return ResponseEntity.ok(cartDto);
+    public ResponseEntity<List<CartVo>> getCartByCustomerEmail(@PathVariable("email") String customerEmail) {
+        List<CartVo> cartVo = cartService.getCartByCustomerEmail(customerEmail);
+        return ResponseEntity.ok(cartVo);
     }
 
     @GetMapping
