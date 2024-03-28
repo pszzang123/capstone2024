@@ -40,6 +40,9 @@ public class Clothes {
     @Column(name = "small_category")
     private Integer smallCategory;
 
+    @Column(name = "price")
+    private Long price;
+
     @ManyToOne
     @JoinColumn(name = "seller_email", referencedColumnName = "email_id")
     private Seller seller;

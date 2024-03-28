@@ -24,7 +24,6 @@ import lombok.Setter;
 @Table(name = "statistics")
 public class Statistics {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clothesId;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

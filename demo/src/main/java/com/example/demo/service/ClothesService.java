@@ -7,6 +7,8 @@ import com.example.demo.entity.Seller;
 
 public interface ClothesService {
     ClothesDto createClothes(ClothesDto clothesDto);
+    
+    List<ClothesDto> searchClothesByName(String name);
 
     ClothesDto getClothesById(Long clothesId);
 

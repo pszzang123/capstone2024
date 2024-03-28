@@ -73,4 +73,10 @@ public class ClothesDetailController {
         clothesDetailService.deleteClothesDetail(detailId);
         return ResponseEntity.ok("Clothes Detail deleted successfully.");
     }
+
+    @DeleteMapping("clothes/{id}")
+    public ResponseEntity<String> deleteClothesDetailByClothesId(@PathVariable("id") Long clothesId) {
+        clothesDetailService.deleteClothesDetailByClothesId(clothesId);
+        return ResponseEntity.ok("Clothes Detail deleted successfully.");
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,12 +15,14 @@ import com.example.demo.entity.ClothesDetail;
 import com.example.demo.entity.ClothesImages;
 import com.example.demo.entity.ClothesImagesId;
 import com.example.demo.entity.Seller;
+import com.example.demo.entity.Statistics;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ClothesDetailRepository;
 import com.example.demo.repository.ClothesImagesRepository;
 import com.example.demo.repository.ClothesRepository;
 import com.example.demo.repository.SellerRepository;
+import com.example.demo.repository.StatisticsRepository;
 import com.example.demo.service.ClothesService;
 import com.example.mapper.ClothesMapper;
 
@@ -32,6 +36,7 @@ public class ClothesServiceImpl implements ClothesService {
     private ClothesDetailRepository clothesDetailRepository;
     private SellerRepository sellerRepository;
     private CartRepository cartRepository;
+    private StatisticsRepository statisticsRepository;
 
     @Override
     public ClothesDto createClothes(ClothesDto clothesDto) {
@@ -40,7 +45,17 @@ public class ClothesServiceImpl implements ClothesService {
         );
         Clothes clothes = ClothesMapper.mapToClothes(clothesDto, seller_info);
         Clothes savedClothes = clothesRepository.save(clothes);
+
+        Statistics statistics = new Statistics(savedClothes.getClothesId(), savedClothes, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, Date.valueOf(LocalDate.now()));
+        statisticsRepository.save(statistics);
         return ClothesMapper.mapToClothesDto(savedClothes);
+    }
+
+    @Override
+    public List<ClothesDto> searchClothesByName(String name) {
+        List<Clothes> clothes = clothesRepository.searchClothesByNameOrderByDailyView(name);
+        
+        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
     }
 
     @Override
@@ -73,8 +88,9 @@ public class ClothesServiceImpl implements ClothesService {
         clothes.setName(updatedClothes.getName());
         clothes.setDetail(updatedClothes.getDetail());
         clothes.setGenderCategory(updatedClothes.getGenderCategory());
-        clothes.setLargeCategory(updatedClothes.getLargeCategory());
-        clothes.setSmallCategory(updatedClothes.getSmallCategory());
+        clothes.setLargeCategory(updatedClothes.getCategoryNumber() / 100);
+        clothes.setSmallCategory(updatedClothes.getCategoryNumber());
+        clothes.setPrice(updatedClothes.getPrice());
 
         Clothes updatedClothesObj = clothesRepository.save(clothes);
 

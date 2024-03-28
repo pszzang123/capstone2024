@@ -14,6 +14,5 @@ public class ClothesDetailDto {
     private String color;
     private String size;
     private Long remaining;
-    private Long price;
     private Long clothesId;
 }

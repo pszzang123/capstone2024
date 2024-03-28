@@ -23,7 +23,7 @@ public class CartMapper {
             clothesInfo.getClothes().getName(),
             clothesInfo.getColor(),
             clothesInfo.getSize(),
-            clothesInfo.getPrice(),
+            clothesInfo.getClothes().getPrice(),
             imageUrl,
             cart.getQuantity()
         );

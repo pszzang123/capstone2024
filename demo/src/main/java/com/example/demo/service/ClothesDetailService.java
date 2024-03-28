@@ -17,4 +17,6 @@ public interface ClothesDetailService {
     ClothesDetailDto updateClothesDetail(Long detailId, ClothesDetailDto updatedClothesDetail);
 
     void deleteClothesDetail(Long detailId);
+
+    void deleteClothesDetailByClothesId(Long clothesId);
 }

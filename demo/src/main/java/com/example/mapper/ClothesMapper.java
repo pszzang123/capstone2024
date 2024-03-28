@@ -12,8 +12,8 @@ public class ClothesMapper {
             clothes.getName(),
             clothes.getDetail(),
             clothes.getGenderCategory(),
-            clothes.getLargeCategory(),
-            clothes.getSmallCategory(),
+            clothes.getLargeCategory() * 100 + clothes.getSmallCategory(),
+            clothes.getPrice(),
             clothes.getSeller().getEmail()
         );
     }
@@ -24,8 +24,9 @@ public class ClothesMapper {
             clothesDto.getName(),
             clothesDto.getDetail(),
             clothesDto.getGenderCategory(),
-            clothesDto.getLargeCategory(),
-            clothesDto.getSmallCategory(),
+            clothesDto.getCategoryNumber() / 100,
+            clothesDto.getCategoryNumber(),
+            clothesDto.getPrice(),
             sellerInfo
         );
     }

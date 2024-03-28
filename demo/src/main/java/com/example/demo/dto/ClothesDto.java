@@ -14,7 +14,7 @@ public class ClothesDto {
     private String name;
     private String detail;
     private Integer genderCategory;
-    private Integer largeCategory;
-    private Integer smallCategory;
+    private Integer categoryNumber;
+    private Long price;
     private String sellerEmail;
 }

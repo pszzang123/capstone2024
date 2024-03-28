@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -65,7 +66,6 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
         clothesDetail.setColor(updatedClothesDetail.getColor());
         clothesDetail.setSize(updatedClothesDetail.getSize());
         clothesDetail.setRemaining(updatedClothesDetail.getRemaining());
-        clothesDetail.setPrice(updatedClothesDetail.getPrice());
 
         ClothesDetail updatedClothesDetailObj = clothesDetailRepository.save(clothesDetail);
 
@@ -87,5 +87,24 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
         }
         
         clothesDetailRepository.deleteById(detailId);
+    }
+
+    @Override
+    public void deleteClothesDetailByClothesId(Long clothesId) {
+        Optional<Clothes> clothesCheck = clothesRepository.findById(clothesId);
+        if (clothesCheck.isPresent()) {
+            Clothes clothesInfo = clothesCheck.get();
+            List<ClothesDetail> clothesDetails = clothesDetailRepository.findAllByClothes(clothesInfo);
+            clothesDetails.forEach(clothesDetail -> {
+                List<Cart> carts = null;
+                carts = cartRepository.findAllByClothesDetail(clothesDetail);
+                if (carts != null) {
+                    carts.forEach((cart) -> {
+                        cartRepository.delete(cart);
+                    });
+                }
+                clothesDetailRepository.delete(clothesDetail);
+            });
+        }
     }
 }
