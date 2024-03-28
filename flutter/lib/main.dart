@@ -13,6 +13,7 @@ import './man.dart';
 import './woman.dart';
 import './kids.dart';
 import './bagAndShoes.dart';
+import './ProductDetailPage.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -255,289 +256,183 @@ class _HomeState extends State<Home> {
     return isLoading
         ? Center(child: CircularProgressIndicator())
         : ListView.builder(
-            itemCount: 1,
-            controller: scroll,
-            itemBuilder: (c, i) {
-              return Column(
-                children: [
-                  Container(
-                    height: 50.0,
-                    color: Colors.white,
-                    child: (Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+        itemCount: 1,
+        controller: scroll,
+        itemBuilder: (c, i) {
+          return Column(
+            children: [
+              Container(
+                height: 50.0,
+                color: Colors.white,
+                child: (Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => woman()));
+                        },
+                        child: Text(
+                          '여성',
+                          style: TextStyle(color: Colors.black),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => man()));
+                        },
+                        child: Text(
+                          '남성',
+                          style: TextStyle(color: Colors.black),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => kids()));
+                        },
+                        child: Text(
+                          '키즈',
+                          style: TextStyle(color: Colors.black),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => bagAndShoes()));
+                        },
+                        child: Text(
+                          '백&슈즈',
+                          style: TextStyle(color: Colors.black),
+                        )),
+                  ],
+                )),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                    '현재 인기 아이템',
+                    style: TextStyle(
+                        fontSize: fontSize1(context).toDouble())),
+              ),
+              SizedBox(
+                height: 400,
+                child: Stack(
+                  children: [
+                    sliderWidget(),
+                    sliderIndicator(),
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              Divider(
+                indent: 100,
+                endIndent: 100,
+              ),
+              SizedBox(height: 50),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                    '현재 할인 아이템',
+                    style: TextStyle(
+                        fontSize: fontSize1(context).toDouble())),
+              ),
+              SizedBox(
+                height: 350,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => woman()));
-                            },
-                            child: Text(
-                              '여성',
-                              style: TextStyle(color: Colors.black),
-                            )),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => man()));
-                            },
-                            child: Text(
-                              '남성',
-                              style: TextStyle(color: Colors.black),
-                            )),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => kids()));
-                            },
-                            child: Text(
-                              '키즈',
-                              style: TextStyle(color: Colors.black),
-                            )),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => bagAndShoes()));
-                            },
-                            child: Text(
-                              '백&슈즈',
-                              style: TextStyle(color: Colors.black),
-                            )),
-                      ],
-                    )),
-                    // child: Center(
-                    //   child: Text(
-                    //     'Fixed Top Container',
-                    //     style: TextStyle(
-                    //       color: Colors.black,
-                    //       fontSize: 20.0,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text('현재 인기 아이템',
-                        style:
-                            TextStyle(fontSize: fontSize1(context).toDouble())),
-                  ),
-                  SizedBox(
-                    height: 400,
-                    child: Stack(
-                      children: [
-                        sliderWidget(),
-                        sliderIndicator(),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 50),
-                  Divider(
-                    indent: 100,
-                    endIndent: 100,
-                  ),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text('현재 할인 아이템',
-                        style:
-                            TextStyle(fontSize: fontSize1(context).toDouble())),
-                  ),
-                  SizedBox(
-                    height: 350,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[0]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[1]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[2]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16), // 간격 조절
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[3]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[4]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[5]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16), // 간격 조절
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[6]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[7]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image:
-                                    NetworkImage(currentSaleItemsImageList[8]),
-                                width: MediaQuery.of(context).size.width / 5,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        ),
+                        buildImageButton(currentSaleItemsImageList[0], currentSaleItemsImageList[0][00]), // [0]['productid']
+                        buildImageButton(currentSaleItemsImageList[1], currentSaleItemsImageList[1][01]),
+                        buildImageButton(currentSaleItemsImageList[2], currentSaleItemsImageList[2][02]),
                       ],
                     ),
-                  ),
-                  SizedBox(height: 50),
-                  Divider(
-                    indent: 100,
-                    endIndent: 100,
-                  ),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text('새로운 아이템',
-                        style:
-                            TextStyle(fontSize: fontSize1(context).toDouble())),
-                  ),
-                  SizedBox(
-                    height: 350,
-                    child: Column(
+                    SizedBox(height: 16), // 간격 조절
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image: NetworkImage(newItemsImageList[0]),
-                                width: MediaQuery.of(context).size.width / 7,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image: NetworkImage(newItemsImageList[1]),
-                                width: MediaQuery.of(context).size.width / 7,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image: NetworkImage(newItemsImageList[2]),
-                                width: MediaQuery.of(context).size.width / 7,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image: NetworkImage(newItemsImageList[3]),
-                                width: MediaQuery.of(context).size.width / 7,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(30.0),
-                              child: Image(
-                                image: NetworkImage(newItemsImageList[4]),
-                                width: MediaQuery.of(context).size.width / 7,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        ),
+                        buildImageButton(currentSaleItemsImageList[3], currentSaleItemsImageList[3][03]),
+                        buildImageButton(currentSaleItemsImageList[4], currentSaleItemsImageList[4][04]),
+                        buildImageButton(currentSaleItemsImageList[5], currentSaleItemsImageList[5][05]),
                       ],
                     ),
-                  ),
-                ],
-              );
-            });
+                    SizedBox(height: 16), // 간격 조절
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildImageButton(currentSaleItemsImageList[6], currentSaleItemsImageList[6][06]),
+                        buildImageButton(currentSaleItemsImageList[7], currentSaleItemsImageList[7][07]),
+                        buildImageButton(currentSaleItemsImageList[8], currentSaleItemsImageList[8][08]),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              Divider(
+                indent: 100,
+                endIndent: 100,
+              ),
+              SizedBox(height: 50),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                    '새로운 아이템',
+                    style: TextStyle(
+                        fontSize: fontSize1(context).toDouble())),
+              ),
+              SizedBox(
+                height: 350,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildImageButton(newItemsImageList[0], newItemsImageList[0][09]),
+                        buildImageButton(newItemsImageList[1], newItemsImageList[1][10]),
+                        buildImageButton(newItemsImageList[2], newItemsImageList[2][11]),
+                        buildImageButton(newItemsImageList[3], newItemsImageList[3][12]),
+                        buildImageButton(newItemsImageList[4], newItemsImageList[4][13]),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        });
   }
+
+  Widget buildImageButton(String imageUrl, String productId) {
+    return GestureDetector(
+      onTap: () {
+        // 해당 상품의 상세 페이지로 이동하는 코드
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ProductDetailPage(productId)),
+        );
+      },
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30.0),
+        child: Image(
+          image: NetworkImage(imageUrl),
+          width: MediaQuery.of(context).size.width / 5,
+          height: 100,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+
 
   Widget sliderWidget() {
     return CarouselSlider(
