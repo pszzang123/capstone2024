@@ -36,12 +36,6 @@ public class ClothesController {
         return new ResponseEntity<>(savedClothes, HttpStatus.CREATED);
     }
 
-    @GetMapping("search/{name}")
-    public ResponseEntity<List<ClothesDto>> searchClothesByName(@PathVariable("name") String name) {
-        List<ClothesDto> clothes = clothesService.searchClothesByName(name);
-        return ResponseEntity.ok(clothes);
-    }
-
     @GetMapping("{id}")
     public ResponseEntity<ClothesDto> getClothesById(@PathVariable("id") Long clothesId) {
         ClothesDto clothesDto = clothesService.getClothesById(clothesId);

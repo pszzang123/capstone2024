@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.entity.Cart;
-import com.example.demo.entity.CartId;
 import com.example.demo.entity.Customer;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
