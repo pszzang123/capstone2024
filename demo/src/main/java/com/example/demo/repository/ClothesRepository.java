@@ -10,4 +10,6 @@ import com.example.demo.entity.Seller;
 // JpaRepository<type of entity, type of primary key>
 public interface ClothesRepository extends JpaRepository<Clothes, Long> {
     List<Clothes> findAllBySeller(Seller seller);
+
+    List<Clothes> findAllByNameContainingOrderByDailyViewDesc(String name);
 }

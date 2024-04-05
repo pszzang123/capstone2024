@@ -1,9 +1,9 @@
 package com.example.mapper;
 
 import com.example.demo.dto.ClothesDto;
+import com.example.demo.dto.StatisticsDto;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.Seller;
-import com.example.demo.vo.CartVo;
 
 public class ClothesMapper {
     public static ClothesDto mapToClothesDto(Clothes clothes) {
@@ -18,7 +18,25 @@ public class ClothesMapper {
         );
     }
 
-    public static Clothes mapToClothes(ClothesDto clothesDto, Seller sellerInfo) {
+    public static StatisticsDto mapToStatisticsDto(Clothes clothes) {
+        return new StatisticsDto(
+            clothes.getDailySales(),
+            clothes.getMonthlySales(),
+            clothes.getTotalSales(),
+            clothes.getDailyView(),
+            clothes.getMonthlyView(),
+            clothes.getTotalView(),
+            clothes.getDailyComment(),
+            clothes.getMonthlyComment(),
+            clothes.getTotalComment(),
+            clothes.getDailyLike(),
+            clothes.getMonthlyLike(),
+            clothes.getTotalLike(),
+            clothes.getUpdateDate()
+        );
+    }
+
+    public static Clothes mapToClothes(ClothesDto clothesDto, StatisticsDto statisticsDto, Seller sellerInfo) {
         return new Clothes(
             clothesDto.getClothesId(),
             clothesDto.getName(),
@@ -27,7 +45,20 @@ public class ClothesMapper {
             clothesDto.getCategoryNumber() / 100,
             clothesDto.getCategoryNumber(),
             clothesDto.getPrice(),
-            sellerInfo
+            sellerInfo,
+            statisticsDto.getDailySales(),
+            statisticsDto.getMonthlySales(),
+            statisticsDto.getTotalSales(),
+            statisticsDto.getDailyView(),
+            statisticsDto.getMonthlyView(),
+            statisticsDto.getTotalView(),
+            statisticsDto.getDailyComment(),
+            statisticsDto.getMonthlyComment(),
+            statisticsDto.getTotalComment(),
+            statisticsDto.getDailyLike(),
+            statisticsDto.getMonthlyLike(),
+            statisticsDto.getTotalLike(),
+            statisticsDto.getUpdateDate()
         );
     }
 }

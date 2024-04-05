@@ -1,11 +1,14 @@
 package com.example.demo.service.impl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.ClothesDto;
+import com.example.demo.dto.StatisticsDto;
 import com.example.demo.entity.Cart;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesDetail;
@@ -36,7 +39,10 @@ public class ClothesServiceImpl implements ClothesService {
         Seller seller_info = sellerRepository.findById(clothesDto.getSellerEmail()).orElseThrow(() ->
             new ResourceNotFoundException("Seller is not exist with given id : " + clothesDto.getSellerEmail())
         );
-        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, seller_info);
+        StatisticsDto statisticsDto = new StatisticsDto(
+            0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+        );
+        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, statisticsDto, seller_info);
         Clothes savedClothes = clothesRepository.save(clothes);
         return ClothesMapper.mapToClothesDto(savedClothes);
     }
@@ -51,8 +57,23 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
+    public StatisticsDto getStatisticsById(Long clothesId) {
+        Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(() -> 
+            new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
+        );
+        
+        return ClothesMapper.mapToStatisticsDto(clothes);
+    }
+
+    @Override
     public List<ClothesDto> getClothesBySeller(Seller seller) {
         List<Clothes> clothes = clothesRepository.findAllBySeller(seller);
+        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ClothesDto> searchClothesByNameOrderByDailyView(String name) {
+        List<Clothes> clothes = clothesRepository.findAllByNameContainingOrderByDailyViewDesc(name);
         return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
     }
 

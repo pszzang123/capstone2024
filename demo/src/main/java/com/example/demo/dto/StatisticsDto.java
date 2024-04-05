@@ -1,7 +1,5 @@
 package com.example.demo.dto;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StatisticsDto {
-    private Long clothesId;
-
     private Long dailySales;
     private Long monthlySales;
     private Long totalSales;
@@ -30,5 +26,5 @@ public class StatisticsDto {
     private Long monthlyLike;
     private Long totalLike;
 
-    private Date updateDate;
+    private String updateDate;
 }

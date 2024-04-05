@@ -46,4 +46,44 @@ public class Clothes {
     @ManyToOne
     @JoinColumn(name = "seller_email", referencedColumnName = "email_id")
     private Seller seller;
+
+    // Statistics
+    @Column(name = "daily_sales")
+    private Long dailySales;
+
+    @Column(name = "monthly_sales")
+    private Long monthlySales;
+
+    @Column(name = "total_sales")
+    private Long totalSales;
+
+    @Column(name = "daily_view")
+    private Long dailyView;
+
+    @Column(name = "monthly_view")
+    private Long monthlyView;
+
+    @Column(name = "total_view")
+    private Long totalView;
+
+    @Column(name = "daily_comment")
+    private Long dailyComment;
+
+    @Column(name = "monthly_comment")
+    private Long monthlyComment;
+
+    @Column(name = "total_comment")
+    private Long totalComment;
+
+    @Column(name = "daily_like")
+    private Long dailyLike;
+
+    @Column(name = "monthly_like")
+    private Long monthlyLike;
+
+    @Column(name = "total_like")
+    private Long totalLike;
+
+    @Column(name = "update_date", nullable = false)
+    private String updateDate;
 }

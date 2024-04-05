@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.ClothesDetailDto;
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.dto.SellerDto;
+import com.example.demo.dto.StatisticsDto;
 import com.example.demo.entity.Clothes;
 import com.example.demo.service.ClothesDetailService;
 import com.example.demo.service.ClothesService;
@@ -50,8 +51,9 @@ public class ClothesDetailController {
     @GetMapping("clothes/{id}")
     public ResponseEntity<List<ClothesDetailDto>> getClothesDetailsByClothes(@PathVariable("id") Long clothesId) {
         ClothesDto clothesDto = clothesService.getClothesById(clothesId);
+        StatisticsDto statisticsDto = clothesService.getStatisticsById(clothesId);
         SellerDto sellerDto = sellerService.getSellerByEmail(clothesDto.getSellerEmail());
-        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, SellerMapper.mapToSeller(sellerDto));
+        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, statisticsDto, SellerMapper.mapToSeller(sellerDto));
         List<ClothesDetailDto> clothesDetails = clothesDetailService.getClothesDetailByClothes(clothes);
         return ResponseEntity.ok(clothesDetails);
     }

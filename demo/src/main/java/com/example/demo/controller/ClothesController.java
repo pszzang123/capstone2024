@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClothesDto;
+import com.example.demo.dto.StatisticsDto;
 import com.example.demo.entity.Seller;
 import com.example.demo.service.ClothesService;
 import com.example.demo.service.SellerService;
@@ -47,6 +48,18 @@ public class ClothesController {
         Seller seller = SellerMapper.mapToSeller(sellerService.getSellerByEmail(sellerEmail));
         List<ClothesDto> clothes = clothesService.getClothesBySeller(seller);
         return ResponseEntity.ok(clothes);
+    }
+
+    @GetMapping("statistics/{id}")
+    public ResponseEntity<StatisticsDto> getStatisticsById(@PathVariable("id") Long clothesId) {
+        StatisticsDto statisticsDto = clothesService.getStatisticsById(clothesId);
+        return ResponseEntity.ok(statisticsDto);
+    }
+
+    @GetMapping("search/{name}")
+    public ResponseEntity<List<ClothesDto>> getClothesById(@PathVariable("name") String name) {
+        List<ClothesDto> clothesDto = clothesService.searchClothesByNameOrderByDailyView(name);
+        return ResponseEntity.ok(clothesDto);
     }
 
     @GetMapping
