@@ -24,6 +24,7 @@ import com.example.demo.service.ClothesService;
 import com.example.demo.service.MajorCategoryService;
 import com.example.demo.service.SellerService;
 import com.example.demo.service.SubCategoryService;
+import com.example.demo.vo.ClothesVo;
 import com.example.mapper.MajorCategoryMapper;
 import com.example.mapper.SellerMapper;
 import com.example.mapper.SubCategoryMapper;
@@ -81,9 +82,9 @@ public class ClothesController {
     }
 
     @GetMapping("search/{name}")
-    public ResponseEntity<List<ClothesDto>> getClothesById(@PathVariable("name") String name) {
-        List<ClothesDto> clothesDto = clothesService.searchClothesByNameOrderByDailyView(name);
-        return ResponseEntity.ok(clothesDto);
+    public ResponseEntity<List<ClothesVo>> getClothesById(@PathVariable("name") String name) {
+        List<ClothesVo> clothesVo = clothesService.searchClothesByNameOrderByDailyView(name);
+        return ResponseEntity.ok(clothesVo);
     }
 
     @GetMapping

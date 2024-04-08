@@ -25,6 +25,7 @@ import com.example.demo.repository.MajorCategoryRepository;
 import com.example.demo.repository.SellerRepository;
 import com.example.demo.repository.SubCategoryRepository;
 import com.example.demo.service.ClothesService;
+import com.example.demo.vo.ClothesVo;
 import com.example.mapper.ClothesMapper;
 
 import lombok.AllArgsConstructor;
@@ -101,9 +102,21 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public List<ClothesDto> searchClothesByNameOrderByDailyView(String name) {
+    public List<ClothesVo> searchClothesByNameOrderByDailyView(String name) {
         List<Clothes> clothes = clothesRepository.findAllByNameContainingOrderByDailyViewDesc(name);
-        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+        return clothes.stream().map((clothe) -> {
+            String imageUrl = "";
+            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothe);
+            for (ClothesImages clothesImage : clothesImages) {
+                if (clothesImage.getOrder() == 1) {
+                    imageUrl = clothesImage.getImageUrl();
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return ClothesMapper.mapToClothesVo(clothe, imageUrl);
+        }).collect(Collectors.toList());
     }
 
     @Override
