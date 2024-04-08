@@ -34,11 +34,13 @@ public class Clothes {
     @Column(name = "gender_category")
     private Integer genderCategory;
 
-    @Column(name = "large_category")
-    private Integer largeCategory;
+    @ManyToOne
+    @JoinColumn(name = "major_category_id", referencedColumnName = "major_category_id")
+    private MajorCategory majorCategory;
 
-    @Column(name = "small_category")
-    private Integer smallCategory;
+    @ManyToOne
+    @JoinColumn(name = "sub_category_id", referencedColumnName = "sub_category_id")
+    private SubCategory subCategory;
 
     @Column(name = "price")
     private Long price;

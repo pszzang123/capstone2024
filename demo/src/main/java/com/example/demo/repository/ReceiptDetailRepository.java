@@ -6,9 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.Receipt;
 import com.example.demo.entity.ReceiptDetail;
-import com.example.demo.entity.ReceiptDetailId;
 
 // JpaRepository<type of entity, type of primary key>
-public interface ReceiptDetailRepository extends JpaRepository<ReceiptDetail, ReceiptDetailId> {
+public interface ReceiptDetailRepository extends JpaRepository<ReceiptDetail, Long> {
     List<ReceiptDetail> findAllByReceipt(Receipt receipt);
 }

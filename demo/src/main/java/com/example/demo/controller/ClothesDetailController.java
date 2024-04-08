@@ -16,14 +16,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClothesDetailDto;
 import com.example.demo.dto.ClothesDto;
+import com.example.demo.dto.MajorCategoryDto;
 import com.example.demo.dto.SellerDto;
 import com.example.demo.dto.StatisticsDto;
+import com.example.demo.dto.SubCategoryDto;
 import com.example.demo.entity.Clothes;
 import com.example.demo.service.ClothesDetailService;
 import com.example.demo.service.ClothesService;
+import com.example.demo.service.MajorCategoryService;
 import com.example.demo.service.SellerService;
+import com.example.demo.service.SubCategoryService;
 import com.example.mapper.ClothesMapper;
+import com.example.mapper.MajorCategoryMapper;
 import com.example.mapper.SellerMapper;
+import com.example.mapper.SubCategoryMapper;
 
 import lombok.AllArgsConstructor;
 
@@ -35,6 +41,9 @@ public class ClothesDetailController {
     private ClothesDetailService clothesDetailService;
     private ClothesService clothesService;
     private SellerService sellerService;
+    private MajorCategoryService majorCategoryService;
+    private SubCategoryService subCategoryService;
+    
 
     @PostMapping
     public ResponseEntity<ClothesDetailDto> createClothesDetail(@RequestBody ClothesDetailDto clothesDetailDto) {
@@ -53,7 +62,15 @@ public class ClothesDetailController {
         ClothesDto clothesDto = clothesService.getClothesById(clothesId);
         StatisticsDto statisticsDto = clothesService.getStatisticsById(clothesId);
         SellerDto sellerDto = sellerService.getSellerByEmail(clothesDto.getSellerEmail());
-        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, statisticsDto, SellerMapper.mapToSeller(sellerDto));
+        MajorCategoryDto majorCategoryDto = majorCategoryService.getMajorCategoryById(clothesDto.getMajorCategoryId());
+        SubCategoryDto subCategoryDto = subCategoryService.getSubCategoryById(clothesDto.getSubCategoryId());
+        Clothes clothes = ClothesMapper.mapToClothes(
+            clothesDto,
+            statisticsDto,
+            MajorCategoryMapper.mapToMajorCategory(majorCategoryDto),
+            SubCategoryMapper.mapToSubCategory(subCategoryDto, MajorCategoryMapper.mapToMajorCategory(majorCategoryDto)),
+            SellerMapper.mapToSeller(sellerDto)
+        );
         List<ClothesDetailDto> clothesDetails = clothesDetailService.getClothesDetailByClothes(clothes);
         return ResponseEntity.ok(clothesDetails);
     }

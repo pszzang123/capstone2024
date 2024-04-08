@@ -1,4 +1,4 @@
-package com.example.demo.vo;
+package com.example.demo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,13 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiptDetailVo {
+public class LikesDto {
     private String customerEmail;
     private Long clothesId;
-    private String name;
-    private String color;
-    private String size;
-    private Long price;
-    private String imageUrl;
-    private Long quantity;
 }

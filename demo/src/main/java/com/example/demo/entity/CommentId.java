@@ -15,12 +15,12 @@ import lombok.Setter;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiptDetailId implements Serializable {
+public class CommentId implements Serializable {
     @ManyToOne
-    @JoinColumn(name = "receipt_id")
-    private Receipt receipt;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     @ManyToOne
-    @JoinColumn(name = "detail_id")
-    private ClothesDetail clothesDetail;
+    @JoinColumn(name = "clothes_id")
+    private Clothes clothes;
 }

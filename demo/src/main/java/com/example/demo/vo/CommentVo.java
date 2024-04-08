@@ -9,13 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReceiptDetailVo {
+public class CommentVo {
     private String customerEmail;
     private Long clothesId;
-    private String name;
-    private String color;
-    private String size;
-    private Long price;
-    private String imageUrl;
-    private Long quantity;
+    private String comment;
+    private String date;
 }

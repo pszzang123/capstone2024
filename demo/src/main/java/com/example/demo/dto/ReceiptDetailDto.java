@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReceiptDetailDto {
+    private Long receiptDetailId;
     private Long receiptId;
     private Long detailId;
     private Long quantity;

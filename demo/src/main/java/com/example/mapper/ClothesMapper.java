@@ -3,7 +3,9 @@ package com.example.mapper;
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.dto.StatisticsDto;
 import com.example.demo.entity.Clothes;
+import com.example.demo.entity.MajorCategory;
 import com.example.demo.entity.Seller;
+import com.example.demo.entity.SubCategory;
 
 public class ClothesMapper {
     public static ClothesDto mapToClothesDto(Clothes clothes) {
@@ -12,7 +14,8 @@ public class ClothesMapper {
             clothes.getName(),
             clothes.getDetail(),
             clothes.getGenderCategory(),
-            clothes.getLargeCategory() * 100 + clothes.getSmallCategory(),
+            clothes.getMajorCategory().getMajorCategoryId(),
+            clothes.getSubCategory().getSubCategoryId(),
             clothes.getPrice(),
             clothes.getSeller().getEmail()
         );
@@ -36,14 +39,14 @@ public class ClothesMapper {
         );
     }
 
-    public static Clothes mapToClothes(ClothesDto clothesDto, StatisticsDto statisticsDto, Seller sellerInfo) {
+    public static Clothes mapToClothes(ClothesDto clothesDto, StatisticsDto statisticsDto, MajorCategory majorCategory, SubCategory subCategory, Seller sellerInfo) {
         return new Clothes(
             clothesDto.getClothesId(),
             clothesDto.getName(),
             clothesDto.getDetail(),
             clothesDto.getGenderCategory(),
-            clothesDto.getCategoryNumber() / 100,
-            clothesDto.getCategoryNumber(),
+            majorCategory,
+            subCategory,
             clothesDto.getPrice(),
             sellerInfo,
             statisticsDto.getDailySales(),

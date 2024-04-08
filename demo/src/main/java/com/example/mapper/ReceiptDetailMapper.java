@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.demo.dto.ReceiptDetailDto;
+import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesDetail;
 import com.example.demo.entity.Receipt;
 import com.example.demo.entity.ReceiptDetail;
@@ -9,6 +10,7 @@ import com.example.demo.vo.ReceiptDetailVo;
 public class ReceiptDetailMapper {
     public static ReceiptDetailDto mapToReceiptDetailDto(ReceiptDetail receiptDetail) {
         return new ReceiptDetailDto(
+            receiptDetail.getReceiptDetailId(),
             receiptDetail.getReceipt().getReceiptId(),
             receiptDetail.getClothesDetail().getDetailId(),
             receiptDetail.getQuantity()
@@ -16,23 +18,28 @@ public class ReceiptDetailMapper {
     }
 
     public static ReceiptDetailVo mapToReceiptDetailVo(ReceiptDetail receiptDetail, String imageUrl) {
-        ClothesDetail clothesInfo = receiptDetail.getClothesDetail();
         return new ReceiptDetailVo(
             receiptDetail.getReceipt().getCustomer().getEmail(),
-            clothesInfo.getDetailId(),
-            clothesInfo.getClothes().getName(),
-            clothesInfo.getColor(),
-            clothesInfo.getSize(),
-            clothesInfo.getClothes().getPrice(),
+            receiptDetail.getClothesDetail().getClothes().getClothesId(),
+            receiptDetail.getName(),
+            receiptDetail.getColor(),
+            receiptDetail.getSize(),
+            receiptDetail.getPrice(),
             imageUrl,
             receiptDetail.getQuantity()
         );
     }
 
     public static ReceiptDetail mapToReceiptDetail(ReceiptDetailDto receiptDetailDto, Receipt receipt, ClothesDetail clothesDetail) {
+        Clothes clothes = clothesDetail.getClothes();
         return new ReceiptDetail(
+            receiptDetailDto.getReceiptDetailId(),
             receipt,
             clothesDetail,
+            clothes.getName(),
+            clothesDetail.getColor(),
+            clothesDetail.getSize(),
+            clothes.getPrice() * receiptDetailDto.getQuantity(),
             receiptDetailDto.getQuantity()
         );
     }

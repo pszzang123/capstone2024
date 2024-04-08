@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.dto.StatisticsDto;
+import com.example.demo.entity.MajorCategory;
 import com.example.demo.entity.Seller;
+import com.example.demo.entity.SubCategory;
 
 public interface ClothesService {
     ClothesDto createClothes(ClothesDto clothesDto);
@@ -14,6 +16,10 @@ public interface ClothesService {
     StatisticsDto getStatisticsById(Long clothesId);
 
     List<ClothesDto> getClothesBySeller(Seller seller);
+
+    List<ClothesDto> getClothesByMajorCategory(MajorCategory majorCategory);
+
+    List<ClothesDto> getClothesBySubCategory(SubCategory subCategory);
 
     List<ClothesDto> searchClothesByNameOrderByDailyView(String name);
 

@@ -350,6 +350,115 @@
 			"description": "POST [http://localhost:8080/sellers](http://localhost:8080/customers)\n\n\\-> body: json\n\nGET [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/sellers](http://localhost:8080/customers)\n\nPUT [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})  \n\\-> body: json\n\nDELETE [http://localhost:8080/sellers/{email}](http://localhost:8080/customers/{email})\n\n\\-> Seller 삭제 시 해당 Seller가 올린 Clothes 삭제"
 		},
 		{
+			"name": "Major Category",
+			"item": [
+				{
+					"name": "Get Major Category By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/major_category/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"major_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Major Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/major_category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"major_category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sub Category",
+			"item": [
+				{
+					"name": "Get Sub Category By Sub Category Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sub_category/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sub_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sub Category By Major Category Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sub_category/major_category/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sub_category",
+								"major_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Sub Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sub_category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sub_category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Clothes",
 			"item": [
 				{
@@ -359,7 +468,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"123\",\r\n    \"detail\": \"a\",\r\n    \"genderCategory\": 1,\r\n    \"categoryNumber\": 112,\r\n    \"price\": 10000,\r\n    \"sellerEmail\": \"123\"\r\n}",
+							"raw": "{\r\n    \"name\": \"123\",\r\n    \"detail\": \"a\",\r\n    \"genderCategory\": 1,\r\n    \"majorCategoryId\": 1,\r\n    \"subCategoryId\": 2,\r\n    \"price\": 10000,\r\n    \"sellerEmail\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -387,7 +496,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"1234\",\r\n    \"detail\": \"\",\r\n    \"genderCategory\": 0,\r\n    \"categoryNumber\": 204,\r\n    \"price\": 20000,\r\n    \"sellerEmail\": \"1234\"\r\n}",
+							"raw": "{\r\n    \"name\": \"1234\",\r\n    \"detail\": \"\",\r\n    \"genderCategory\": 0,\r\n    \"majorCategoryId\": 3,\r\n    \"subCategoryId\": 10,\r\n    \"price\": 20000,\r\n    \"sellerEmail\": \"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -444,6 +553,48 @@
 							"path": [
 								"clothes",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clothes By Major Category Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes/major_category/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"major_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clothes By Sub Category Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes/sub_category/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"sub_category",
+								"2"
 							]
 						}
 					},
@@ -529,7 +680,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"123\",\r\n    \"detail\": \"a\",\r\n    \"genderCategory\": 1,\r\n    \"largeCategory\": 0,\r\n    \"smallCategory\": 10,\r\n    \"sellerEmail\": \"123\"\r\n}",
+							"raw": "{\r\n    \"name\": \"123\",\r\n    \"detail\": \"a\",\r\n    \"genderCategory\": 1,\r\n    \"majorCategoryId\": 1,\r\n    \"subCategoryId\": 3,\r\n    \"price\": 5000,\r\n    \"sellerEmail\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -573,14 +724,6 @@
 				}
 			],
 			"description": "POST [http://localhost:8080/clothes](http://localhost:8080/customers)\n\n\\-> body: json\n\nGET [http://localhost:8080/clothes/{clothes_id}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/clothes/seller/{email}](http://localhost:8080/customers/{email})\n\nGET [http://localhost:8080/clothes](http://localhost:8080/customers)\n\nPUT [http://localhost:8080/clothes/{clothes_id}](http://localhost:8080/customers/{email})  \n\\-> body: json\n\nDELETE [http://localhost:8080/clothes/{clothes_id}](http://localhost:8080/customers/{email})\n\n\\-> Clothes 삭제 시 해당 Clothes에 속한 Clothes Categories 삭제"
-		},
-		{
-			"name": "Large Category (미구현)",
-			"item": []
-		},
-		{
-			"name": "Small Category (미구현)",
-			"item": []
 		},
 		{
 			"name": "ClothesImages",
@@ -1269,7 +1412,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"receiptId\": 1,\r\n    \"detailId\": 2,\r\n    \"quantity\": 1\r\n}",
+							"raw": "{\r\n    \"receiptId\": 1,\r\n    \"detailId\": 2,\r\n    \"quantity\": 10\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1364,12 +1507,384 @@
 			"item": []
 		},
 		{
-			"name": "Comment (미구현)",
-			"item": []
+			"name": "Comment",
+			"item": [
+				{
+					"name": "Add Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"clothesId\": 1,\r\n    \"comment\": \"옷이 참 예뻐요!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Second Clothes Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"clothesId\": 2,\r\n    \"comment\": \"핏이 좋아요\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment By Customer Email and Clothes Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comment/123/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment",
+								"123",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment By Clothes Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comment/clothes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment",
+								"clothes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comment By Customer Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comment/customer/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment",
+								"customer",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Comment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"clothesId\": 1,\r\n    \"comment\": \"배송이 빨라요\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment By Customer Email and Clothes Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comment/123/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comment",
+								"123",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Like (미구현)",
-			"item": []
+			"name": "Likes",
+			"item": [
+				{
+					"name": "Add Likes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"clothesId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Second Likes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerEmail\": \"123\",\r\n    \"clothesId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Likes By Customer Email and Clothes Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/like/123/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"like",
+								"123",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Like By Clothes Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/like/clothes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"like",
+								"clothes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Like By Customer Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/like/customer/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"like",
+								"customer",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Like",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/like",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Like By Customer Email and Clothes Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/like/123/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"like",
+								"123",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

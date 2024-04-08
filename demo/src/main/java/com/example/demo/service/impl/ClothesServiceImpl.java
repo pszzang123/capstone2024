@@ -13,13 +13,17 @@ import com.example.demo.entity.Cart;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesDetail;
 import com.example.demo.entity.ClothesImages;
+import com.example.demo.entity.MajorCategory;
 import com.example.demo.entity.Seller;
+import com.example.demo.entity.SubCategory;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ClothesDetailRepository;
 import com.example.demo.repository.ClothesImagesRepository;
 import com.example.demo.repository.ClothesRepository;
+import com.example.demo.repository.MajorCategoryRepository;
 import com.example.demo.repository.SellerRepository;
+import com.example.demo.repository.SubCategoryRepository;
 import com.example.demo.service.ClothesService;
 import com.example.mapper.ClothesMapper;
 
@@ -33,6 +37,8 @@ public class ClothesServiceImpl implements ClothesService {
     private ClothesDetailRepository clothesDetailRepository;
     private SellerRepository sellerRepository;
     private CartRepository cartRepository;
+    private MajorCategoryRepository majorCategoryRepository;
+    private SubCategoryRepository subCategoryRepository;
 
     @Override
     public ClothesDto createClothes(ClothesDto clothesDto) {
@@ -42,7 +48,18 @@ public class ClothesServiceImpl implements ClothesService {
         StatisticsDto statisticsDto = new StatisticsDto(
             0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, 0L, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
         );
-        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, statisticsDto, seller_info);
+        MajorCategory majorCategory_info = majorCategoryRepository.findById(clothesDto.getMajorCategoryId()).orElseThrow(() ->
+            new ResourceNotFoundException("Major Category is not exist with given id : " + clothesDto.getMajorCategoryId())
+        );
+        SubCategory subCategory_info = subCategoryRepository.findById(clothesDto.getSubCategoryId()).orElseThrow(() ->
+            new ResourceNotFoundException("Sub Category is not exist with given id : " + clothesDto.getSubCategoryId())
+        );
+
+        if (subCategory_info.getMajorCategory().getMajorCategoryId() != majorCategory_info.getMajorCategoryId()) {
+            return null;
+        }
+
+        Clothes clothes = ClothesMapper.mapToClothes(clothesDto, statisticsDto, majorCategory_info, subCategory_info, seller_info);
         Clothes savedClothes = clothesRepository.save(clothes);
         return ClothesMapper.mapToClothesDto(savedClothes);
     }
@@ -72,6 +89,18 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
+    public List<ClothesDto> getClothesByMajorCategory(MajorCategory majorCategory) {
+        List<Clothes> clothes = clothesRepository.findAllByMajorCategory(majorCategory);
+        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ClothesDto> getClothesBySubCategory(SubCategory subCategory) {
+        List<Clothes> clothes = clothesRepository.findAllBySubCategory(subCategory);
+        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+    }
+
+    @Override
     public List<ClothesDto> searchClothesByNameOrderByDailyView(String name) {
         List<Clothes> clothes = clothesRepository.findAllByNameContainingOrderByDailyViewDesc(name);
         return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
@@ -88,12 +117,22 @@ public class ClothesServiceImpl implements ClothesService {
         Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(
             () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
         );
+        MajorCategory majorCategory_info = majorCategoryRepository.findById(updatedClothes.getMajorCategoryId()).orElseThrow(() ->
+            new ResourceNotFoundException("Major Category is not exist with given id : " + updatedClothes.getMajorCategoryId())
+        );
+        SubCategory subCategory_info = subCategoryRepository.findById(updatedClothes.getSubCategoryId()).orElseThrow(() ->
+            new ResourceNotFoundException("Sub Category is not exist with given id : " + updatedClothes.getSubCategoryId())
+        );
+
+        if (subCategory_info.getMajorCategory().getMajorCategoryId() != majorCategory_info.getMajorCategoryId()) {
+            return null;
+        }
 
         clothes.setName(updatedClothes.getName());
         clothes.setDetail(updatedClothes.getDetail());
         clothes.setGenderCategory(updatedClothes.getGenderCategory());
-        clothes.setLargeCategory(updatedClothes.getCategoryNumber() / 100);
-        clothes.setSmallCategory(updatedClothes.getCategoryNumber());
+        clothes.setMajorCategory(majorCategory_info);
+        clothes.setSubCategory(subCategory_info);
         clothes.setPrice(updatedClothes.getPrice());
 
         Clothes updatedClothesObj = clothesRepository.save(clothes);

@@ -16,10 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.dto.StatisticsDto;
+import com.example.demo.dto.SubCategoryDto;
+import com.example.demo.entity.MajorCategory;
 import com.example.demo.entity.Seller;
+import com.example.demo.entity.SubCategory;
 import com.example.demo.service.ClothesService;
+import com.example.demo.service.MajorCategoryService;
 import com.example.demo.service.SellerService;
+import com.example.demo.service.SubCategoryService;
+import com.example.mapper.MajorCategoryMapper;
 import com.example.mapper.SellerMapper;
+import com.example.mapper.SubCategoryMapper;
 
 import lombok.AllArgsConstructor;
 
@@ -30,6 +37,8 @@ import lombok.AllArgsConstructor;
 public class ClothesController {
     private ClothesService clothesService;
     private SellerService sellerService;
+    private MajorCategoryService majorCategoryService;
+    private SubCategoryService subCategoryService;
 
     @PostMapping
     public ResponseEntity<ClothesDto> createClothes(@RequestBody ClothesDto clothesDto) {
@@ -47,6 +56,21 @@ public class ClothesController {
     public ResponseEntity<List<ClothesDto>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
         Seller seller = SellerMapper.mapToSeller(sellerService.getSellerByEmail(sellerEmail));
         List<ClothesDto> clothes = clothesService.getClothesBySeller(seller);
+        return ResponseEntity.ok(clothes);
+    }
+
+    @GetMapping("major_category/{id}")
+    public ResponseEntity<List<ClothesDto>> getClothesByMajorCategory(@PathVariable("id") Long majorCategoryId) {
+        MajorCategory majorCategory = MajorCategoryMapper.mapToMajorCategory(majorCategoryService.getMajorCategoryById(majorCategoryId));
+        List<ClothesDto> clothes = clothesService.getClothesByMajorCategory(majorCategory);
+        return ResponseEntity.ok(clothes);
+    }
+
+    @GetMapping("sub_category/{id}")
+    public ResponseEntity<List<ClothesDto>> getClothesBySubCategory(@PathVariable("id") Long subCategoryId) {
+        SubCategoryDto subCategoryDto = subCategoryService.getSubCategoryById(subCategoryId);
+        SubCategory subCategory = SubCategoryMapper.mapToSubCategory(subCategoryDto, MajorCategoryMapper.mapToMajorCategory(majorCategoryService.getMajorCategoryById(subCategoryDto.getMajorCategoryId())));
+        List<ClothesDto> clothes = clothesService.getClothesBySubCategory(subCategory);
         return ResponseEntity.ok(clothes);
     }
 
