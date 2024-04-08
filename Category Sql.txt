@@ -1,0 +1,131 @@
+# database 초기화
+drop database demo;
+create database demo;
+
+# major category insert
+# ID 고정을 위해 major_category_id 기입 -> sub_category 작성에 사용
+use demo;
+INSERT INTO major_category (major_category_id, name) VALUES (1, '아우터');
+INSERT INTO major_category (major_category_id, name) VALUES (2, '정장');
+INSERT INTO major_category (major_category_id, name) VALUES (3, '팬츠');
+INSERT INTO major_category (major_category_id, name) VALUES (4, '재킷/베스트');
+INSERT INTO major_category (major_category_id, name) VALUES (5, '셔츠');
+INSERT INTO major_category (major_category_id, name) VALUES (6, '니트');
+INSERT INTO major_category (major_category_id, name) VALUES (7, '티셔츠');
+INSERT INTO major_category (major_category_id, name) VALUES (8, '패션잡화');
+INSERT INTO major_category (major_category_id, name) VALUES (9, '언더웨어');
+INSERT INTO major_category (major_category_id, name) VALUES (10, '쥬얼리/시계');
+INSERT INTO major_category (major_category_id, name) VALUES (11, '셔츠/블라우스(여)');
+INSERT INTO major_category (major_category_id, name) VALUES (12, '원피스');
+INSERT INTO major_category (major_category_id, name) VALUES (13, '스커트');
+INSERT INTO major_category (major_category_id, name) VALUES (14, '라운지/언더웨어');
+INSERT INTO major_category (major_category_id, name) VALUES (15, '비치웨어');
+INSERT INTO major_category (major_category_id, name) VALUES (16, '키즈아우터');
+INSERT INTO major_category (major_category_id, name) VALUES (17, '키즈티셔츠');
+INSERT INTO major_category (major_category_id, name) VALUES (18, '키즈셔츠(남아)');
+INSERT INTO major_category (major_category_id, name) VALUES (19, '키즈셔츠/키즈블라우스(여아)');
+INSERT INTO major_category (major_category_id, name) VALUES (20, '키즈니트');
+INSERT INTO major_category (major_category_id, name) VALUES (21, '키즈팬츠');
+INSERT INTO major_category (major_category_id, name) VALUES (22, '슈즈');
+
+
+
+# sub category insert
+INSERT INTO sub_category (major_category_id, name) VALUES (1, '점퍼');
+INSERT INTO sub_category (major_category_id, name) VALUES (1, '코트');
+INSERT INTO sub_category (major_category_id, name) VALUES (1, '다운/패딩');
+INSERT INTO sub_category (major_category_id, name) VALUES (1, '래더재킷');
+INSERT INTO sub_category (major_category_id, name) VALUES (1, '퍼');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (2, '정장재킷');
+INSERT INTO sub_category (major_category_id, name) VALUES (2, '정장팬츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (2, '드레스셔츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (2, '정장베스트');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '치노');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '슬렉스');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '수트팬츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '조거/스웻');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '데님');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '쇼츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '와이드팬츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '스트레이트팬츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '슬림');
+INSERT INTO sub_category (major_category_id, name) VALUES (3, '조거');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (4, '재킷');
+INSERT INTO sub_category (major_category_id, name) VALUES (4, '블레이저');
+INSERT INTO sub_category (major_category_id, name) VALUES (4, '래더재킷');
+INSERT INTO sub_category (major_category_id, name) VALUES (4, '베스트');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (5, '긴팔셔츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (5, '반팔셔츠');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (6, '풀오버');
+INSERT INTO sub_category (major_category_id, name) VALUES (6, '카디건');
+INSERT INTO sub_category (major_category_id, name) VALUES (6, '베스트');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (7, '반팔티셔츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (7, '긴팔티셔츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (7, '민소매');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (8, '모자');
+INSERT INTO sub_category (major_category_id, name) VALUES (8, '벨트');
+INSERT INTO sub_category (major_category_id, name) VALUES (8, '스카프/머플러');
+INSERT INTO sub_category (major_category_id, name) VALUES (8, '양말');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (9, '언더웨어');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (10, '쥬얼리');
+INSERT INTO sub_category (major_category_id, name) VALUES (10, '귀걸이');
+INSERT INTO sub_category (major_category_id, name) VALUES (10, '목걸이');
+INSERT INTO sub_category (major_category_id, name) VALUES (10, '반지');
+INSERT INTO sub_category (major_category_id, name) VALUES (10, '시계');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (11, '셔츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (11, '블라우스');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (12, '긴팔');
+INSERT INTO sub_category (major_category_id, name) VALUES (12, '반팔/민소매');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (13, '롱/미디');
+INSERT INTO sub_category (major_category_id, name) VALUES (13, '미니');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (14, '파자마');
+INSERT INTO sub_category (major_category_id, name) VALUES (14, '로브');
+INSERT INTO sub_category (major_category_id, name) VALUES (14, '브라');
+INSERT INTO sub_category (major_category_id, name) VALUES (14, '팬티');
+INSERT INTO sub_category (major_category_id, name) VALUES (14, '세트');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (15, '스윔수트');
+INSERT INTO sub_category (major_category_id, name) VALUES (15, '비키니');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (16, '다운/패딩');
+INSERT INTO sub_category (major_category_id, name) VALUES (16, '점퍼');
+INSERT INTO sub_category (major_category_id, name) VALUES (16, '코트');
+INSERT INTO sub_category (major_category_id, name) VALUES (16, '재킷/베스트');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (17, '긴팔');
+INSERT INTO sub_category (major_category_id, name) VALUES (17, '반팔/민소매');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (18, '긴팔');
+INSERT INTO sub_category (major_category_id, name) VALUES (18, '반팔');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (19, '긴팔');
+INSERT INTO sub_category (major_category_id, name) VALUES (19, '반팔');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (20, '풀오버');
+INSERT INTO sub_category (major_category_id, name) VALUES (20, '카디건/베스트');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (21, '롱팬츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (21, '쇼트팬츠');
+
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '운동화/스니커즈');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '워커/부츠');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '슬리퍼/뮬');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '슬립온');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '구두');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '샌들');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '등산화/골프화');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '펌프스/힐');
+INSERT INTO sub_category (major_category_id, name) VALUES (22, '플랫/로퍼');
