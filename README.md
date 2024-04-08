@@ -8,7 +8,7 @@
 
 ## <img src="	https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"> 유튜브 영상
 #### 1. [REACT]()
-#### 2. [ANDROID]()
+#### 2. [ANDROID](https://www.youtube.com/channel/UCWxNXPg649ot2I_yE8rIe8A)
 #### 3. [IOS]()
 
 <br/>
