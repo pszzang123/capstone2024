@@ -1,3 +1,43 @@
+.login-InputWrapPhone {
+  display: flex;
+  justify-content: space-between; /* 필드 간의 공간을 균등하게 배분 */
+  border-radius: 8px;
+  padding: 10px; /* padding 조정 */
+  background-color: white;
+  border: 1px solid #e2e0e0;
+}
+
+.login-InputPhone {
+  flex: 1; /* 필드가 컨테이너 공간을 균등하게 차지하도록 함 */
+  margin: 0 5px; /* 좌우 마진 추가 */
+  outline: none;
+  border: 1px solid #ced4da; /* 입력 필드 테두리 색상 조정 */
+  padding: 5px; /* 입력 필드 내부 패딩 조정 */
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center; /* 텍스트를 가운데 정렬 */
+}
+
+/* 첫 번째 입력 필드에만 적용 */
+.login-InputPhone:first-child {
+  margin-left: 0; /* 첫 번째 필드의 왼쪽 마진 제거 */
+}
+
+/* 마지막 입력 필드에만 적용 */
+.login-InputPhone:last-child {
+  margin-right: 0; /* 마지막 필드의 오른쪽 마진 제거 */
+}
+
+.login-InputWrapPhone:focus-within {
+  border: 1px solid #9e30f4;
+}
+.login-InputPhone::placeholder {
+  color: #dadada;
+}
+
+
+
+
 .custom-breadcrumb-item {
   color: grey;
   text-decoration: none;
@@ -57,7 +97,60 @@
   border: 1px solid #e2e0e0;
 }
 
+/* .login-InputWrapAddr {
+  display: flex;
+  width: 70%;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  background-color: white;
+  border: 1px solid #e2e0e0;
+}
+
+.login-InputAddr {
+  width: 100%;
+  outline: none;
+  border: none;
+  height: 17px;
+  font-size: 14px;
+  font-weight: 400;
+} */
+.address-container {
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  width: 100%; /* 필요에 따라 조정할 수 있습니다 */
+}
+
+.login-InputWrapAddr {
+  flex: 0 0 80%; /* flex-grow, flex-shrink, flex-basis를 사용하여 너비를 80%로 고정 */
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 8px;
+  background-color: white;
+  border: 1px solid #e2e0e0;
+  margin-right: 1%; /* 오른쪽에 간격 추가 */
+}
+
+.login-InputAddr {
+  width: 100%; /* 테두리 내부 전체 너비 사용 */
+  outline: none;
+  border: none;
+  height: 17px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.address-search-button {
+  flex: 0 0 19%; /* flex-grow, flex-shrink, flex-basis를 사용하여 너비를 20%로 고정 */
+  margin-top: 8px; /* 버튼 상단 여백 추가 (선택적) */
+  height: 48px;
+}
+
 .login-InputWrap:focus-within {
+  border: 1px solid #9e30f4;
+}
+
+.login-InputWrapAddr:focus-within {
   border: 1px solid #9e30f4;
 }
 
@@ -70,7 +163,12 @@
   font-weight: 400;
 }
 
+
 .login-Input::placeholder {
+  color: #dadada;
+}
+
+.login-InputAddr::placeholder {
   color: #dadada;
 }
 

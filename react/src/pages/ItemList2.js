@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import { Button, Navbar, Container, Nav, Row, Col, Card, ButtonGroup, ButtonToolbar, Dropdown,Image,Pagination  } from 'react-bootstrap';
+import { Button, Navbar, Container, Nav, Row, Col, Card, ButtonGroup, ButtonToolbar, Dropdown, Image, Pagination } from 'react-bootstrap';
 import './../App.css';
 import bg from './../images/bg.png';
 import data from './../data.js';
@@ -7,11 +7,12 @@ import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
 import { useQuery } from "react-query";
+import { setShoes } from './../store.js'
 import { Link } from 'react-router-dom';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import CardItem from "./CardItem.js";
 import productData from './../data/productData.json'
-import "firebase/firestore"; 
+import "firebase/firestore";
 import { storage } from "../firebaseConfig.js";
 
 // function Pagination({ currentPage, totalPages }) {
@@ -35,17 +36,12 @@ function ItemList(props) {
 
   // Redux
   // let shoes = useSelector((state) => { return state.shoes })
+
+
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(0); // 페이지 번호는 0부터 시작
+
   let dispatch = useDispatch()
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async (page) => {
-    const response = await axios.get('http://localhost:8080/clothes');
-    setProducts(response.data); // 상품 목록 설정
-};
 
   // 상품 state
   // data.js 에서 state 초기화
@@ -61,10 +57,18 @@ function ItemList(props) {
   let navigate = useNavigate();
 
 
-  const totalPages = 27;
-  const [currentPage, setCurrentPage] = useState(1);
+  // const totalPages = 27;
+  // const [currentPage, setCurrentPage] = useState(1);
 
+  // useEffect(() => {
+  //   fetchProducts(page);
+  // }, [page]);
 
+  // const fetchProducts = async (page) => {
+  //   const response = await axios.get(`http://localhost:8080/products?page=${page}&size=16`);
+  //   setProducts(response.data.content); // 상품 목록 설정
+  // };
+  
   return (
     <div>
 
@@ -91,23 +95,23 @@ function ItemList(props) {
       <Container>
         <Row className="justify-content-end">
           <Col xs={2} md={2}>
-          <Dropdown>
-          <Dropdown.Toggle
-            variant="success"
-            id="dropdown-basic"
-            className="bg-transparent border-0 text-dark btn-sm" // 배경, 테두리 없애고 글씨는 검은색으로, 작은 크기
-          >              인기상품순 {'('} 전체 {')'}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">신상품순</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">인기상품순</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">낮은가격순</Dropdown.Item>
-              <Dropdown.Item href="#/action-4">높은가격순</Dropdown.Item>
-              <Dropdown.Item href="#/action-5">높은할인율순</Dropdown.Item>
-              <Dropdown.Item href="#/action-6">구매후기순</Dropdown.Item>
-              <Dropdown.Item href="#/action-7">MD추천순</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+            <Dropdown>
+              <Dropdown.Toggle
+                variant="success"
+                id="dropdown-basic"
+                className="bg-transparent border-0 text-dark btn-sm" // 배경, 테두리 없애고 글씨는 검은색으로, 작은 크기
+              >              인기상품순 {'('} 전체 {')'}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">신상품순</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">인기상품순</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">낮은가격순</Dropdown.Item>
+                <Dropdown.Item href="#/action-4">높은가격순</Dropdown.Item>
+                <Dropdown.Item href="#/action-5">높은할인율순</Dropdown.Item>
+                <Dropdown.Item href="#/action-6">구매후기순</Dropdown.Item>
+                <Dropdown.Item href="#/action-7">MD추천순</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Col>
         </Row>
       </Container>
@@ -117,20 +121,18 @@ function ItemList(props) {
       <Container>
         <Row>
           {
-            products.map(function (a, i) {
+            shoes.map(function (a, i) {
               return (
-                <CardItem shoes={products[i]} index={i} key={i} navigate={navigate}></CardItem>
+                <CardItem shoes={shoes[i]} index={i} key={i} navigate={navigate}></CardItem>
               )
             })
           }
-
-          
         </Row>
       </Container>
 
       {/* 더보기 버튼 처음 누르면 "https://codingapple1.github.io/shop/data2.json", 
             "https://codingapple1.github.io/shop/data3.json" 서버에서 데이터를 가져옴 */}
-      {/* {(btnCount < 2)
+      {(btnCount < 2)
         ?
         <div>
           {loading && <p>@@ 로딩중입니다 @@</p>}
@@ -150,29 +152,29 @@ function ItemList(props) {
           }}>더보기</button>
         </div>
         : null
-      } */}
+      }
       {/* <Pagination currentPage={currentPage} totalPages={totalPages} /> */}
 
 
       <div className="d-flex justify-content-center" style={{ marginTop: '50px' }}>
-      <Pagination>
-      <Pagination.First />
-      <Pagination.Prev />
-      <Pagination.Item>{1}</Pagination.Item>
-      <Pagination.Ellipsis />
+        <Pagination>
+          <Pagination.First />
+          <Pagination.Prev />
+          <Pagination.Item>{1}</Pagination.Item>
+          <Pagination.Ellipsis />
 
-      <Pagination.Item>{10}</Pagination.Item>
-      <Pagination.Item>{11}</Pagination.Item>
-      <Pagination.Item active>{12}</Pagination.Item>
-      <Pagination.Item>{13}</Pagination.Item>
-      <Pagination.Item disabled>{14}</Pagination.Item>
+          <Pagination.Item>{10}</Pagination.Item>
+          <Pagination.Item>{11}</Pagination.Item>
+          <Pagination.Item active>{12}</Pagination.Item>
+          <Pagination.Item>{13}</Pagination.Item>
+          <Pagination.Item disabled>{14}</Pagination.Item>
 
-      <Pagination.Ellipsis />
-      <Pagination.Item>{20}</Pagination.Item>
-      <Pagination.Next />
-      <Pagination.Last />
-    </Pagination>
-    </div>
+          <Pagination.Ellipsis />
+          <Pagination.Item>{20}</Pagination.Item>
+          <Pagination.Next />
+          <Pagination.Last />
+        </Pagination>
+      </div>
 
     </div>
   )

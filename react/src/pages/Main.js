@@ -53,38 +53,69 @@ function Main(props) {
     return (
         <div>
             {/* <div className="main-bg" style={{ backgroundImage: 'url(' + bg + ')', marginBottom: '20px' }}></div> */}
-
-            <Carousel activeIndex={index} onSelect={handleSelect}>
-                <Carousel.Item>
-                    <ExampleCarouselImage text="First slide" productName='sneakers1' />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <ExampleCarouselImage text="Second slide" productName='scarf1' />
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <ExampleCarouselImage text="Third slide" productName='beachwear1' />
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>
-                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                        </p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
+            <Container>
+                <Row>
+                    <Col>
+                        <Carousel activeIndex={index} onSelect={handleSelect}>
+                            <Carousel.Item>
+                                <ExampleCarouselImage text="First slide" productName='sneakers1' />
+                                <Carousel.Caption>
+                                    <h3>First slide label</h3>
+                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <ExampleCarouselImage text="Second slide" productName='scarf1' />
+                                <Carousel.Caption>
+                                    <h3>Second slide label</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                            <Carousel.Item>
+                                <ExampleCarouselImage text="Third slide" productName='beachwear1' />
+                                <Carousel.Caption>
+                                    <h3>Third slide label</h3>
+                                    <p>
+                                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                                    </p>
+                                </Carousel.Caption>
+                            </Carousel.Item>
+                        </Carousel>
+                    </Col>
+                    <Col> <Carousel activeIndex={index} onSelect={handleSelect}>
+                        <Carousel.Item>
+                            <ExampleCarouselImage text="First slide" productName='sneakers1' />
+                            <Carousel.Caption>
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <ExampleCarouselImage text="Second slide" productName='scarf1' />
+                            <Carousel.Caption>
+                                <h3>Second slide label</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <ExampleCarouselImage text="Third slide" productName='beachwear1' />
+                            <Carousel.Caption>
+                                <h3>Third slide label</h3>
+                                <p>
+                                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                                </p>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    </Carousel>
+                    </Col>
+                </Row>
+            </Container>
 
 
             <br /> <br /> <br />
-            
-            
-{/* 인기상품 */}
+
+
+            {/* 인기상품 */}
             <h1 style={{ fontSize: '30px', fontWeight: '700' }}>인기상품</h1>
 
             <br />

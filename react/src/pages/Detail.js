@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../store.js';
+import { addToCart } from '../store/cartSlice';
 
 function Detail(props) {
 
@@ -62,7 +62,7 @@ function Detail(props) {
                     <p>{selectedShoes.price}원</p>
                     <button className="btn btn-danger" onClick={() => {
                         let item = { id: selectedShoes.id, name: selectedShoes.title, count: 1 }
-                        dispatch(addItem(item))
+                        dispatch(addToCart(item))
                         alert(item.name + ' 장바구니에 추가되었습니다.')
                     }}>주문하기</button>
                 </div>

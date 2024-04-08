@@ -1,13 +1,16 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
-let User = {
-  email: 'capstone2024@hansung.ac.kr',
-  pw: 'web2024!'
-}
+import { login } from '../store/userSlice';
+import { setCartItems } from '../store/cartSlice';
 
 function Login(props) {
+
+  let dispatch = useDispatch();
+  let { userInfo, isLoggedIn } = useSelector((state) => state.user);
+  let cartItems = useSelector((state) => state.cart.items);
 
   let [email, setEmail] = useState('');
   let [pw, setPw] = useState('');
@@ -21,20 +24,18 @@ function Login(props) {
 
   useEffect(() => {
     let savedUserEmail = localStorage.getItem('userEmail');
-    let savedRememberMe2 = localStorage.getItem('rememberMe');
-    let savedRememberMe = localStorage.getItem('rememberMe') === 'true';
+    let savedRememberMe = localStorage.getItem('rememberMe');
 
-    if (savedUserEmail == null) {
-      localStorage.setItem('userEmail', '')
-    }
-    if (savedRememberMe2 == null) {
-      localStorage.setItem('rememberMe', 'false')
-    }
-
-    if (savedRememberMe) {
+    if (savedRememberMe == null) {  // 첫 접속으로 null 일 경우
+      localStorage.setItem('rememberMe', 'false');
+      localStorage.setItem('userEmail', '');
+    } else if (savedRememberMe === 'true') { // true 일 경우
       setEmail(savedUserEmail || '');
       setRememberMe(savedRememberMe);
+    } else {  // false 일 경우
+      setEmail('');
     }
+
   }, []);
 
   let handleEmail = (e) => {
@@ -64,18 +65,41 @@ function Login(props) {
   }
 
   let onClickConfirmButton = () => {
-    if (email === User.email && pw === User.pw) {
-      if (rememberMe) {
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('rememberMe', String(rememberMe))
-      } else {
-        localStorage.removeItem('userEmail');
-        localStorage.removeItem('rememberMe');
-      }
-      alert('로그인 성공');
-    } else {
-      alert('아이디, 비밀번호를 확인하세요.')
-    }
+    axios.get(`http://localhost:8080/customers/${email}/${pw}`)
+      .then((result) => {
+        if (result.data == true) {
+          if (rememberMe == true) {
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('rememberMe', 'true');
+          } else {
+            // localStorage.removeItem('userEmail');
+            // localStorage.removeItem('rememberMe');
+            localStorage.setItem('userEmail', '');
+            localStorage.setItem('rememberMe', 'false');
+          }
+
+          dispatch(login({ 'email_id': email }));
+
+          // 장바구니 데이터 가져오기
+          axios.get(`http://localhost:8080/cart/${email}`)
+            .then(result => {
+              dispatch(setCartItems(result.data));
+            })
+            .catch(error => {
+              console.log('장바구니 데이터 불러오기 실패', error);
+            })
+
+          alert('로그인 성공');
+
+          navigate("/");
+        } else {
+          alert('비밀번호를 확인하세요.');
+        }
+      })
+      .catch(() => {
+        console.log('로그인 실패');
+        alert('아이디를 확인하세요.');
+      })
   }
 
   useEffect(() => {
@@ -166,11 +190,9 @@ function Login(props) {
           label="아이디 저장" />
       </Form.Group>
       <Button onClick={onClickConfirmButton} disabled={notAllow} variant="primary" className='login-Button'>
-        {/* type="submit"  */}
         로그인
       </Button>
       <Button onClick={() => { navigate('/join') }} variant="primary" className='join-Button'>
-        {/* type="submit"  */}
         회원가입
       </Button>
     </Form>
