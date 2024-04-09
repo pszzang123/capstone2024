@@ -44,12 +44,7 @@ public class ClothesMapper {
         return new ClothesVo(
             clothes.getClothesId(),
             clothes.getName(),
-            clothes.getDetail(),
-            clothes.getGenderCategory(),
-            clothes.getMajorCategory().getMajorCategoryId(),
-            clothes.getSubCategory().getSubCategoryId(),
             clothes.getPrice(),
-            clothes.getSeller().getEmail(),
             clothes.getSeller().getName(),
             imageUrl
         );

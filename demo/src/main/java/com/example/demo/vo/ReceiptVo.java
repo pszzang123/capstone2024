@@ -9,10 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ClothesVo {
-    private Long clothesId;
-    private String name;
-    private Long price;
-    private String sellerName;
-    private String imageUrl;
+public class ReceiptVo {
+    private Long receiptId;
+    private String customerEmail;
+    private Integer status;
+    private String date;
 }

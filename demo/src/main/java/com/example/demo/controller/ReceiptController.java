@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ReceiptDto;
 import com.example.demo.service.ReceiptService;
+import com.example.demo.vo.ReceiptVo;
 
 import lombok.AllArgsConstructor;
 
@@ -33,9 +34,9 @@ public class ReceiptController {
     }
 
     @GetMapping("{email}")
-    public ResponseEntity<List<ReceiptDto>> getReceiptByCustomerEmail(@PathVariable("email") String customerEmail) {
-        List<ReceiptDto> receiptDtos = receiptService.getReceiptByCustomerEmail(customerEmail);
-        return ResponseEntity.ok(receiptDtos);
+    public ResponseEntity<List<ReceiptVo>> getReceiptByCustomerEmail(@PathVariable("email") String customerEmail) {
+        List<ReceiptVo> receiptVos = receiptService.getReceiptByCustomerEmail(customerEmail);
+        return ResponseEntity.ok(receiptVos);
     }
 
     @GetMapping

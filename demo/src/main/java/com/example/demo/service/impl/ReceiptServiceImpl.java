@@ -16,6 +16,7 @@ import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.ReceiptDetailRepository;
 import com.example.demo.repository.ReceiptRepository;
 import com.example.demo.service.ReceiptService;
+import com.example.demo.vo.ReceiptVo;
 import com.example.mapper.ReceiptMapper;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +39,7 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public List<ReceiptDto> getReceiptByCustomerEmail(String customerEmail) {
+    public List<ReceiptVo> getReceiptByCustomerEmail(String customerEmail) {
         List<Receipt> receipts = null;
         try{
             Customer customer = customerRepository.findById(customerEmail).orElseThrow(() -> 
@@ -50,7 +51,7 @@ public class ReceiptServiceImpl implements ReceiptService {
             return null;
         }
         
-        return receipts.stream().map((receipt) -> ReceiptMapper.mapToReceiptDto(receipt)).collect(Collectors.toList());
+        return receipts.stream().map((receipt) -> ReceiptMapper.mapToReceiptVo(receipt)).collect(Collectors.toList());
     }
 
     @Override

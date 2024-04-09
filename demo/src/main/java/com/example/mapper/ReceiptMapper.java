@@ -3,6 +3,7 @@ package com.example.mapper;
 import com.example.demo.dto.ReceiptDto;
 import com.example.demo.entity.Customer;
 import com.example.demo.entity.Receipt;
+import com.example.demo.vo.ReceiptVo;
 
 public class ReceiptMapper {
     public static ReceiptDto mapToReceiptDto(Receipt receipt) {
@@ -10,6 +11,15 @@ public class ReceiptMapper {
             receipt.getReceiptId(),
             receipt.getCustomer().getEmail(),
             receipt.getStatus()
+        );
+    }
+
+    public static ReceiptVo mapToReceiptVo(Receipt receipt) {
+        return new ReceiptVo(
+            receipt.getReceiptId(),
+            receipt.getCustomer().getEmail(),
+            receipt.getStatus(),
+            receipt.getDate()
         );
     }
 
