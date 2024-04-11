@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"123\",\r\n    \"name\": \"123\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"123\",\r\n    \"name\": \"123\",\r\n    \"streetAddress\": \"1234\",\r\n    \"detailAddress\": \"1234\",\r\n    \"zipCode\": 1234,\r\n    \"phone\": \"010-1234-1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"1234\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"raw": "{\r\n    \"email\": \"1234\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"streetAddress\": \"1234\",\r\n    \"detailAddress\": \"1234\",\r\n    \"zipCode\": 1234,\r\n    \"phone\": \"010-1234-1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -209,7 +209,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\",\r\n    \"companyName\": \"company1\"\r\n}",
+							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"streetAddress\": \"1234\",\r\n    \"detailAddress\": \"1234\",\r\n    \"zipCode\": 1234,\r\n    \"phone\": \"010-1234-1234\",\r\n    \"companyName\": \"company1\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -237,7 +237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"1234\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"address\": \"1234\",\r\n    \"phone\": \"010-1234-1234\",\r\n    \"companyName\": \"company2\"\r\n}",
+							"raw": "{\r\n    \"email\": \"1234\",\r\n    \"password\": \"1234\",\r\n    \"name\": \"1234\",\r\n    \"streetAddress\": \"1234\",\r\n    \"detailAddress\": \"1234\",\r\n    \"zipCode\": 1234,\r\n    \"phone\": \"010-1234-1234\",\r\n    \"companyName\": \"company2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

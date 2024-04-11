@@ -13,6 +13,6 @@ public class ClothesVo {
     private Long clothesId;
     private String name;
     private Long price;
-    private String sellerName;
+    private String companyName;
     private String imageUrl;
 }

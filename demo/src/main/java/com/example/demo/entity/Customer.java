@@ -26,8 +26,14 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street_address")
+    private String streetAddress;
+
+    @Column(name = "detail_address")
+    private String detailAddress;
+
+    @Column(name = "zip_code")
+    private Integer zipCode;
 
     @Column(name = "phone")
     private String phone;

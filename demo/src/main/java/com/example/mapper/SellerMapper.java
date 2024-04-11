@@ -9,7 +9,9 @@ public class SellerMapper {
             seller.getEmail(),
             seller.getPassword(),
             seller.getName(),
-            seller.getAddress(),
+            seller.getStreetAddress(),
+            seller.getDetailAddress(),
+            seller.getZipCode(),
             seller.getPhone(),
             seller.getCompanyName()
         );
@@ -20,7 +22,9 @@ public class SellerMapper {
             sellerDto.getEmail(),
             sellerDto.getPassword(),
             sellerDto.getName(),
-            sellerDto.getAddress(),
+            sellerDto.getStreetAddress(),
+            sellerDto.getDetailAddress(),
+            sellerDto.getZipCode(),
             sellerDto.getPhone(),
             sellerDto.getCompanyName()
         );

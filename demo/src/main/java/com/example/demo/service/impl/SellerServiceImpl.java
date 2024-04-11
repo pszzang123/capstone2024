@@ -59,6 +59,12 @@ public class SellerServiceImpl implements SellerService {
             new ResourceNotFoundException("Seller is not exists with given id : " + email)
         );
 
+        seller.setPassword(updatedSeller.getPassword());
+        seller.setName(updatedSeller.getName());
+        seller.setStreetAddress(updatedSeller.getStreetAddress());
+        seller.setDetailAddress(updatedSeller.getDetailAddress());
+        seller.setZipCode(updatedSeller.getZipCode());
+        seller.setPhone(updatedSeller.getPhone());
         seller.setCompanyName(updatedSeller.getCompanyName());
 
         Seller updatedSellerObj = sellerRepository.save(seller);

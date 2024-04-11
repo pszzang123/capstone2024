@@ -45,7 +45,7 @@ public class ClothesMapper {
             clothes.getClothesId(),
             clothes.getName(),
             clothes.getPrice(),
-            clothes.getSeller().getName(),
+            clothes.getSeller().getCompanyName(),
             imageUrl
         );
     }

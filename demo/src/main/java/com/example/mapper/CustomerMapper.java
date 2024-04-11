@@ -9,7 +9,9 @@ public class CustomerMapper {
             customer.getEmail(),
             customer.getPassword(),
             customer.getName(),
-            customer.getAddress(),
+            customer.getStreetAddress(),
+            customer.getDetailAddress(),
+            customer.getZipCode(),
             customer.getPhone()
         );
     }
@@ -19,7 +21,9 @@ public class CustomerMapper {
             customerDto.getEmail(),
             customerDto.getPassword(),
             customerDto.getName(),
-            customerDto.getAddress(),
+            customerDto.getStreetAddress(),
+            customerDto.getDetailAddress(),
+            customerDto.getZipCode(),
             customerDto.getPhone()
         );
     }
