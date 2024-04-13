@@ -113,11 +113,11 @@ function UpdateCustomer(props) {
     }
 
     let onClickConfirmButton = () => {
-        axios.put(`http://localhost:8080/customers/${userInfo.email_id}`, { address: address, name: name, password: pw, phone: phone1 + '-' + phone2 + '-' + phone3 })
+        axios.put(`${process.env.REACT_APP_API_URL}/customers/${userInfo.email_id}`, { address: address + ' ' + fullAddress, name: name, password: pw, phone: phone1 + '-' + phone2 + '-' + phone3 })
             .then((result) => {
                 alert('회원정보 수정 완료');
                 dispatch(pwConfirmReset());
-                navigate("/Mypage", { state: { pageTitle: "마이페이지" } })
+                navigate("/")
             })
             .catch(() => {
                 console.log('회원정보 수정 실패')
@@ -130,7 +130,25 @@ function UpdateCustomer(props) {
             alert('비밀번호 확인 후 이용해주세요.')
             navigate('/Mypage/PwConfirm');
         }
-    }, []);
+
+        if (isLoggedIn) {
+            axios.get(`${process.env.REACT_APP_API_URL}/customers/${userInfo.email_id}`)
+                .then(response => {
+                    const userData = response.data;
+                    setName(userData.name);
+                    setAddress(userData.address);
+                    const phoneNumbers = userData.phone.split('-');
+                    setPhone1(phoneNumbers[0]);
+                    setPhone2(phoneNumbers[1]);
+                    setPhone3(phoneNumbers[2]);
+                })
+                .catch(error => {
+                    console.error("사용자 정보 불러오기 실패", error);
+                });
+            } else {
+                // 로그인하지 않은 경우 로그인 페이지로 이동 등의 처리
+            }
+    }, [isLoggedIn, userInfo.email_id]);
 
     useEffect(() => {
         if (name.trim() !== '' && address.trim() !== '' && fullAddress.trim() !== '' && zoneCode.trim() !== '' && phone1.trim() !== '' && phone2.trim() !== '' && phone3.trim() !== '' && pwValid && pwConfirmValid) {

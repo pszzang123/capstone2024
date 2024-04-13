@@ -131,7 +131,7 @@ function CartItem(props) {
     let { userInfo, isLoggedIn } = useSelector((state) => state.user);
 
     return (
-        <div>
+        <div style={{ fontSize: '18px', fontWeight: '600' }}>
             <Row>
                 <Col xs={1} md={{ span: 1, offset: 1 }}>
                     <CustomCheckbox
@@ -141,21 +141,19 @@ function CartItem(props) {
                 </Col>
 
                 <Col xs={4} md={2}>
-                <img style={{width:'100px', height:'132px'}} src='https://img.ssfshop.com/cmd/LB_750x1000/src/https://img.ssfshop.com/goods/IMIM/24/03/06/GM0024030654386_0_THNAIL_ORGINL_20240312205132208.jpg' alt={props.item.name} />
-                    {/* <img src={props.item.imageUrl} alt={props.item.name} /> @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */}
-                    {/* <img style={{width:'100px', height:'132px'}} src={props.item.} alt={props.item.name} /> */}
+                    <img style={{ width: '100px', height: '132px' }} src={props.item.imageUrl} alt={props.item.name} />
                 </Col>
                 <Col xs={7} md={4}>
                     <div>
                         <div>{props.item.name}</div>
                         <div>{props.item.color} / {props.item.size}</div>
-                        <div>{props.item.price.toLocaleString()}원</div>
+                        <div>{props.item.price ? props.item.price.toLocaleString() : '0'}원</div>
                     </div>
                 </Col>
                 <Col xs={5} md={1} style={{ marginTop: '12px' }}>
                     <Dropdown onSelect={(eventKey) => {
                         const newQuantity = parseInt(eventKey, 10);
-                        axios.put(`http://localhost:8080/cart/${userInfo.email_id}/${props.item.detailId}`, { quantity: newQuantity })
+                        axios.put(`${process.env.REACT_APP_API_URL}/cart/${userInfo.email_id}/${props.item.detailId}`, { quantity: newQuantity })
                             .then(result => {
                                 // 장바구니 상태 업데이트
                                 dispatch(updateItemQuantity({ detailId: props.item.detailId, quantity: newQuantity }));
@@ -182,7 +180,7 @@ function CartItem(props) {
                 </Col>
                 <Col xs={2} md={1}>
                     <CloseButton onClick={() => {
-                        axios.delete(`http://localhost:8080/cart/${userInfo.email_id}/${props.item.detailId}`)
+                        axios.delete(`${process.env.REACT_APP_API_URL}/cart/${userInfo.email_id}/${props.item.detailId}`)
                             .then(result => {
                                 dispatch(removeFromCart(props.item));
                             })
@@ -217,7 +215,7 @@ function Cart(props) {
             alert('로그인 후 이용해주세요.')
             navigate('/login');
         } else {
-            axios.get(`http://localhost:8080/cart/${userInfo.email_id}`)
+            axios.get(`${process.env.REACT_APP_API_URL}/cart/${userInfo.email_id}`)
                 .then(result => {
                     dispatch(setCartItems(result.data));
                 })
@@ -260,34 +258,44 @@ function Cart(props) {
                 </Row>
                 <Row>
                     <Hidden xs sm>
-                        <Col md={{ span: 7, offset: 1 }}>
+                        <Col md={{ span: 7, offset: 1 }} style={{ fontSize: '20px', fontWeight: '700' }}>
                             상품정보
                         </Col>
                     </Hidden>
                     <Hidden xs sm>
-                        <Col md={1}>
+                        <Col md={1} style={{ fontSize: '20px', fontWeight: '700' }}>
                             수량
                         </Col>
                     </Hidden>
                     <Hidden xs sm>
-                        <Col md={1} style={{ whiteSpace: 'nowrap' }}>
+                        <Col md={1} style={{ whiteSpace: 'nowrap', fontSize: '20px', fontWeight: '700' }}>
                             주문금액
                         </Col>
                     </Hidden>
                 </Row>
+                {/* <Row>
+                    <Col xs={12} md={{ span: 10, offset: 1 }}>
+                        <div style={{ height: '2px', backgroundColor: '#000000' }}></div>
+                    </Col>
+                </Row> */}
                 <Row>
                     <Col xs={12} md={{ span: 10, offset: 1 }}>
-                        <hr style={{ border: 0, height: '2px', background: 'black' }} />
+                        <hr style={{ border: 0, height: '2px', background: '#000000' }} />
                     </Col>
                 </Row>
-                {cartItems.map(item => (
-                    <CartItem
-                        key={item.detailId}
-                        item={item}
-                        isChecked={!!selectedItems[item.detailId]} // 선택 상태 결정
-                        onCheckboxChange={handleCheckboxChange} // 체크박스 변경 이벤트 핸들러
-                    />
-                ))}
+
+
+
+                <Row>
+                    {cartItems.map(item => (
+                        <CartItem
+                            key={item.detailId}
+                            item={item}
+                            isChecked={!!selectedItems[item.detailId]} // 선택 상태 결정
+                            onCheckboxChange={handleCheckboxChange} // 체크박스 변경 이벤트 핸들러
+                        />
+                    ))}
+                </Row>
                 <Row>
                     <Col xs={9} md={{ span: 6, offset: 1 }}></Col>
                     <Col xs={3} md={{ span: 4 }} style={{ fontSize: '17px', fontWeight: '700' }}>

@@ -3,12 +3,13 @@ import Carousel from 'react-bootstrap/Carousel';
 import ExampleCarouselImage from './ExampleCarouseImage';
 import CardItem from './CardItem';
 import { setShoes } from './../store.js'
-import { useState } from "react";
 import { Container, Row, Col } from 'react-bootstrap';
 import './../App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import Nav from 'react-bootstrap/Nav';
 import styled from 'styled-components'
+import { lazy, Suspense, useEffect, useState } from "react";
+
 
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -31,14 +32,46 @@ let RankingButton = styled.button`
 `
 
 function Main(props) {
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetchProducts()
+            .then(data => {
+                setProducts(data); // 상품 데이터를 상태에 저장
+            })
+            .catch(error => {
+                console.error("Failed to fetch products:", error);
+            });
+    }, []);
+
+    async function fetchProducts() {
+        // 서버의 상품 데이터 엔드포인트 URL. 실제 URL로 대체해야 합니다.
+        let url = `${process.env.REACT_APP_API_URL}/clothes`;
+
+        // category, major, minor 매개변수를 URL의 일부로 사용하여
+        // 필터링할 상품의 범위를 지정합니다.
+        // if (category) url += `/${category}`;
+        // if (major) url += `/${major}`;
+        // if (minor) url += `/${minor}`;
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 백엔드 변경되면 주석 풀기.
+        try {
+            const response = await axios.get(url);
+            return response.data; // 서버로부터 받은 데이터를 반환합니다.
+        } catch (error) {
+            console.error("There was a problem with the axios request:", error);
+            // throw error; // 에러를 다시 던져서 함수를 호출한 쪽에서 처리할 수 있도록 합니다.
+        }
+    }
+
+
+
     const [index, setIndex] = useState(0);
 
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
 
-    let shoes = useSelector((state) => { return state.shoes })
-    let dispatch = useDispatch()
     let navigate = useNavigate();
 
     let [btnCountNew, setBtnCountNew] = useState(0);
@@ -53,64 +86,31 @@ function Main(props) {
     return (
         <div>
             {/* <div className="main-bg" style={{ backgroundImage: 'url(' + bg + ')', marginBottom: '20px' }}></div> */}
-            <Container>
-                <Row>
-                    <Col>
-                        <Carousel activeIndex={index} onSelect={handleSelect}>
-                            <Carousel.Item>
-                                <ExampleCarouselImage text="First slide" productName='sneakers1' />
-                                <Carousel.Caption>
-                                    <h3>First slide label</h3>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <ExampleCarouselImage text="Second slide" productName='scarf1' />
-                                <Carousel.Caption>
-                                    <h3>Second slide label</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <ExampleCarouselImage text="Third slide" productName='beachwear1' />
-                                <Carousel.Caption>
-                                    <h3>Third slide label</h3>
-                                    <p>
-                                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                                    </p>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                        </Carousel>
-                    </Col>
-                    <Col> <Carousel activeIndex={index} onSelect={handleSelect}>
-                        <Carousel.Item>
-                            <ExampleCarouselImage text="First slide" productName='sneakers1' />
-                            <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <ExampleCarouselImage text="Second slide" productName='scarf1' />
-                            <Carousel.Caption>
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                            <ExampleCarouselImage text="Third slide" productName='beachwear1' />
-                            <Carousel.Caption>
-                                <h3>Third slide label</h3>
-                                <p>
-                                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                                </p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                    </Carousel>
-                    </Col>
-                </Row>
-            </Container>
-
+            <Carousel activeIndex={index} onSelect={handleSelect}>
+                <Carousel.Item interval={3000}>
+                    <ExampleCarouselImage text="First slide" productName='sneakers1' />
+                    <Carousel.Caption>
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item interval={3000}>
+                    <ExampleCarouselImage text="Second slide" productName='scarf1' />
+                    <Carousel.Caption>
+                        <h3>Second slide label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item interval={3000}>
+                    <ExampleCarouselImage text="Third slide" productName='beachwear1' />
+                    <Carousel.Caption>
+                        <h3>Third slide label</h3>
+                        <p>
+                            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                        </p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
 
             <br /> <br /> <br />
 
@@ -132,16 +132,17 @@ function Main(props) {
             <Container>
                 <Row>
                     {
-                        shoes.map(function (a, i) {
+                        products.map(function (a, i) {
                             return (
-                                <CardItem shoes={shoes[i]} index={i} key={i} navigate={navigate}></CardItem>
+                                <CardItem products={a} key={a.clothesId} alt={a.name} navigate={navigate}></CardItem>
+                                // navigate 꼭 넘겨줘야함?
                             )
                         })
                     }
                 </Row>
             </Container>
 
-            {(btnCountBest < 2)
+            {/* {(btnCountBest < 2)
                 ?
                 <div>
                     {loading && <p>@@ 로딩중입니다 @@</p>}
@@ -161,7 +162,7 @@ function Main(props) {
                     }}>더보기</button>
                 </div>
                 : null
-            }
+            } */}
 
 
 
@@ -189,7 +190,7 @@ function Main(props) {
             <RankingConTent ranking={newRanking}></RankingConTent>
             <br></br>
 
-            <Container>
+            {/* <Container>
                 <Row>
                     {
                         shoes.map(function (a, i) {
@@ -199,9 +200,22 @@ function Main(props) {
                         })
                     }
                 </Row>
+            </Container> */}
+            <Container>
+                <Row>
+                    {
+                        products.map(function (a, i) {
+                            return (
+                                <CardItem products={a} key={a.clothesId} alt={a.name} navigate={navigate}></CardItem>
+                                // navigate 꼭 넘겨줘야함?
+                            )
+                        })
+                    }
+                </Row>
             </Container>
 
-            {(btnCountNew < 2)
+
+            {/* {(btnCountNew < 2)
                 ?
                 <div>
                     {loading && <p>@@ 로딩중입니다 @@</p>}
@@ -221,7 +235,7 @@ function Main(props) {
                     }}>더보기</button>
                 </div>
                 : null
-            }
+            } */}
         </div>
     )
 }

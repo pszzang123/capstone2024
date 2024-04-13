@@ -12,8 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Mypage(props) {
 
-  let [userData, setUserData] = useState('호날두');
-
   let dispatch = useDispatch()
   let navigate = useNavigate();
   let { userInfo, isLoggedIn } = useSelector((state) => state.user);

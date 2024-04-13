@@ -14,7 +14,7 @@ function DeleteCustomer(props) {
     let navigate = useNavigate();
     
     let deleteCustClicked = () => {
-        axios.delete(`http://localhost:8080/customers/${userInfo.email_id}`)
+        axios.delete(`${process.env.REACT_APP_API_URL}/customers/${userInfo.email_id}`)
         .then((result)=>{
             dispatch(logout());
             console.log('회원탈퇴 성공');

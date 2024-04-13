@@ -34,8 +34,8 @@ function ProductRegistration() {
         price: 0,
         genderCategory: 0,
         // categoryNumber: '',
-        majorCategory: '',
-        subCategory: '',
+        majorCategoryId: '',
+        subCategoryId: '',
         sellerEmail: ''
     });
 
@@ -46,19 +46,32 @@ function ProductRegistration() {
         clothesId: 0
     }]);
 
-    // 가정: 대분류 카테고리 데이터
-    const majorCategories = [
-        { id: '01', name: '아우터' },
-        { id: '02', name: '정장' },
-        { id: '03', name: '팬츠' },
-    ];
+    const [majorCategories, setMajorCategories] = useState([]);
+    const [subCategories, setSubCategories] = useState([]);
 
-    // 가정: 소분류 카테고리 데이터 (실제로는 largeCategory에 따라 필터링 필요)
-    const subCategories = {
-        '01': [{ id: '01', name: '점퍼' }, { id: '02', name: '코트' }],
-        '02': [{ id: '01', name: '정장재킷' }, { id: '02', name: '정장팬츠' }],
-        '03': [{ id: '01', name: '치노' }, { id: '02', name: '슬랙스' }],
-    };
+    // 대분류 카테고리 데이터를 서버에서 가져오기
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/major_category`)
+            .then(response => {
+                setMajorCategories(response.data);
+            })
+            .catch(error => {
+                console.error('Major categories fetching error:', error);
+            });
+    }, []);
+
+    // 대분류 카테고리 선택 시 소분류 카테고리 데이터 가져오기
+    useEffect(() => {
+        if (category.majorCategoryId) {
+            axios.get(`${process.env.REACT_APP_API_URL}/sub_category/major_category/${category.majorCategoryId}`)
+                .then(response => {
+                    setSubCategories(response.data);
+                })
+                .catch(error => {
+                    console.error('Sub categories fetching error:', error);
+                });
+        }
+    }, [category.majorCategoryId]);
 
 
 
@@ -74,8 +87,8 @@ function ProductRegistration() {
     const handleMajorCategoryChange = (e) => {
         setCategory(prevState => ({
             ...prevState,
-            majorCategory: e.target.value,
-            subCategory: '', // 대분류가 변경될 때 소분류 초기화
+            majorCategoryId: e.target.value,
+            subCategoryId: '', // 대분류가 변경될 때 소분류 초기화
         }));
     };
 
@@ -83,7 +96,7 @@ function ProductRegistration() {
     const handleSubCategoryChange = (e) => {
         setCategory(prevState => ({
             ...prevState,
-            subCategory: e.target.value,
+            subCategoryId: e.target.value,
         }));
     };
 
@@ -109,7 +122,7 @@ function ProductRegistration() {
 
     const handleUploadImages = async (files) => {
         // FileList 객체를 배열로 변환
-        const filesArray = Array.from(files);
+        const filesArray = files instanceof FileList ? Array.from(files) : [files];
 
         const uploadPromises = filesArray.map((file, index) => {
             const now = new Date();
@@ -130,17 +143,28 @@ function ProductRegistration() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const files = document.querySelector('#image').files;
-        if (files.length === 0) {
-            alert('이미지 파일을 선택해 주세요.');
+        // 썸네일 이미지 파일
+        const thumbnailFile = document.querySelector('#thumbnailImage').files[0];
+        // 추가 이미지 파일들
+        const additionalFiles = document.querySelector('#additionalImages').files;
+
+        if (!thumbnailFile) {
+            alert('썸네일 이미지 파일을 선택해 주세요.');
             return;
         }
+        if (additionalFiles.length === 0) {
+            alert('상품 이미지 파일을 선택해 주세요.');
+            return;
+        }
+
         try {
             // 이미지 업로드 및 URL들을 얻음
-            const imageUrls = await handleUploadImages(files);
+            const [thumbnailImageUrl] = await handleUploadImages(thumbnailFile);
+
+            const additionalImageUrls = additionalFiles.length > 0 ? await handleUploadImages(additionalFiles) : [];
 
             // Category 정보를 서버로 전송하고 응답을 받음
-            const categoryResponse = await axios.post('http://localhost:8080/clothes', category);
+            const categoryResponse = await axios.post(`${process.env.REACT_APP_API_URL}/clothes`, category);
             console.log('Category Response:', categoryResponse.data);
 
             // 상품의 category 등록에 성공한 후, 각 detail 등록
@@ -149,7 +173,7 @@ function ProductRegistration() {
                 // detail.imageUrl = imageUrls.shift(); // 가정: 각 detail마다 이미지 URL이 1개씩 할당됨
 
                 // 서버에 detail 정보 등록
-                const detailResponse = await axios.post('http://localhost:8080/detail', {
+                const detailResponse = await axios.post(`${process.env.REACT_APP_API_URL}/detail`, {
                     ...detail,
                     clothesId: categoryResponse.data.clothesId // 서버로부터 받은 clothesId 사용
                 });
@@ -157,153 +181,36 @@ function ProductRegistration() {
                 console.log('Detail Response:', detailResponse.data);
             }
 
-            // 이미지 URL들을 서버로 POST 요청
-            await Promise.all(imageUrls.map((imageUrl, index) => {
-                return axios.post('http://localhost:8080/clothes_images', {
+            // 이미지 URL들을 서버로 POST 요청. 첫 번째 이미지는 썸네일로, 나머지는 추가 이미지로 처리
+            await axios.post(`${process.env.REACT_APP_API_URL}/clothes_images`, {
+                clothesId: categoryResponse.data.clothesId,
+                imageUrl: thumbnailImageUrl, // 첫 번째 이미지 URL
+                order: 1 // 썸네일 이미지로 설정
+            });
+
+            // 나머지 이미지들 처리
+            await Promise.all(additionalImageUrls.map((imageUrl, index) => {
+                return axios.post(`${process.env.REACT_APP_API_URL}/clothes_images`, {
                     clothesId: categoryResponse.data.clothesId,
                     imageUrl: imageUrl,
-                    order: index + 1 // 이미지 순서 지정 (1부터 시작)
+                    order: index + 2 // 추가 이미지들에 대해 순서 설정 (2부터 시작)
                 });
             }));
 
             alert('상품 등록에 성공했습니다.');
+     
         } catch (error) {
             console.error('Submitting error:', error);
             alert('상품 등록에 실패했습니다.');
         }
 
-        // // 파일 업로드 함수 호출
-        // handleUploadImages(files);
-
-        // axios.put('http://localhost:8080/clothes', category)
-        //   .then(categoryResult => {
-        //     console.log('Category Response:', categoryResult.data);
-
-        //     setProductDetail(prevState => ({
-        //       ...prevState,
-        //       clothesId: categoryResult.data.clothesId // categoryResult.data.clothesId를 적절한 값으로 교체
-        //     }));
-
-
-
-
-        //     axios.put('http://localhost:8080/detail', productDetail)
-        //       .then(detailResult => {
-        //         console.log('Detail Response:', detailResult.data);
-
-        //         try {
-        //           let upload = firebasePath.put(file);
-        //           let imageUrl = upload.ref.getDownloadURL(); // 업로드된 파일의 URL을 가져옵니다.
-
-        //           // 이미지 URL을 상태에 저장하거나 서버로 전송하는 로직 추가
-        //           // console.log(imageUrl); // 처리 예: 이미지 URL 출력
-        //           axios.post('http://localhost:8080/clothes_images', { clothesId: productDetail.clothesId, imageUrl: imageUrl, order: 1 })
-        //             .then(result => {
-        //               console.log('이미지 업로드 성공');
-        //             })
-        //             .catch(error => {
-        //               console.log('이미지 DB 업로드 실패', error);
-        //             })
-
-        //         } catch (error) {
-        //           console.error('이미지 업로드 중 오류 발생:', error);
-        //           alert('이미지 업로드에 실패했습니다.');
-        //         }
-        //       })
-        //       .catch(error => {
-        //         console.error('Submitting error:', error);
-        //         alert('상품 등록에 실패했습니다.');
-        //       })
-        //   })
-        //   .catch(error => {
-        //     console.error('Submitting error:', error);
-        //     alert('상품 등록에 실패했습니다.');
-        //   })
-
-
-
-
-        // // 이미지 파일 처리
-        // let file = document.querySelector('#image').files[0];
-        // if (!file) {
-        //   alert('이미지 파일을 선택해 주세요.');
-        //   return;
-        // }
-
-        // // 파일 이름에 현재 날짜와 시간을 포함시켜 고유하게 만듭니다.
-        // const now = new Date();
-        // const timestamp = now.getTime(); // 현재 시간을 밀리초로
-        // const fileName = `${timestamp}-${file.name}`; // 파일 이름 생성
-
-        // let storageRef = storage.ref();
-        // let firebasePath = storageRef.child(`images/${fileName}`);
-
-        // axios.post('http://localhost:8080/clothes', category)
-        //   .then(categoryResult => {
-        //     console.log('Category Response:', categoryResult.data);
-
-        //     setProductDetail(prevState => ({
-        //       ...prevState,
-        //       clothesId: categoryResult.data.clothesId // categoryResult.data.clothesId를 적절한 값으로 교체
-        //     }));
-
-
-
-        //     axios.post('http://localhost:8080/detail', productDetail)
-        //       .then(detailResult => {
-        //         console.log('Detail Response:', detailResult.data);
-
-        //         try {
-        //           let upload = firebasePath.put(file);
-        //           let imageUrl = upload.ref.getDownloadURL(); // 업로드된 파일의 URL을 가져옵니다.
-
-        //           // 이미지 URL을 상태에 저장하거나 서버로 전송하는 로직 추가
-        //           // console.log(imageUrl); // 처리 예: 이미지 URL 출력
-        //           axios.post('http://localhost:8080/clothes_images', { clothesId: productDetail.clothesId, imageUrl: imageUrl, order: 1 })
-        //             .then(result => {
-        //               console.log('이미지 업로드 성공');
-        //             })
-        //             .catch(error => {
-        //               console.log('이미지 DB 업로드 실패', error);
-        //             })
-
-        //         } catch (error) {
-        //           console.error('이미지 업로드 중 오류 발생:', error);
-        //           alert('이미지 업로드에 실패했습니다.');
-        //         }
-        //       })
-        //       .catch(error => {
-        //         console.error('Submitting error:', error);
-        //         alert('상품 등록에 실패했습니다.');
-        //       })
-        //   })
-        //   .catch(error => {
-        //     console.error('Submitting error:', error);
-        //     alert('상품 등록에 실패했습니다.');
-        //   })
-
     };
-
-    // let file = document.querySelector('#image').files[0];
-    // let storageRef = storage.ref();
-    // let 저장할경로 = storageRef.child('image/' + '파일명');
-    // let 업로드작업 = 저장할경로.put(file)
-
-    // const now = new Date();
-
-    // const year = now.getFullYear();
-    // const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    // const day = now.getDate().toString().padStart(2, '0');
-    // const hours = now.getHours().toString().padStart(2, '0');
-    // const minutes = now.getMinutes().toString().padStart(2, '0');
-
-    // const dateTime = `${year}${month}${day}${hours}${minutes}`;
 
     return (
 
         <form onSubmit={handleSubmit}>
             <br />
-            <h1>상품 신규 등록</h1>
+            <h1 style={{ fontSize: '30px', fontWeight: '700', marginBottom:'30px' }}>상품 신규 등록</h1>
 
 
 
@@ -361,10 +268,10 @@ function ProductRegistration() {
                         <Form.Label column sm="2">대분류</Form.Label>
                         <Col sm="10">
                             <Form.Select
-                                value={category.majorCategory} onChange={handleMajorCategoryChange}>
+                                value={category.majorCategoryId} onChange={handleMajorCategoryChange}>
                                 <option value="">대분류 선택</option>
                                 {majorCategories.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                    <option key={cat.majorCategoryId} value={cat.majorCategoryId}>{cat.name}</option>
                                 ))}
                             </Form.Select>
                         </Col>
@@ -377,10 +284,10 @@ function ProductRegistration() {
                         <Form.Label column sm="2">소분류</Form.Label>
                         <Col sm="10">
                             <Form.Select
-                                value={category.subCategory} onChange={handleSubCategoryChange} disabled={!category.majorCategory} >
+                                value={category.subCategoryId} onChange={handleSubCategoryChange} disabled={!category.majorCategoryId}>
                                 <option value="">소분류 선택</option>
-                                {category.majorCategory && subCategories[category.majorCategory]?.map((cat) => (
-                                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                {subCategories.map((cat) => (
+                                    <option key={cat.subCategoryId} value={cat.subCategoryId}>{cat.name}</option>
                                 ))}
                             </Form.Select>
                         </Col>
@@ -438,21 +345,28 @@ function ProductRegistration() {
                                     onChange={(e) => handleProductDetailChange(e, index)} />
                             </Form.Group>
                         </Col>
-                        <Col md={1} className="align-self-center">
+                        <Col md={1} className="align-self-center" style={{marginTop:'30px'}}>
                             {productDetails.length > 1 && (
                                 <Button variant="danger" onClick={() => handleRemoveProductDetail(index)}>&#x2715;</Button>
                             )}
                         </Col>
                     </Row>
+
                 </Container>
             ))}
+            <br></br><br></br>
+            <Container>
+                <Row>
+                    <Col md={6}><label htmlFor="thumbnailImage" style={{ fontSize: '20px', fontWeight: '600', marginBottom:'5px' }}>썸네일 이미지 등록</label>
+                        <input type="file" className="form-control" id="thumbnailImage" /></Col>
+                    <Col md={6}><label htmlFor="additionalImages" style={{ fontSize: '20px', fontWeight: '600', marginBottom:'5px' }}>추가 이미지 등록</label>
+                        <input type="file" className="form-control" id="additionalImages" multiple /></Col>
+                </Row>
+            </Container>
 
-            {/* 상품 이미지 등록
-       <input class="form-control mt-2" type="file" id="image" /> */}
-            <input className="form-control mt-2" type="file" id="image" style={{ width: '500px', marginLeft: '150px' }} multiple />
             <br></br>
-            <StyledButton type="submit">상품 등록하기</StyledButton>
-        </form > 
+            <StyledButton onClick={() => { console.log(category) }} type="submit">상품 등록하기</StyledButton>
+        </form >
 
 
     );

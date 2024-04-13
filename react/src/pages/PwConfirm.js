@@ -20,7 +20,7 @@ function PwConfirm(props) {
     }
 
     let onClickPwConfirm = () => {
-        axios.get(`http://localhost:8080/customers/${userInfo.email_id}/${pw}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/customers/${userInfo.email_id}/${pw}`)
             .then((result) => {
                 if (result.data == true) {
 

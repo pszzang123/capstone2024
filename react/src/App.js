@@ -4,16 +4,9 @@ import './App.css';
 import { Routes, Route, useNavigate, Outlet, Link } from 'react-router-dom';
 import axios from 'axios'
 import { useQuery } from "react-query";
-import Main from "./pages/Main.js";
-import ItemList from "./pages/ItemList.js";
-import Login from "./pages/Login.js";
-import Join from "./pages/Join.js";
-import Mypage from "./pages/Mypage.js";
-import About from "./pages/About.js";
 import ProductRegistration from "./pages/ProductRegistration.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import DeleteCustomer from "./pages/DeleteCustomer.js";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./store/userSlice.js";
 import Badge from 'react-bootstrap/Badge';
@@ -21,10 +14,19 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { BsCart2 } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import styled from 'styled-components';
-import ProductEdit from "./pages/ProductEdit.js";
-import UpdateCustomer from "./pages/UpdateCustomer.js";
-import PwConfirm from "./pages/PwConfirm.js";
 
+const DeleteCustomer = lazy(() => import("./pages/DeleteCustomer.js"));
+const Main = lazy(() => import("./pages/Main.js"));
+const ItemList = lazy(() => import("./pages/ItemList.js"));
+const Login = lazy(() => import("./pages/Login.js"));
+const Join = lazy(() => import("./pages/Join.js"));
+const Mypage = lazy(() => import("./pages/Mypage.js"));
+const About = lazy(() => import("./pages/About.js"));
+const ProductEdit = lazy(() => import("./pages/ProductEdit.js"));
+const UpdateCustomer = lazy(() => import("./pages/UpdateCustomer.js"));
+const PwConfirm = lazy(() => import("./pages/PwConfirm.js"));
+const Cart = lazy(() => import('./pages/Cart.js'));
+const Detail = lazy(() => import('./pages/Detail.js'));
 
 
 // 스타일링된 컨테이너 정의
@@ -49,8 +51,6 @@ const CartItemCount = styled.span`
   align-items: center;
 `;
 
-const Cart = lazy(() => import('./pages/Cart.js'));
-const Detail = lazy(() => import('./pages/Detail.js'));
 
 function App() {
 
@@ -84,9 +84,9 @@ function App() {
 
       <Navbar bg="light" data-bs-theme="light" >
         <Container>
-          <Navbar.Brand onClick={()=>navigate('/')} style={{ fontSize: '24px', fontWeight: '700', color:'#1263CE', cursor: 'pointer' }}>
-            HS M<span style={{fontSize: '20px', fontWeight: '600'}}>all</span>
-            </Navbar.Brand>
+          <Navbar.Brand onClick={() => navigate('/')} style={{ fontSize: '24px', fontWeight: '700', color: '#1263CE', cursor: 'pointer' }}>
+            HS M<span style={{ fontSize: '20px', fontWeight: '600' }}>all</span>
+          </Navbar.Brand>
           <Form className="search-form d-flex flex-grow-1" onSubmit={handleSearch}>
             <Form.Control
               type="search"
@@ -111,7 +111,7 @@ function App() {
 
             }
 
-            <Nav.Link style={{marginRight:'5px'}} onClick={() => {
+            <Nav.Link style={{ marginRight: '5px' }} onClick={() => {
               if (isLoggedIn) {
                 navigate('/cart')
               } else {
@@ -120,15 +120,15 @@ function App() {
               }
             }}>
               {/* <FontAwesomeIcon icon={faCartShopping} /> */}
-              
+
               <CartIconContainer>
                 <FaShoppingCart size={24} />
                 <CartItemCount>{cartItems.length}</CartItemCount>
               </CartIconContainer>
-            
+
               {/* <BsCart2 /> */}
             </Nav.Link>
-            <Nav.Link style={{marginRight:'20px'}} onClick={() => {
+            <Nav.Link style={{ marginRight: '20px' }} onClick={() => {
               if (isLoggedIn) {
                 navigate('/mypage')
               } else {
@@ -210,13 +210,18 @@ function App() {
       <Suspense fallback={<div>로딩중.......</div>}>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/detail/:clothesId" element={<Detail />} />
           <Route path="*" element={<div>없는 페이지입니다.</div>} />
           <Route path="/about" element={<About />} >
             <Route path="member" element={<div> 멤버 페이지입니다. </div>} />
             <Route path="location" element={<div> 위치정보 페이지입니다. </div>} />
           </Route>
-          <Route path="itemlist" element={<ItemList />} />
+          
+          <Route path="/itemlist" element={<ItemList />} />
+          <Route path="/itemlist/:category" element={<ItemList />} />
+          <Route path="/itemlist/:category/:major" element={<ItemList />} />
+          <Route path="/itemlist/:category/:major/:minor" element={<ItemList />} />
+
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Join" element={<Join />} />

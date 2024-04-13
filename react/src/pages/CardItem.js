@@ -30,7 +30,7 @@ function CardItem(props) {
 
   useEffect(() => {
     // API 요청을 통해 데이터를 가져옵니다.
-    axios.get(`http://localhost:8080/clothes_images/${props.shoes.clothesId}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/clothes_images/${props.products.clothesId}`)
       .then(response => {
         // response.data는 위에서 언급된 배열입니다.
         const data = response.data;
@@ -48,7 +48,7 @@ function CardItem(props) {
 
 
   return (
-    <Col xs={4} md={3} onClick={() => { props.navigate('/detail/' + props.index) }}>
+    <Col xs={4} md={3} onClick={() => { props.navigate('/detail/' + props.products.clothesId) }}>
       <Card style={cardStyle} className="border-0" onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}>
         {/* <Card.Img src={process.env.PUBLIC_URL + '/img/shoes' + (props.index + 1) + '.jpg'} width="80%" /> */}
         {/* <Card.Img src={imageUrl} style={{width:"50%"}}/> */}
@@ -62,12 +62,12 @@ function CardItem(props) {
         />
 
         <Card.Body>
-          <Card.Title> {props.shoes.name} </Card.Title>
+          <Card.Title> {props.products.name} </Card.Title>
           <Card.Text>
-            {props.shoes.detail}
+            {props.products.detail}
           </Card.Text>
           <Card.Text>
-            {props.shoes.price}원
+            {props.products.price}원
           </Card.Text>
         </Card.Body>
       </Card>

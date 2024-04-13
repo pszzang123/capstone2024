@@ -65,7 +65,7 @@ function ItemList(props) {
   // }, [page]);
 
   // const fetchProducts = async (page) => {
-  //   const response = await axios.get(`http://localhost:8080/products?page=${page}&size=16`);
+  //   const response = await axios.get(`${process.env.REACT_APP_API_URL}/products?page=${page}&size=16`);
   //   setProducts(response.data.content); // 상품 목록 설정
   // };
   
