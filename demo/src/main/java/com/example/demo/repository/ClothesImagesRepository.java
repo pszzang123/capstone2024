@@ -11,4 +11,6 @@ import com.example.demo.entity.ClothesImagesId;
 // JpaRepository<type of entity, type of primary key>
 public interface ClothesImagesRepository extends JpaRepository<ClothesImages, ClothesImagesId> {
     List<ClothesImages> findAllByClothes(Clothes clothes);
+
+    ClothesImages findByClothesAndOrder(Clothes clothes, Long order);
 }

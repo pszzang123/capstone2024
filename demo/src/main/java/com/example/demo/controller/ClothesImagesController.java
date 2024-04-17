@@ -50,9 +50,9 @@ public class ClothesImagesController {
         return ResponseEntity.ok(clothesImagesDtos);
     }
 
-    @DeleteMapping("{clothes_id}/{image_url}")
-    public ResponseEntity<String> deleteClothesImages(@PathVariable("clothes_id") Long clothesId, @PathVariable("image_url") String imageUrl) {
-        clothesImagesService.deleteClothesImagesById(clothesId, imageUrl);
+    @DeleteMapping("{clothes_id}/{order}")
+    public ResponseEntity<String> deleteClothesImagesByOrder(@PathVariable("clothes_id") Long clothesId, @PathVariable("order") Long order) {
+        clothesImagesService.deleteClothesImagesByPosition(clothesId, order);
         return ResponseEntity.ok("Clothes Image deleted successfully.");
     }
 }

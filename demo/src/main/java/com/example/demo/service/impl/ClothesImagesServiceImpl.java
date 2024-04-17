@@ -113,4 +113,15 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
         
         clothesImagesRepository.deleteById(deleteClothesImagesId);
     }
+
+    @Override
+    public void deleteClothesImagesByPosition(Long clothesId, Long order) {
+        Clothes clothesInfo = clothesRepository.findById(clothesId).orElseThrow(() -> 
+            new ResourceNotFoundException("Clothes are not exists with given id : " + clothesId)
+        );
+
+        ClothesImages clothesImages = clothesImagesRepository.findByClothesAndOrder(clothesInfo, order);
+        
+        clothesImagesRepository.delete(clothesImages);
+    }
 }
