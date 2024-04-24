@@ -26,22 +26,30 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
 
     @Override
     public ClothesImagesDto createClothesImages(ClothesImagesDto clothesImagesDto) {
-        Boolean addable = true;
-
         Clothes clothes_info = clothesRepository.findById(clothesImagesDto.getClothesId()).orElseThrow(() -> 
             new ResourceNotFoundException("Clothes are not exist with given id : " + clothesImagesDto.getClothesId())
         );
+
         List<ClothesImages> clothesImagesSet = clothesImagesRepository.findAllByClothes(clothes_info);
-        for(ClothesImages clothesImages : clothesImagesSet) {
-            addable = clothesImages.getOrder() != clothesImagesDto.getOrder();
-            if (!addable) {
-                break;
-            } else {
-                continue;
+
+        Long nextOrder = 1L;
+        if (clothesImagesSet != null) {
+            for (ClothesImages clothesImages : clothesImagesSet) {
+                if (clothesImages.getImageUrl().equals(clothesImagesDto.getImageUrl())) {
+                    nextOrder = clothesImages.getOrder();
+                    break;
+                }
+                if (clothesImages != null) {
+                    if (clothesImages.getOrder() >= nextOrder) {
+                        nextOrder = clothesImages.getOrder() + 1;
+                    }
+                }
             }
         }
+        clothesImagesDto.setOrder(nextOrder);
+
         ClothesImages clothesImages = ClothesImagesMapper.mapToClothesImages(clothesImagesDto, clothes_info);
-        ClothesImages savedClothesImages = addable ? clothesImagesRepository.save(clothesImages) : null;
+        ClothesImages savedClothesImages = clothesImagesRepository.save(clothesImages);
         return ClothesImagesMapper.mapToClothesImagesDto(savedClothesImages);
     }
 
@@ -52,7 +60,7 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
             Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(() -> 
                 new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
             );
-            clothesImages = clothesImagesRepository.findAllByClothes(clothes);
+            clothesImages = clothesImagesRepository.findAllByClothesOrderByOrder(clothes);
         } catch (Exception e) {
             new ResourceNotFoundException("Clothes are not exists with given id : " + clothesId);
             return null;
@@ -120,8 +128,20 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
             new ResourceNotFoundException("Clothes are not exists with given id : " + clothesId)
         );
 
-        ClothesImages clothesImages = clothesImagesRepository.findByClothesAndOrder(clothesInfo, order);
-        
-        clothesImagesRepository.delete(clothesImages);
+        ClothesImages clothesImage = clothesImagesRepository.findByClothesAndOrder(clothesInfo, order);
+
+        if (clothesImage != null) {
+            Long removedOrder = clothesImage.getOrder();
+            clothesImagesRepository.delete(clothesImage);
+            List<ClothesImages> allImages = clothesImagesRepository.findAllByClothes(clothesInfo);
+            for (ClothesImages image : allImages) {
+                if (image.getOrder() > removedOrder) {
+                    image.setOrder(image.getOrder() - 1);
+                    clothesImagesRepository.save(image);
+                }
+            }
+        } else {
+            throw new ResourceNotFoundException("Clothes Image with given order not found for clothes id : " + clothesId + " and order : " + order);
+        }
     }
 }
