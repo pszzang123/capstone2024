@@ -1,5 +1,7 @@
 package com.example.demo.service.impl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,11 +11,14 @@ import com.example.demo.dto.ReceiptDetailDto;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesDetail;
 import com.example.demo.entity.ClothesImages;
+import com.example.demo.entity.Customer;
 import com.example.demo.entity.Receipt;
 import com.example.demo.entity.ReceiptDetail;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.ClothesDetailRepository;
 import com.example.demo.repository.ClothesImagesRepository;
+import com.example.demo.repository.ClothesRepository;
+import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.ReceiptDetailRepository;
 import com.example.demo.repository.ReceiptRepository;
 import com.example.demo.service.ReceiptDetailService;
@@ -26,6 +31,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class ReceiptDetailServiceImpl implements ReceiptDetailService {
     private ClothesDetailRepository clothesDetailRepository;
+    private ClothesRepository clothesRepository;
+    private CustomerRepository customerRepository;
     private ClothesImagesRepository clothesImagesRepository;
     private ReceiptRepository receiptRepository;
     private ReceiptDetailRepository receiptDetailRepository;
@@ -39,9 +46,41 @@ public class ReceiptDetailServiceImpl implements ReceiptDetailService {
             new ResourceNotFoundException("Clothes Detail is not exist with given id : " + receiptDetailDto.getDetailId())
         );
 
+        Clothes clothes_info = clothesDetail_info.getClothes();
+        clothes_info.setDailySales(clothes_info.getDailySales() + 1);
+        clothes_info.setMonthlySales(clothes_info.getMonthlySales() + 1);
+        clothes_info.setTotalSales(clothes_info.getTotalSales() + 1);
+        clothesRepository.save(clothes_info);
+
         ReceiptDetail receiptDetail = ReceiptDetailMapper.mapToReceiptDetail(receiptDetailDto, receipt_info, clothesDetail_info);
         ReceiptDetail savedReceiptDetail = receiptDetailRepository.save(receiptDetail);
         return ReceiptDetailMapper.mapToReceiptDetailDto(savedReceiptDetail);
+    }
+
+    @Override
+    public List<ReceiptDetailVo> getReceiptDetailByCustomerEmail(String customerEmail) {
+        Customer customerInfo = customerRepository.findById(customerEmail).orElseThrow(() -> 
+            new ResourceNotFoundException("Customer is not exist with given id : " + customerEmail)
+        );
+
+        List<ReceiptDetail> receiptDetails = receiptDetailRepository.findAllByCustomer(customerInfo);
+
+        List<ReceiptDetailVo> receiptDetailVos = receiptDetails.stream().map((receiptDetail) -> {
+            String imageUrl = "";
+            Clothes clothesInfo = receiptDetail.getClothesDetail().getClothes();
+            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothesInfo);
+            for (ClothesImages clothesImage : clothesImages) {
+                if (clothesImage.getOrder() == 1) {
+                    imageUrl = clothesImage.getImageUrl();
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return ReceiptDetailMapper.mapToReceiptDetailVo(receiptDetail, imageUrl);
+        }).collect(Collectors.toList());
+        
+        return receiptDetailVos;
     }
 
     @Override
@@ -94,6 +133,22 @@ public class ReceiptDetailServiceImpl implements ReceiptDetailService {
             return;
         }
         
-        receiptDetails.forEach((receiptDetail) -> receiptDetailRepository.delete(receiptDetail));
+        receiptDetails.forEach((receiptDetail) -> {
+            Clothes clothes_info = receiptDetail.getClothesDetail().getClothes();
+            Receipt receipt_info = receiptDetail.getReceipt();
+            LocalDateTime dateTime = LocalDateTime.parse(receipt_info.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            LocalDateTime now = LocalDateTime.now();
+            if (dateTime.getYear() == now.getYear()) {
+                if (dateTime.getMonth() == now.getMonth()) {
+                    clothes_info.setMonthlySales(clothes_info.getMonthlySales() - 1);
+                }
+                if (dateTime.getDayOfYear() == now.getDayOfYear()) {
+                    clothes_info.setDailySales(clothes_info.getDailySales() - 1);
+                }
+            }
+            clothes_info.setTotalSales(clothes_info.getTotalSales() - 1);
+
+            receiptDetailRepository.delete(receiptDetail);
+        });
     }
 }

@@ -1,6 +1,5 @@
 package com.example.demo.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,30 +25,22 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
 
     @Override
     public ClothesImagesDto createClothesImages(ClothesImagesDto clothesImagesDto) {
+        Boolean addable = true;
+
         Clothes clothes_info = clothesRepository.findById(clothesImagesDto.getClothesId()).orElseThrow(() -> 
             new ResourceNotFoundException("Clothes are not exist with given id : " + clothesImagesDto.getClothesId())
         );
-
         List<ClothesImages> clothesImagesSet = clothesImagesRepository.findAllByClothes(clothes_info);
-
-        Long nextOrder = 1L;
-        if (clothesImagesSet != null) {
-            for (ClothesImages clothesImages : clothesImagesSet) {
-                if (clothesImages.getImageUrl().equals(clothesImagesDto.getImageUrl())) {
-                    nextOrder = clothesImages.getOrder();
-                    break;
-                }
-                if (clothesImages != null) {
-                    if (clothesImages.getOrder() >= nextOrder) {
-                        nextOrder = clothesImages.getOrder() + 1;
-                    }
-                }
+        for(ClothesImages clothesImages : clothesImagesSet) {
+            addable = clothesImages.getOrder() != clothesImagesDto.getOrder();
+            if (!addable) {
+                break;
+            } else {
+                continue;
             }
         }
-        clothesImagesDto.setOrder(nextOrder);
-
         ClothesImages clothesImages = ClothesImagesMapper.mapToClothesImages(clothesImagesDto, clothes_info);
-        ClothesImages savedClothesImages = clothesImagesRepository.save(clothesImages);
+        ClothesImages savedClothesImages = addable ? clothesImagesRepository.save(clothesImages) : null;
         return ClothesImagesMapper.mapToClothesImagesDto(savedClothesImages);
     }
 
@@ -60,7 +51,7 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
             Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(() -> 
                 new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
             );
-            clothesImages = clothesImagesRepository.findAllByClothesOrderByOrder(clothes);
+            clothesImages = clothesImagesRepository.findAllByClothes(clothes);
         } catch (Exception e) {
             new ResourceNotFoundException("Clothes are not exists with given id : " + clothesId);
             return null;
@@ -77,34 +68,19 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
         return clothesImages.stream().map((clothesImage) -> ClothesImagesMapper.mapToClothesImagesDto(clothesImage)).collect(Collectors.toList());
     }
 
-    public List<ClothesImagesDto> changeClothesImagesOrder(Long clothesId, String imageUrl1, String imageUrl2) {
+    public ClothesImagesDto changeClothesImagesOrder(Long clothesId, Long pos1, Long pos2) {
         Clothes clothes_info = clothesRepository.findById(clothesId).orElseThrow(
             () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
         );
 
-        ClothesImagesId clothesImagesId1 = new ClothesImagesId(clothes_info, imageUrl1);
-        ClothesImagesId clothesImagesId2 = new ClothesImagesId(clothes_info, imageUrl2);
+        ClothesImages clothesImage = clothesImagesRepository.findByClothesAndOrder(clothes_info, pos1);
 
-        ClothesImages clothesImages1 = clothesImagesRepository.findById(clothesImagesId1).orElseThrow(() -> 
-            new ResourceNotFoundException("Image is not exist with given id : " + clothesImagesId1)
-        );
+        clothesImage.setOrder(pos2);
 
-        ClothesImages clothesImages2 = clothesImagesRepository.findById(clothesImagesId2).orElseThrow(() -> 
-            new ResourceNotFoundException("Image is not exist with given id : " + clothesImagesId2)
-        );
+        ClothesImages updatedClothesImagesObj = clothesImagesRepository.save(clothesImage);
+        ClothesImagesDto clothesImagesDto = ClothesImagesMapper.mapToClothesImagesDto(updatedClothesImagesObj);
 
-        Long order = clothesImages1.getOrder();
-        clothesImages1.setOrder(clothesImages2.getOrder());
-        clothesImages2.setOrder(order);
-
-        ClothesImages updatedClothesImagesObj1 = clothesImagesRepository.save(clothesImages1);
-        ClothesImages updatedClothesImagesObj2 = clothesImagesRepository.save(clothesImages2);
-
-        List<ClothesImagesDto> updates = new ArrayList<>();
-        updates.add(ClothesImagesMapper.mapToClothesImagesDto(updatedClothesImagesObj1));
-        updates.add(ClothesImagesMapper.mapToClothesImagesDto(updatedClothesImagesObj2));
-
-        return updates;
+        return clothesImagesDto;
     }
 
     @Override

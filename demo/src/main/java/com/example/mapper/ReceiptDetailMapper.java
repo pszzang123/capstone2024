@@ -36,6 +36,7 @@ public class ReceiptDetailMapper {
             receiptDetailDto.getReceiptDetailId(),
             receipt,
             clothesDetail,
+            receipt.getCustomer(),
             clothes.getName(),
             clothesDetail.getColor(),
             clothesDetail.getSize(),

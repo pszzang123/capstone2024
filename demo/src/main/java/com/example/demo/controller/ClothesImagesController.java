@@ -44,9 +44,9 @@ public class ClothesImagesController {
         return ResponseEntity.ok(clothesImages);
     }
 
-    @PutMapping("{clothes_id}/{url1}/{url2}")
-    public ResponseEntity<List<ClothesImagesDto>> updateClothes(@PathVariable("clothes_id") Long clothesId, @PathVariable("url1") String url1, @PathVariable("url2") String url2) {
-        List<ClothesImagesDto> clothesImagesDtos = clothesImagesService.changeClothesImagesOrder(clothesId, url1, url2);
+    @PutMapping("{clothes_id}/{pos1}/{pos2}")
+    public ResponseEntity<ClothesImagesDto> changeClothesPosition(@PathVariable("clothes_id") Long clothesId, @PathVariable("pos1") Long pos1, @PathVariable("pos2") Long pos2) {
+        ClothesImagesDto clothesImagesDtos = clothesImagesService.changeClothesImagesOrder(clothesId, pos1, pos2);
         return ResponseEntity.ok(clothesImagesDtos);
     }
 

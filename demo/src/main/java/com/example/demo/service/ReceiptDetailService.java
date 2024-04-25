@@ -8,6 +8,8 @@ import com.example.demo.vo.ReceiptDetailVo;
 public interface ReceiptDetailService {
     ReceiptDetailDto createReceiptDetail(ReceiptDetailDto receiptDetailDto);
 
+    List<ReceiptDetailVo> getReceiptDetailByCustomerEmail(String customerEmail);
+
     List<ReceiptDetailVo> getReceiptDetailByReceiptId(Long receiptId);
 
     List<ReceiptDetailDto> getAllReceiptDetail();

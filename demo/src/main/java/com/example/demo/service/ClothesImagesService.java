@@ -11,7 +11,7 @@ public interface ClothesImagesService {
 
     List<ClothesImagesDto> getAllClothesImages();
 
-    List<ClothesImagesDto> changeClothesImagesOrder(Long clothesId, String imageUrl1, String imageUrl2);
+    ClothesImagesDto changeClothesImagesOrder(Long clothesId, Long pos1, Long pos2);
 
     void deleteClothesImagesById(Long clothesId, String imageUrl);
 

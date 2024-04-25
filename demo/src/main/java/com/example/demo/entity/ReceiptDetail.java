@@ -35,6 +35,10 @@ public class ReceiptDetail {
     @JoinColumn(name = "detail_id")
     private ClothesDetail clothesDetail;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_email")
+    private Customer customer;
+
     @Column(name = "name")
     private String name;
 

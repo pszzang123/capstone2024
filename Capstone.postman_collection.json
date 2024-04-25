@@ -824,12 +824,12 @@
 					"response": []
 				},
 				{
-					"name": "Change Two Images's Order",
+					"name": "Change Images's Order",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clothes_images/2/asdf/zxcv",
+							"raw": "http://localhost:8080/clothes_images/1/1/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -837,21 +837,21 @@
 							"port": "8080",
 							"path": [
 								"clothes_images",
-								"2",
-								"asdf",
-								"zxcv"
+								"1",
+								"1",
+								"2"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete Clothes Categories By Ids Copy",
+					"name": "Delete Clothes Images By Order",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clothes_images/2/asdf",
+							"raw": "http://localhost:8080/clothes_images/1/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -859,8 +859,8 @@
 							"port": "8080",
 							"path": [
 								"clothes_images",
-								"2",
-								"asdf"
+								"1",
+								"3"
 							]
 						}
 					},
@@ -907,7 +907,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"color\": \"Black\",\r\n    \"size\": \"L\",\r\n    \"remaining\": 10,\r\n    \"clothesId\": 1\r\n}",
+							"raw": "{\r\n    \"color\": \"Black\",\r\n    \"size\": \"L\",\r\n    \"remaining\": 10,\r\n    \"clothesId\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1503,8 +1503,51 @@
 			"item": []
 		},
 		{
-			"name": "Selling (미구현)",
-			"item": []
+			"name": "Sales",
+			"item": [
+				{
+					"name": "Get Sales By Customer Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sales/customer/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sales",
+								"customer",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sales By Clothes Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sales/clothes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sales",
+								"clothes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Comment",
