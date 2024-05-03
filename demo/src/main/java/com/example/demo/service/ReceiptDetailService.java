@@ -14,5 +14,7 @@ public interface ReceiptDetailService {
 
     List<ReceiptDetailDto> getAllReceiptDetail();
 
+    ReceiptDetailDto updateReceiptDetailStatus(Long detailId, Integer status);
+
     void deleteReceiptDetailByReceiptId(Long receiptId);
 }

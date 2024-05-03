@@ -61,7 +61,7 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public ReceiptDto updateReceiptStatis(Long receiptId, Integer status) {
+    public ReceiptDto updateReceiptStatus(Long receiptId, Integer status) {
         Receipt receipt = receiptRepository.findById(receiptId).orElseThrow(
             () -> new ResourceNotFoundException("Receipt is not exist with given id : " + receiptId)
         );

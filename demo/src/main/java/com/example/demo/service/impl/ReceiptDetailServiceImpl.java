@@ -121,6 +121,36 @@ public class ReceiptDetailServiceImpl implements ReceiptDetailService {
     }
 
     @Override
+    public ReceiptDetailDto updateReceiptDetailStatus(Long detailId, Integer status) {
+        ReceiptDetail receiptDetail = receiptDetailRepository.findById(detailId).orElseThrow(
+            () -> new ResourceNotFoundException("Receipt Detail is not exist with given id : " + detailId)
+        );
+
+        receiptDetail.setStatus(status);
+
+        Receipt receipt = receiptDetail.getReceipt();
+        List<ReceiptDetail> receiptDetails = receiptDetailRepository.findAllByReceipt(receipt);
+        Boolean isStatusSame = false;
+        for (ReceiptDetail rd : receiptDetails) {
+            if (status == rd.getStatus()) {
+                isStatusSame = true;
+                continue;
+            } else {
+                isStatusSame = false;
+                break;
+            }
+        }
+        if (isStatusSame) {
+            receipt.setStatus(status);
+            receiptRepository.save(receipt);
+        }
+
+        ReceiptDetail updatedReceiptDetailObj = receiptDetailRepository.save(receiptDetail);
+
+        return ReceiptDetailMapper.mapToReceiptDetailDto(updatedReceiptDetailObj);
+    }
+
+    @Override
     public void deleteReceiptDetailByReceiptId(Long receiptId) {
         List<ReceiptDetail> receiptDetails = null;
         try{

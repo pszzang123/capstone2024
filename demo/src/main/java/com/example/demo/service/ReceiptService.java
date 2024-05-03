@@ -12,7 +12,7 @@ public interface ReceiptService {
 
     List<ReceiptDto> getAllReceipts();
 
-    ReceiptDto updateReceiptStatis(Long receiptId, Integer status);
+    ReceiptDto updateReceiptStatus(Long receiptId, Integer status);
 
     void deleteReceiptById(Long receiptId);
 }

@@ -13,7 +13,8 @@ public class ReceiptDetailMapper {
             receiptDetail.getReceiptDetailId(),
             receiptDetail.getReceipt().getReceiptId(),
             receiptDetail.getClothesDetail().getDetailId(),
-            receiptDetail.getQuantity()
+            receiptDetail.getQuantity(),
+            receiptDetail.getStatus()
         );
     }
 
@@ -26,7 +27,8 @@ public class ReceiptDetailMapper {
             receiptDetail.getSize(),
             receiptDetail.getPrice(),
             imageUrl,
-            receiptDetail.getQuantity()
+            receiptDetail.getQuantity(),
+            receiptDetail.getStatus()
         );
     }
 
@@ -41,7 +43,8 @@ public class ReceiptDetailMapper {
             clothesDetail.getColor(),
             clothesDetail.getSize(),
             clothes.getPrice() * receiptDetailDto.getQuantity(),
-            receiptDetailDto.getQuantity()
+            receiptDetailDto.getQuantity(),
+            receiptDetailDto.getStatus()
         );
     }
 }

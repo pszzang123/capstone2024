@@ -1329,7 +1329,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"123\",\r\n    \"password\": \"123\",\r\n    \"name\": \"123\",\r\n    \"address\": \"123\",\r\n    \"phone\": \"010-1234-1234\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1384,7 +1384,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"receiptId\": 1,\r\n    \"detailId\": 1,\r\n    \"quantity\": 1\r\n}",
+							"raw": "{\r\n    \"receiptId\": 1,\r\n    \"detailId\": 1,\r\n    \"quantity\": 1,\r\n    \"status\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1412,7 +1412,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"receiptId\": 1,\r\n    \"detailId\": 2,\r\n    \"quantity\": 10\r\n}",
+							"raw": "{\r\n    \"receiptId\": 1,\r\n    \"detailId\": 2,\r\n    \"quantity\": 10,\r\n    \"status\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1467,6 +1467,36 @@
 							"port": "8080",
 							"path": [
 								"receipt_detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Receipt Status Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/receipt_detail/2/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"receipt_detail",
+								"2",
+								"1"
 							]
 						}
 					},
