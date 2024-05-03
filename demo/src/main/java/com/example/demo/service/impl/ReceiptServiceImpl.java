@@ -68,6 +68,12 @@ public class ReceiptServiceImpl implements ReceiptService {
 
         receipt.setStatus(status);
 
+        List<ReceiptDetail> receiptDetails = receiptDetailRepository.findAllByReceipt(receipt);
+        for (ReceiptDetail rd : receiptDetails) {
+            rd.setStatus(status);
+            receiptDetailRepository.save(rd);
+        }
+
         Receipt updatedReceiptObj = receiptRepository.save(receipt);
 
         return ReceiptMapper.mapToReceiptDto(updatedReceiptObj);
