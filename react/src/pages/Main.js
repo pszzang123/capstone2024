@@ -1,8 +1,6 @@
-import bg from './../images/bg.png';
 import Carousel from 'react-bootstrap/Carousel';
 import ExampleCarouselImage from './ExampleCarouseImage';
 import CardItem from './CardItem';
-import { setShoes } from './../store.js'
 import { Container, Row, Col } from 'react-bootstrap';
 import './../App.css';
 import { useDispatch, useSelector } from 'react-redux';

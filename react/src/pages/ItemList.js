@@ -1,8 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Button, Navbar, Container, Nav, Row, Col, Card, ButtonGroup, ButtonToolbar, Dropdown, Image, Pagination } from 'react-bootstrap';
 import './../App.css';
-import bg from './../images/bg.png';
-import data from './../data.js';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
@@ -10,7 +8,6 @@ import { useQuery } from "react-query";
 import { Link } from 'react-router-dom';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import CardItem from "./CardItem.js";
-import productData from './../data/productData.json'
 import "firebase/firestore";
 import { storage } from "../firebaseConfig.js";
 import { useParams } from 'react-router-dom';
@@ -38,7 +35,6 @@ function ItemList(props) {
   const { category, major, minor } = useParams();
 
   // Redux
-  // let shoes = useSelector((state) => { return state.shoes })
   const [products, setProducts] = useState([]);
   let dispatch = useDispatch()
 
@@ -47,6 +43,7 @@ function ItemList(props) {
   //     setProducts(data); // 상품 데이터를 상태에 저장
   //   });
   // }, [category, major, minor]); // 의존성 배열에 매개변수들을 포함시켜, 이들이 변할 때마다 useEffect가 실행되도록 합니다.
+  
   useEffect(() => {
     fetchProducts({ category, major, minor })
       .then(data => {
@@ -82,11 +79,6 @@ function ItemList(props) {
       // throw error; // 에러를 다시 던져서 함수를 호출한 쪽에서 처리할 수 있도록 합니다.
     }
   }
-
-
-  // 상품 state
-  // data.js 에서 state 초기화
-  // let [shoes, setShoes] = useState(data)
 
 
   // 더보기 버튼 카운트
@@ -125,7 +117,7 @@ function ItemList(props) {
         </Row>
       </Container> */}
 
-<Container>
+      <Container>
         <Row className="justify-content-start" style={{ fontSize: '12px', color: 'gray', margin: '10px 15px' }}>
           <Col xs={12} md={12} className="text-nowrap" style={{ textAlign: 'left' }}>
             <Link to="/" style={{ color: !category ? 'black' : 'gray', textDecoration: 'none', marginRight: '5px' }}>
@@ -195,7 +187,7 @@ function ItemList(props) {
 
       <Container>
         <Row className="justify-content-end">
-          <Col xs={12} md={12} className="text-nowrap" style={{ textAlign: 'right', marginBottom:'10px' }}>
+          <Col xs={12} md={12} className="text-nowrap" style={{ textAlign: 'right', marginBottom: '10px' }}>
             <Dropdown>
               <Dropdown.Toggle
                 variant="success"
@@ -235,15 +227,9 @@ function ItemList(props) {
             <Pagination>
               <Pagination.First />
               <Pagination.Prev />
-              <Pagination.Item>{1}</Pagination.Item>
-              <Pagination.Ellipsis />
-
-              <Pagination.Item>{10}</Pagination.Item>
-              <Pagination.Item>{11}</Pagination.Item>
-              <Pagination.Item active>{12}</Pagination.Item>
+              <Pagination.Item active>{1}</Pagination.Item>
+              <Pagination.Item>{12}</Pagination.Item>
               <Pagination.Item>{13}</Pagination.Item>
-              <Pagination.Item disabled>{14}</Pagination.Item>
-
               <Pagination.Ellipsis />
               <Pagination.Item>{20}</Pagination.Item>
               <Pagination.Next />

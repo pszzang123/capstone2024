@@ -128,6 +128,7 @@ const StyledDropdownMenu = styled(Dropdown.Menu)`
 function CartItem(props) {
 
     let dispatch = useDispatch();
+    let navigate = useNavigate();
     let { userInfo, isLoggedIn } = useSelector((state) => state.user);
 
     return (
@@ -141,7 +142,7 @@ function CartItem(props) {
                 </Col>
 
                 <Col xs={4} md={2}>
-                    <img style={{ width: '100px', height: '132px' }} src={props.item.imageUrl} alt={props.item.name} />
+                    <img style={{ width: '100px', height: '132px' }} src={props.item.imageUrl} alt={props.item.name}/>
                 </Col>
                 <Col xs={7} md={4}>
                     <div>
@@ -210,6 +211,10 @@ function Cart(props) {
 
     // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
     useEffect(() => {
+        if (!isLoggedIn || !userInfo) {
+            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+        }
+
         if (!isLoggedIn) {
             // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
             alert('로그인 후 이용해주세요.')
@@ -223,7 +228,37 @@ function Cart(props) {
                     console.log('장바구니 데이터 불러오기 실패', error);
                 })
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, userInfo]);
+
+    // 선택된 항목을 Checkout으로 전달하고 이동하는 함수
+    // 선택된 아이템만 필터링하고 데이터 구조 재구성
+    const handleCheckout = () => {
+        const selectedProductDetails = cartItems
+            .filter(item => selectedItems[item.detailId]) // 선택된 아이템만 필터
+            .map(item => ({
+                root: 'cart',
+                detailId: item.detailId,
+                clothes: {
+                    name: item.name,
+                    price: item.price
+                },
+                imgUrl: item.imageUrl,
+                selectedDetail: {
+                    size: item.size,
+                    color: item.color
+                },
+                quantity: item.quantity
+            }));
+
+        if (selectedProductDetails.length === 0) {
+            alert('선택된 상품이 없습니다'); // Alert if no items are selected
+            return; // Prevent navigation
+        }
+
+        // navigate 함수를 사용하여 Checkout 컴포넌트로 데이터 전달
+        navigate('/checkout', { state: { items: selectedProductDetails } });
+    };
+
 
     const initialSelectedItems = cartItems.reduce((items, item) => {
         items[item.detailId] = true; // 모든 상품을 선택된 상태(true)로 초기화
@@ -245,20 +280,53 @@ function Cart(props) {
         return total + (selectedItems[item.detailId] ? item.price * item.quantity : 0);
     }, 0);
 
+    // 체크박스 전체 선택
+    const handleSelectAllChange = () => {
+        const areAllSelected = Object.values(selectedItems).every(Boolean);
+        const newSelectedItems = {};
+        cartItems.forEach(item => {
+            newSelectedItems[item.detailId] = !areAllSelected;
+        });
+        setSelectedItems(newSelectedItems);
+    };
+    
+    useEffect(() => {
+        if (cartItems.length > 0) {
+            const initialSelectedItems = {};
+            cartItems.forEach(item => {
+                initialSelectedItems[item.detailId] = true;
+            });
+            setSelectedItems(initialSelectedItems);
+        }
+    }, [cartItems]);
+
     return (
         <div>
             <br /> <br />
 
             <Container>
                 <Row>
-                    <Col xs={{ span: 10, offset: 1 }} md={{ span: 10, offset: 1 }}>
+                    <Col xs={12} md={{ span: 10, offset: 1 }}>
                         <h1 style={{ fontSize: '30px', fontWeight: '700' }}>장바구니</h1>
                         <br /><br />
                     </Col>
                 </Row>
                 <Row>
+
+
+                    <Col md={{ span: 1, offset: 1 }} xs={1} style={{ fontSize: '16px', fontWeight: '700' }}>
+                        <CustomCheckbox
+                            checked={Object.values(selectedItems).every(Boolean)} // Check if all items are selected
+                            onChange={handleSelectAllChange}
+                            className="select-all-checkbox"
+                        />
+                        <span></span>
+                    </Col>
+
+
+
                     <Hidden xs sm>
-                        <Col md={{ span: 7, offset: 1 }} style={{ fontSize: '20px', fontWeight: '700' }}>
+                        <Col md={{span: 4, offset: 2}} style={{ fontSize: '20px', fontWeight: '700' }}>
                             상품정보
                         </Col>
                     </Hidden>
@@ -297,15 +365,14 @@ function Cart(props) {
                     ))}
                 </Row>
                 <Row>
-                    <Col xs={9} md={{ span: 6, offset: 1 }}></Col>
-                    <Col xs={3} md={{ span: 4 }} style={{ fontSize: '17px', fontWeight: '700' }}>
+                    <Col md={{ span: 1, offset: 9 }} style={{ textAlign: 'right', fontSize: '17px', fontWeight: '700', whiteSpace: 'nowrap' }}>
                         총 주문금액 {totalAmount.toLocaleString()}원
                     </Col>
                 </Row>
                 <br></br>
                 <Row>
                     <Col>
-                        <StyledButton>주문하기</StyledButton>
+                        <StyledButton onClick={handleCheckout}>주문하기</StyledButton>
                     </Col>
                 </Row>
                 <br></br>

@@ -1,8 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Button, Navbar, Container, Nav, Row, Col, Card, ButtonGroup, ButtonToolbar, Dropdown, Image, Pagination } from 'react-bootstrap';
 import './../App.css';
-import bg from './../images/bg.png';
-import data from '../data.js';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
@@ -13,7 +11,6 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../firebaseConfig.js";
 
 
-import productData from '../data/productData.json'
 
 
 function CardItem(props) {
@@ -50,8 +47,6 @@ function CardItem(props) {
   return (
     <Col xs={4} md={3} onClick={() => { props.navigate('/detail/' + props.products.clothesId) }}>
       <Card style={cardStyle} className="border-0" onMouseOver={() => setHovered(true)} onMouseOut={() => setHovered(false)}>
-        {/* <Card.Img src={process.env.PUBLIC_URL + '/img/shoes' + (props.index + 1) + '.jpg'} width="80%" /> */}
-        {/* <Card.Img src={imageUrl} style={{width:"50%"}}/> */}
         <Card.Img
           src={imageUrl}
           style={{
@@ -59,6 +54,7 @@ function CardItem(props) {
             height: "200px", // 고정된 높이 설정
             objectFit: "cover" // 이미지가 비율을 유지하며 지정된 영역을 채우도록 함
           }}
+          loading="lazy"
         />
 
         <Card.Body>
@@ -67,7 +63,7 @@ function CardItem(props) {
             {props.products.detail}
           </Card.Text>
           <Card.Text>
-            {props.products.price}원
+            {props.products.price.toLocaleString()}원
           </Card.Text>
         </Card.Body>
       </Card>

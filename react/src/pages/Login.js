@@ -22,6 +22,14 @@ function Login(props) {
 
   let navigate = useNavigate();
 
+  // 로그인 상태라면 메인화면으로 이동.
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [isLoggedIn, navigate]);
+
+
   useEffect(() => {
     let savedUserEmail = localStorage.getItem('userEmail');
     let savedRememberMe = localStorage.getItem('rememberMe');
@@ -77,6 +85,12 @@ function Login(props) {
             localStorage.setItem('userEmail', '');
             localStorage.setItem('rememberMe', 'false');
           }
+
+          // localstorage에 로그인 정보 저장.
+          const now = new Date().getTime(); // 현재 시간을 밀리초로 저장
+          localStorage.setItem('userLoginTime', now); // 로그인 시간 저장
+          localStorage.setItem('userIsLoggedIn', 'true');
+          localStorage.setItem('userData', JSON.stringify(email));
 
           dispatch(login({ 'email_id': email }));
 
@@ -150,58 +164,58 @@ function Login(props) {
       <Container>
         <Row>
           <Col>
-      <Form className='login-ContentWrap'>
-        <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-          <Form.Label className='login-InputTitle'>아이디(이메일)</Form.Label>
-          <div className='login-InputWrap'>
-            <Form.Control
-              id="email-input"
-              value={email}
-              onChange={handleEmail}
-              type="email"
-              placeholder="아이디(이메일)를 입력하세요."
-              className='login-Input' />
-          </div>
-          <Form.Text className="login-ErrorMessageWrap">
-            {
-              !emailValid && email.length > 0 && (
-                <div>이메일을 올바르게 입력해주세요.</div>
-              )
-            }
-          </Form.Text>
-        </Form.Group>
+            <Form className='login-ContentWrap'>
+              <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
+                <Form.Label className='login-InputTitle'>아이디(이메일)</Form.Label>
+                <div className='login-InputWrap'>
+                  <Form.Control
+                    id="email-input"
+                    value={email}
+                    onChange={handleEmail}
+                    type="email"
+                    placeholder="아이디(이메일)를 입력하세요."
+                    className='login-Input' />
+                </div>
+                <Form.Text className="login-ErrorMessageWrap">
+                  {
+                    !emailValid && email.length > 0 && (
+                      <div>이메일을 올바르게 입력해주세요.</div>
+                    )
+                  }
+                </Form.Text>
+              </Form.Group>
 
-        <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
-          <Form.Label className='login-InputTitle'>비밀번호</Form.Label>
-          <div className='login-InputWrap'>
-            <Form.Control
-              id="password-input"
-              value={pw}
-              onChange={handlePw}
-              type="password" placeholder="비밀번호를 입력하세요." className='login-Input' />
-          </div>
-          <Form.Text className="login-ErrorMessageWrap">
-            {
-              !pwValid && pw.length > 0 && (
-                <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
-              )
-            }
-          </Form.Text>
-        </Form.Group>
-        <Form.Group className="mb-3 d-flex" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" checked={rememberMe}
-            onChange={handleCheckboxChange}
-            label="아이디 저장" />
-        </Form.Group>
-        <Button onClick={onClickConfirmButton} disabled={notAllow} variant="primary" className='login-Button'>
-          로그인
-        </Button>
-        <Button onClick={() => { navigate('/join') }} variant="primary" className='join-Button'>
-          회원가입
-        </Button>
-      </Form>
-      </Col>
-      </Row>
+              <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
+                <Form.Label className='login-InputTitle'>비밀번호</Form.Label>
+                <div className='login-InputWrap'>
+                  <Form.Control
+                    id="password-input"
+                    value={pw}
+                    onChange={handlePw}
+                    type="password" placeholder="비밀번호를 입력하세요." className='login-Input' />
+                </div>
+                <Form.Text className="login-ErrorMessageWrap">
+                  {
+                    !pwValid && pw.length > 0 && (
+                      <div>영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.</div>
+                    )
+                  }
+                </Form.Text>
+              </Form.Group>
+              <Form.Group className="mb-3 d-flex" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" checked={rememberMe}
+                  onChange={handleCheckboxChange}
+                  label="아이디 저장" />
+              </Form.Group>
+              <Button onClick={onClickConfirmButton} disabled={notAllow} variant="primary" className='login-Button'>
+                로그인
+              </Button>
+              <Button onClick={() => { navigate('/join') }} variant="primary" className='join-Button'>
+                회원가입
+              </Button>
+            </Form>
+          </Col>
+        </Row>
       </Container>
     </div>
   )

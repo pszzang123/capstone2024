@@ -3,9 +3,11 @@ import React, { useEffect, useState } from 'react';
 import "firebase/firestore";
 import { storage } from "../firebaseConfig.js";
 import { ref, uploadBytes, getDownloadURL, uploadString } from "firebase/storage";
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Spinner } from 'react-bootstrap';
 import { FaPlusCircle } from "react-icons/fa";
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 let StyledButton = styled.button`
   
@@ -28,12 +30,18 @@ let StyledButton = styled.button`
 
 // 상품 신규 등록
 function ProductRegistration() {
+
+    let navigate = useNavigate();
+    let dispatch = useDispatch();
+    let { sellerInfo, isLoggedIn } = useSelector((state) => state.seller);
+
+    const [loading, setLoading] = useState(false);  // 로딩 상태 관리
+
     const [category, setCategory] = useState({
         name: '',
         detail: '',
         price: 0,
         genderCategory: 0,
-        // categoryNumber: '',
         majorCategoryId: '',
         subCategoryId: '',
         sellerEmail: ''
@@ -142,29 +150,34 @@ function ProductRegistration() {
     // 제출 처리
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);  // 제출 시작시 로딩 상태를 true로 설정
 
-        // 썸네일 이미지 파일
+        // 썸네일 이미지 파일과 추가 이미지 파일들
         const thumbnailFile = document.querySelector('#thumbnailImage').files[0];
-        // 추가 이미지 파일들
         const additionalFiles = document.querySelector('#additionalImages').files;
 
         if (!thumbnailFile) {
             alert('썸네일 이미지 파일을 선택해 주세요.');
+            setLoading(false);
             return;
         }
         if (additionalFiles.length === 0) {
             alert('상품 이미지 파일을 선택해 주세요.');
+            setLoading(false);
             return;
         }
 
         try {
             // 이미지 업로드 및 URL들을 얻음
             const [thumbnailImageUrl] = await handleUploadImages(thumbnailFile);
-
             const additionalImageUrls = additionalFiles.length > 0 ? await handleUploadImages(additionalFiles) : [];
 
             // Category 정보를 서버로 전송하고 응답을 받음
-            const categoryResponse = await axios.post(`${process.env.REACT_APP_API_URL}/clothes`, category);
+            const categoryResponse = await axios.post(`${process.env.REACT_APP_API_URL}/clothes`, {
+                ...category,
+                sellerEmail: sellerInfo.email_id
+            });
+
             console.log('Category Response:', categoryResponse.data);
 
             // 상품의 category 등록에 성공한 후, 각 detail 등록
@@ -197,24 +210,37 @@ function ProductRegistration() {
                 });
             }));
 
+            const clothesId = categoryResponse.data.clothesId; // 응답에서 clothesId 추출
+
+            // 이제 `clothesId`를 사용하여 수정 페이지로 리디렉션
+            navigate(`/seller/productedit/${clothesId}`);
+
+            // 상품 등록에 성공했습니다 알림을 나중에 표시
             alert('상품 등록에 성공했습니다.');
-     
+
         } catch (error) {
             console.error('Submitting error:', error);
             alert('상품 등록에 실패했습니다.');
+            setLoading(false);
         }
 
+        setLoading(false);
     };
+
 
     return (
 
         <form onSubmit={handleSubmit}>
-            <br />
-            <h1 style={{ fontSize: '30px', fontWeight: '700', marginBottom:'30px' }}>상품 신규 등록</h1>
-
-
+           
 
             <Container>
+                <Row>
+                    <Col>
+                        <br /> <br />
+                        <h1 style={{ fontSize: '30px', fontWeight: '700' }}>상품 신규 등록</h1>
+                        <br /><br />
+                    </Col>
+                </Row>
                 <Row className="mb-3">
                     <Form.Group as={Row} controlId="formProductName">
                         <Form.Label column sm="2">이름</Form.Label>
@@ -294,17 +320,8 @@ function ProductRegistration() {
                     </Form.Group>
                 </Row>
 
-                {/* 판매자 이메일, 추후 로그인한 판매자 이메일이 자동으로 들어가도록 수정 예정 */}
-                <Row className="mb-3">
-                    <Form.Group as={Row} controlId="formSellerEmail">
-                        <Form.Label column sm="2">판매자 이메일</Form.Label>
-                        <Col sm="10">
-                            <Form.Control type="email" name="sellerEmail" value={category.sellerEmail} onChange={handleCategoryChange} />
-                        </Col>
-                    </Form.Group>
-                </Row>
                 <Row>
-                    <Col md={{ offset: 11, span: 1 }}>
+                    <Col md={{ offset: 11, span: 1 }} xs={{ offset: 10, span: 2 }}>
                         <button type="button" style={{ background: 'white', border: '0px' }} onClick={handleAddProductDetail}>
                             <FaPlusCircle size={30} />
                         </button>
@@ -345,7 +362,7 @@ function ProductRegistration() {
                                     onChange={(e) => handleProductDetailChange(e, index)} />
                             </Form.Group>
                         </Col>
-                        <Col md={1} className="align-self-center" style={{marginTop:'30px'}}>
+                        <Col md={1} className="align-self-center" style={{ marginTop: '30px' }}>
                             {productDetails.length > 1 && (
                                 <Button variant="danger" onClick={() => handleRemoveProductDetail(index)}>&#x2715;</Button>
                             )}
@@ -357,15 +374,34 @@ function ProductRegistration() {
             <br></br><br></br>
             <Container>
                 <Row>
-                    <Col md={6}><label htmlFor="thumbnailImage" style={{ fontSize: '20px', fontWeight: '600', marginBottom:'5px' }}>썸네일 이미지 등록</label>
+                    <Col md={6}><label htmlFor="thumbnailImage" style={{ fontSize: '20px', fontWeight: '600', marginBottom: '5px' }}>썸네일 이미지 등록</label>
                         <input type="file" className="form-control" id="thumbnailImage" /></Col>
-                    <Col md={6}><label htmlFor="additionalImages" style={{ fontSize: '20px', fontWeight: '600', marginBottom:'5px' }}>추가 이미지 등록</label>
+                    <Col md={6}><label htmlFor="additionalImages" style={{ fontSize: '20px', fontWeight: '600', marginBottom: '5px' }}>추가 이미지 등록</label>
                         <input type="file" className="form-control" id="additionalImages" multiple /></Col>
+                </Row>
+                <Row>
+                    <Col style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                        <StyledButton onClick={() => { console.log(category) }} type="submit">
+                            {loading ? (
+                                <span>
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                        style={{ marginRight: '5px' }}
+                                    />
+                                    등록 중...
+                                </span>
+                            ) : '상품 등록하기'}
+                        </StyledButton>
+                    </Col>
                 </Row>
             </Container>
 
             <br></br>
-            <StyledButton onClick={() => { console.log(category) }} type="submit">상품 등록하기</StyledButton>
+
         </form >
 
 

@@ -13,7 +13,7 @@ function PwConfirm(props) {
 
     let navigate = useNavigate();
 
-    let [ pw, setPw ] = useState('');
+    let [pw, setPw] = useState('');
 
     let handlePwChange = (e) => {
         setPw(e.target.value);
@@ -39,40 +39,62 @@ function PwConfirm(props) {
             })
     }
 
+    // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
+    useEffect(() => {
+        if (!isLoggedIn || !userInfo) {
+            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+        }
+        if (!isLoggedIn) {
+            // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
+            alert('로그인 후 이용해주세요.')
+            navigate('/login');
+        }
+    }, [isLoggedIn, userInfo]);
+
     useEffect(() => {
         const handleEnterPress = (event) => {
-          if (event.key === 'Enter') {
-            event.preventDefault(); // 폼 제출 기본 이벤트 방지
-            onClickPwConfirm();
-          }
+            if (event.key === 'Enter') {
+                event.preventDefault(); // 폼 제출 기본 이벤트 방지
+                onClickPwConfirm();
+            }
         };
-      
+
         document.addEventListener('keydown', handleEnterPress);
         return () => {
-          document.removeEventListener('keydown', handleEnterPress);
+            document.removeEventListener('keydown', handleEnterPress);
         };
-      }, [onClickPwConfirm]);
-      
+    }, [onClickPwConfirm]);
+
     return (
-        <div>
-            <div style={{ fontSize: '15px', fontWeight: '500', textAlign: 'left' }}>
-                회원님은 현재 {userInfo != null ? userInfo.email_id : ''}로 로그인하셨습니다.<br></br>
-                개인정보보호를 위해 비밀번호를 입력해주세요.
+        <Container>
+            <Row>
+            <Col md={{span: 8, offset: 1}} xs={12}>
+                    <h1 style={{ fontSize: '30px', fontWeight: '700' }}>비밀번호 확인</h1>
+                    <br /><br />
+                </Col>
+            </Row>
+            <Row>
+                <div style={{ fontSize: '15px', fontWeight: '500', textAlign: 'left' }}>
+                    <div style={{ marginBottom: '10px' }}>
+                        회원님은 현재 {userInfo != null ? userInfo.email_id : ''}로 로그인하셨습니다.<br></br>
+                        개인정보보호를 위해 비밀번호를 입력해주세요.
+                    </div>
+                    <Form>
+                        <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
+                            <Form.Control type="password" name="pwConfirm" value={pw} onChange={handlePwChange} controlId="formPw"
+                                placeholder="비밀번호를 입력하세요."
+                            />
+                        </Form.Group>
 
-                <Form>
-                    <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-                        <Form.Control type="password" name="pwConfirm" value={pw} onChange={handlePwChange} controlId="formPw"
-                            placeholder="비밀번호를 입력하세요."
-                        />
-                    </Form.Group>
+                        <Button onClick={onClickPwConfirm} variant="primary" className='login-Button'>
+                            {/* type="submit"  */}
+                            비밀번호 확인
+                        </Button>
+                    </Form>
 
-                    <Button onClick={onClickPwConfirm} variant="primary" className='login-Button'>
-                        {/* type="submit"  */}
-                        비밀번호 확인
-                    </Button>
-                </Form>
-            </div>
-        </div>
+                </div>
+            </Row>
+        </Container>
     )
 }
 

@@ -1,6 +1,4 @@
 import React from 'react';
-import img1 from './../images/skirt1.jpg'
-import Image from 'react-bootstrap/Image';
 import { useNavigate } from 'react-router-dom';
 
 

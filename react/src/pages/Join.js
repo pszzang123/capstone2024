@@ -11,12 +11,10 @@ import Modal from 'react-bootstrap/Modal';
 function Join(props) {
 
   let [name, setName] = useState('');
-  // let [address, setAddress] = useState('');
   let [address, setAddress] = useState('');
   let [zoneCode, setZoneCode] = useState('');
-  let [fullAddress, setFullAddress] = useState('');
+  let [detailAddress, setDetailAddress] = useState('');
   let [showPostcode, setShowPostcode] = useState(false);
-  // let [phone, setPhone] = useState('');
   let [phone1, setPhone1] = useState('');
   let [phone2, setPhone2] = useState('');
   let [phone3, setPhone3] = useState('');
@@ -149,7 +147,7 @@ function Join(props) {
   }
 
   let onClickConfirmButton = () => {
-    axios.post(`${process.env.REACT_APP_API_URL}/customers`, { email: email, address: address + ' ' + fullAddress, name: name, password: pw, phone: phone1 + '-' + phone2 + '-' + phone3 })
+    axios.post(`${process.env.REACT_APP_API_URL}/customers`, { email: email, streetAddress: address, detailAddress: detailAddress, zipCode: zoneCode, name: name, password: pw, phone: phone1 + '-' + phone2 + '-' + phone3 })
       .then((result) => {
         alert('회원가입 완료');
         navigate("/login")
@@ -160,12 +158,12 @@ function Join(props) {
   }
 
   useEffect(() => {
-    if (name.trim() !== '' && address.trim() !== '' && fullAddress.trim() !== '' && zoneCode.trim() !== '' && phone1.trim() !== '' && phone2.trim() !== '' && phone3.trim() !== '' && emailValid && pwValid && pwConfirmValid) {
+    if (name.trim() !== '' && address.trim() !== '' && detailAddress.trim() !== '' && zoneCode.trim() !== '' && phone1.trim() !== '' && phone2.trim() !== '' && phone3.trim() !== '' && emailValid && pwValid && pwConfirmValid) {
       setNotAllow(false);
       return;
     }
     setNotAllow(true);
-  }, [name, address, fullAddress, zoneCode, phone1, phone2, phone3, emailValid, pwValid, pwConfirmValid]);
+  }, [name, address, detailAddress, zoneCode, phone1, phone2, phone3, emailValid, pwValid, pwConfirmValid]);
 
   useEffect(() => {
     if (pw === pwConfirm) {
@@ -229,24 +227,6 @@ function Join(props) {
                     className='login-Input' />
                 </div>
               </Form.Group>
-
-              {/* <Form.Group className="mb-3 text-start" controlId="formBasicZoneCode">
-      <Form.Label className='login-InputTitle'>주소</Form.Label>
-        <span className='login-InputWrapAddr'>
-        <Form.Control
-          value={zoneCode}
-          onChange={(e) => setZoneCode(e.target.value)}
-          type="text"
-          placeholder="우편번호"
-          className='login-InputAddr'
-          readOnly
-        />
-          </span>
-          <Button onClick={handlePostcode} variant="secondary">
-            주소찾기
-          </Button>
-      </Form.Group> */}
-
               <Form.Group className="mb-3 text-start" controlId="formBasicZoneCode">
                 <Form.Label className='login-InputTitle'>주소</Form.Label>
                 <div className="address-container">
@@ -281,11 +261,11 @@ function Join(props) {
 
               </Form.Group>
 
-              <Form.Group className="mb-3 text-start" controlId="formBasicFullAddress">
+              <Form.Group className="mb-3 text-start" controlId="formBasicDetailAddress">
                 <div className='login-InputWrap'>
                   <Form.Control
-                    value={fullAddress}
-                    onChange={(e) => setFullAddress(e.target.value)}
+                    value={detailAddress}
+                    onChange={(e) => setDetailAddress(e.target.value)}
                     type="text"
                     placeholder="상세주소 입력"
                     className='login-Input'
@@ -293,7 +273,7 @@ function Join(props) {
                 </div>
                 <Form.Text className="login-ErrorMessageWrap">
                   {
-                    address.length > 0 && fullAddress.length == 0 && (
+                    address.length > 0 && detailAddress.length == 0 && (
                       <div>상세주소를 입력해주세요.</div>
                     )
                   }
@@ -308,18 +288,6 @@ function Join(props) {
                   <DaumPostcode onComplete={handleComplete} />
                 </Modal.Body>
               </Modal>
-
-              {/* <Form.Group className="mb-3 text-start" controlId="formBasicPhone">
-        <Form.Label className='login-InputTitle'>전화번호</Form.Label>
-        <div className='login-InputWrap'>
-          <Form.Control
-            value={phone}
-            onChange={handlePhone}
-            type="tel"
-            placeholder="전화번호를 입력하세요."
-            className='login-Input' />
-        </div>
-      </Form.Group> */}
 
               <Form.Group className="mb-3 text-start" controlId="formBasicPhone">
                 <Form.Label className='login-InputTitle'>전화번호</Form.Label>
@@ -349,32 +317,7 @@ function Join(props) {
                     placeholder="0000"
                     className='login-InputPhone' />
                 </div>
-                {/* <div className='login-InputWrap' style={{ display: 'flex', gap: '10px' }}>
-          <Form.Control
-            id="phone1"
-            value={phone1}
-            onChange={handlePhone1Change}
-            type="tel"
-            maxLength="3"
-            placeholder="000"
-            className='login-Input' style={{ width: '60px' }} />
-          <Form.Control
-            id="phone2"
-            value={phone2}
-            onChange={handlePhone2Change}
-            type="tel"
-            maxLength="4"
-            placeholder="0000"
-            className='login-Input' style={{ width: '80px' }} />
-          <Form.Control
-            id="phone3"
-            value={phone3}
-            onChange={handlePhone3Change}
-            type="tel"
-            maxLength="4"
-            placeholder="0000"
-            className='login-Input' style={{ width: '80px' }} />
-        </div> */}
+             
               </Form.Group>
 
 
