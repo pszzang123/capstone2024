@@ -84,21 +84,57 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public List<ClothesDto> getClothesBySeller(Seller seller) {
+    public List<ClothesVo> getClothesBySeller(Seller seller) {
         List<Clothes> clothes = clothesRepository.findAllBySeller(seller);
-        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+        return clothes.stream().map((clothe) -> {
+            String imageUrl = "";
+            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothe);
+            for (ClothesImages clothesImage : clothesImages) {
+                if (clothesImage.getOrder() == 1) {
+                    imageUrl = clothesImage.getImageUrl();
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return ClothesMapper.mapToClothesVo(clothe, imageUrl);
+        }).collect(Collectors.toList());
     }
 
     @Override
-    public List<ClothesDto> getClothesByMajorCategory(MajorCategory majorCategory) {
+    public List<ClothesVo> getClothesByMajorCategory(MajorCategory majorCategory) {
         List<Clothes> clothes = clothesRepository.findAllByMajorCategory(majorCategory);
-        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+        return clothes.stream().map((clothe) -> {
+            String imageUrl = "";
+            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothe);
+            for (ClothesImages clothesImage : clothesImages) {
+                if (clothesImage.getOrder() == 1) {
+                    imageUrl = clothesImage.getImageUrl();
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return ClothesMapper.mapToClothesVo(clothe, imageUrl);
+        }).collect(Collectors.toList());
     }
 
     @Override
-    public List<ClothesDto> getClothesBySubCategory(SubCategory subCategory) {
+    public List<ClothesVo> getClothesBySubCategory(SubCategory subCategory) {
         List<Clothes> clothes = clothesRepository.findAllBySubCategory(subCategory);
-        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+        return clothes.stream().map((clothe) -> {
+            String imageUrl = "";
+            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothe);
+            for (ClothesImages clothesImage : clothesImages) {
+                if (clothesImage.getOrder() == 1) {
+                    imageUrl = clothesImage.getImageUrl();
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return ClothesMapper.mapToClothesVo(clothe, imageUrl);
+        }).collect(Collectors.toList());
     }
 
     @Override
@@ -120,9 +156,21 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public List<ClothesDto> getAllClothes() {
+    public List<ClothesVo> getAllClothes() {
         List<Clothes> clothes = clothesRepository.findAll();
-        return clothes.stream().map((clothe) -> ClothesMapper.mapToClothesDto(clothe)).collect(Collectors.toList());
+        return clothes.stream().map((clothe) -> {
+            String imageUrl = "";
+            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothe);
+            for (ClothesImages clothesImage : clothesImages) {
+                if (clothesImage.getOrder() == 1) {
+                    imageUrl = clothesImage.getImageUrl();
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            return ClothesMapper.mapToClothesVo(clothe, imageUrl);
+        }).collect(Collectors.toList());
     }
 
     @Override

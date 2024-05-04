@@ -54,24 +54,24 @@ public class ClothesController {
     }
 
     @GetMapping("seller/{email}")
-    public ResponseEntity<List<ClothesDto>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
+    public ResponseEntity<List<ClothesVo>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
         Seller seller = SellerMapper.mapToSeller(sellerService.getSellerByEmail(sellerEmail));
-        List<ClothesDto> clothes = clothesService.getClothesBySeller(seller);
+        List<ClothesVo> clothes = clothesService.getClothesBySeller(seller);
         return ResponseEntity.ok(clothes);
     }
 
     @GetMapping("major_category/{id}")
-    public ResponseEntity<List<ClothesDto>> getClothesByMajorCategory(@PathVariable("id") Long majorCategoryId) {
+    public ResponseEntity<List<ClothesVo>> getClothesByMajorCategory(@PathVariable("id") Long majorCategoryId) {
         MajorCategory majorCategory = MajorCategoryMapper.mapToMajorCategory(majorCategoryService.getMajorCategoryById(majorCategoryId));
-        List<ClothesDto> clothes = clothesService.getClothesByMajorCategory(majorCategory);
+        List<ClothesVo> clothes = clothesService.getClothesByMajorCategory(majorCategory);
         return ResponseEntity.ok(clothes);
     }
 
     @GetMapping("sub_category/{id}")
-    public ResponseEntity<List<ClothesDto>> getClothesBySubCategory(@PathVariable("id") Long subCategoryId) {
+    public ResponseEntity<List<ClothesVo>> getClothesBySubCategory(@PathVariable("id") Long subCategoryId) {
         SubCategoryDto subCategoryDto = subCategoryService.getSubCategoryById(subCategoryId);
         SubCategory subCategory = SubCategoryMapper.mapToSubCategory(subCategoryDto, MajorCategoryMapper.mapToMajorCategory(majorCategoryService.getMajorCategoryById(subCategoryDto.getMajorCategoryId())));
-        List<ClothesDto> clothes = clothesService.getClothesBySubCategory(subCategory);
+        List<ClothesVo> clothes = clothesService.getClothesBySubCategory(subCategory);
         return ResponseEntity.ok(clothes);
     }
 
@@ -88,8 +88,8 @@ public class ClothesController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ClothesDto>> getAllClothes() {
-        List<ClothesDto> clothes = clothesService.getAllClothes();
+    public ResponseEntity<List<ClothesVo>> getAllClothes() {
+        List<ClothesVo> clothes = clothesService.getAllClothes();
         return ResponseEntity.ok(clothes);
     }
 

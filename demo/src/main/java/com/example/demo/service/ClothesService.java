@@ -16,15 +16,15 @@ public interface ClothesService {
 
     StatisticsDto getStatisticsById(Long clothesId);
 
-    List<ClothesDto> getClothesBySeller(Seller seller);
+    List<ClothesVo> getClothesBySeller(Seller seller);
 
-    List<ClothesDto> getClothesByMajorCategory(MajorCategory majorCategory);
+    List<ClothesVo> getClothesByMajorCategory(MajorCategory majorCategory);
 
-    List<ClothesDto> getClothesBySubCategory(SubCategory subCategory);
+    List<ClothesVo> getClothesBySubCategory(SubCategory subCategory);
 
     List<ClothesVo> searchClothesByNameOrderByDailyView(String name);
 
-    List<ClothesDto> getAllClothes();
+    List<ClothesVo> getAllClothes();
 
     ClothesDto updateClothes(Long clothesId, ClothesDto updatedClothes);
 
