@@ -44,6 +44,12 @@ public class ClothesImagesController {
         return ResponseEntity.ok(clothesImages);
     }
 
+    @PutMapping
+    public ResponseEntity<List<ClothesImagesDto>> updateAllClothesImages(@RequestBody List<ClothesImagesDto> clothesImagesDtos) {
+        List<ClothesImagesDto> savedClothesImagesDtos = clothesImagesService.updateAllClothesImages(clothesImagesDtos);
+        return ResponseEntity.ok(savedClothesImagesDtos);
+    }
+
     @PutMapping("{clothes_id}/{pos1}/{pos2}")
     public ResponseEntity<ClothesImagesDto> changeClothesPosition(@PathVariable("clothes_id") Long clothesId, @PathVariable("pos1") Long pos1, @PathVariable("pos2") Long pos2) {
         ClothesImagesDto clothesImagesDtos = clothesImagesService.changeClothesImagesOrder(clothesId, pos1, pos2);

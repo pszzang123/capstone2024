@@ -131,16 +131,32 @@ public class ReceiptDetailServiceImpl implements ReceiptDetailService {
         Receipt receipt = receiptDetail.getReceipt();
         List<ReceiptDetail> receiptDetails = receiptDetailRepository.findAllByReceipt(receipt);
         Boolean isStatusSame = false;
+        Boolean isReturnExist = false;
         for (ReceiptDetail rd : receiptDetails) {
             if (status == rd.getStatus()) {
                 isStatusSame = true;
                 continue;
             } else {
                 isStatusSame = false;
+                if (rd.getStatus() == 4 || rd.getStatus() == 5) {
+                    isReturnExist = true;
+                    status = 4;
+                }
+                if (rd.getStatus() == 6) {
+                    isReturnExist = true;
+                    status = 6;
+                }
                 break;
             }
         }
-        if (isStatusSame) {
+
+        if (isStatusSame && !isReturnExist) {
+            if (status == 6) {
+                status = 7;
+            }
+        }
+
+        if (isStatusSame || isReturnExist) {
             receipt.setStatus(status);
             receiptRepository.save(receipt);
         }

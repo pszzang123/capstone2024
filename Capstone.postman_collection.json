@@ -523,7 +523,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clothes/search/123",
+							"raw": "http://localhost:8080/clothes/search/123?gender=&major_category=&sub_category=",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -533,6 +533,20 @@
 								"clothes",
 								"search",
 								"123"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": ""
+								},
+								{
+									"key": "major_category",
+									"value": ""
+								},
+								{
+									"key": "sub_category",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -553,48 +567,6 @@
 							"path": [
 								"clothes",
 								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Clothes By Major Category Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/clothes/major_category/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"clothes",
-								"major_category",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Clothes By Sub Category Id",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/clothes/sub_category/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"clothes",
-								"sub_category",
-								"2"
 							]
 						}
 					},
@@ -655,12 +627,12 @@
 					"response": []
 				},
 				{
-					"name": "Get All Clothes",
+					"name": "Get Clothes",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/clothes",
+							"raw": "http://localhost:8080/clothes?gender=&major_category=&sub_category=",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -668,6 +640,41 @@
 							"port": "8080",
 							"path": [
 								"clothes"
+							],
+							"query": [
+								{
+									"key": "gender",
+									"value": ""
+								},
+								{
+									"key": "major_category",
+									"value": ""
+								},
+								{
+									"key": "sub_category",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sorted Clothes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes/sort/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes",
+								"sort",
+								"1"
 							]
 						}
 					},
@@ -809,6 +816,34 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/clothes_images",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothes_images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update All Clothes Images",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"clothesId\": 1,\r\n        \"imageUrl\": \"zxcv\",\r\n        \"order\": 1\r\n    },\r\n    {\r\n        \"clothesId\": 1,\r\n        \"imageUrl\": \"asdf\",\r\n        \"order\": 2\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/clothes_images",
 							"protocol": "http",
