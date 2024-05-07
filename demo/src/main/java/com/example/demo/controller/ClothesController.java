@@ -142,7 +142,7 @@ public class ClothesController {
         return ResponseEntity.ok(clothesVos);
     }
 
-    @GetMapping("sort/{id}")
+    @PutMapping("sort/{id}")
     public ResponseEntity<List<ClothesVo>> sortClothesVos(@PathVariable("id") Integer sortId, @RequestBody List<ClothesVo> clothes) {
         List<ClothesVo> sortedClothes = clothesService.sortClothesVos(clothes, sortId);
         return ResponseEntity.ok(sortedClothes);
