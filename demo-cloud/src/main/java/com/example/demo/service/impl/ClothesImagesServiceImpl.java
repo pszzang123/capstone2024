@@ -68,6 +68,44 @@ public class ClothesImagesServiceImpl implements ClothesImagesService {
         return clothesImages.stream().map((clothesImage) -> ClothesImagesMapper.mapToClothesImagesDto(clothesImage)).collect(Collectors.toList());
     }
 
+    @Override
+    public List<ClothesImagesDto> updateAllClothesImages(List<ClothesImagesDto> clothesImagesDtos) {
+        Long clothesId = clothesImagesDtos.get(0).getClothesId();
+        for(ClothesImagesDto clothesImagesDto : clothesImagesDtos) {
+            if (clothesImagesDto.getClothesId() != clothesId) {
+                return null;
+            }
+        }
+
+        Clothes clothes_info = clothesRepository.findById(clothesId).orElseThrow(
+            () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
+        );
+
+        List<ClothesImages> pastClothesImages = clothesImagesRepository.findAllByClothes(clothes_info);
+        pastClothesImages.forEach((clothesImage) -> {
+            clothesImagesRepository.delete(clothesImage);
+        });
+
+        List<ClothesImagesDto> savedClothesImagesDtos = clothesImagesDtos.stream().map((clothesImagesDto) -> {
+            Boolean addable = true;
+            List<ClothesImages> clothesImagesSet = clothesImagesRepository.findAllByClothes(clothes_info);
+            for(ClothesImages clothesImages : clothesImagesSet) {
+                addable = clothesImages.getOrder() != clothesImagesDto.getOrder();
+                if (!addable) {
+                    break;
+                } else {
+                    continue;
+                }
+            }
+            ClothesImages clothesImages = ClothesImagesMapper.mapToClothesImages(clothesImagesDto, clothes_info);
+            ClothesImages savedClothesImages = addable ? clothesImagesRepository.save(clothesImages) : null;
+            return ClothesImagesMapper.mapToClothesImagesDto(savedClothesImages);
+        }).collect(Collectors.toList());
+
+        return savedClothesImagesDtos;
+    }
+
+    @Override
     public ClothesImagesDto changeClothesImagesOrder(Long clothesId, Long pos1, Long pos2) {
         Clothes clothes_info = clothesRepository.findById(clothesId).orElseThrow(
             () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)

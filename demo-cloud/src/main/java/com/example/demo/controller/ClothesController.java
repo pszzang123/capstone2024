@@ -12,22 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.dto.StatisticsDto;
-import com.example.demo.dto.SubCategoryDto;
-import com.example.demo.entity.MajorCategory;
 import com.example.demo.entity.Seller;
-import com.example.demo.entity.SubCategory;
 import com.example.demo.service.ClothesService;
-import com.example.demo.service.MajorCategoryService;
 import com.example.demo.service.SellerService;
-import com.example.demo.service.SubCategoryService;
 import com.example.demo.vo.ClothesVo;
-import com.example.mapper.MajorCategoryMapper;
 import com.example.mapper.SellerMapper;
-import com.example.mapper.SubCategoryMapper;
 
 import lombok.AllArgsConstructor;
 
@@ -38,8 +32,6 @@ import lombok.AllArgsConstructor;
 public class ClothesController {
     private ClothesService clothesService;
     private SellerService sellerService;
-    private MajorCategoryService majorCategoryService;
-    private SubCategoryService subCategoryService;
 
     @PostMapping
     public ResponseEntity<ClothesDto> createClothes(@RequestBody ClothesDto clothesDto) {
@@ -54,24 +46,9 @@ public class ClothesController {
     }
 
     @GetMapping("seller/{email}")
-    public ResponseEntity<List<ClothesDto>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
+    public ResponseEntity<List<ClothesVo>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
         Seller seller = SellerMapper.mapToSeller(sellerService.getSellerByEmail(sellerEmail));
-        List<ClothesDto> clothes = clothesService.getClothesBySeller(seller);
-        return ResponseEntity.ok(clothes);
-    }
-
-    @GetMapping("major_category/{id}")
-    public ResponseEntity<List<ClothesDto>> getClothesByMajorCategory(@PathVariable("id") Long majorCategoryId) {
-        MajorCategory majorCategory = MajorCategoryMapper.mapToMajorCategory(majorCategoryService.getMajorCategoryById(majorCategoryId));
-        List<ClothesDto> clothes = clothesService.getClothesByMajorCategory(majorCategory);
-        return ResponseEntity.ok(clothes);
-    }
-
-    @GetMapping("sub_category/{id}")
-    public ResponseEntity<List<ClothesDto>> getClothesBySubCategory(@PathVariable("id") Long subCategoryId) {
-        SubCategoryDto subCategoryDto = subCategoryService.getSubCategoryById(subCategoryId);
-        SubCategory subCategory = SubCategoryMapper.mapToSubCategory(subCategoryDto, MajorCategoryMapper.mapToMajorCategory(majorCategoryService.getMajorCategoryById(subCategoryDto.getMajorCategoryId())));
-        List<ClothesDto> clothes = clothesService.getClothesBySubCategory(subCategory);
+        List<ClothesVo> clothes = clothesService.getClothesBySeller(seller);
         return ResponseEntity.ok(clothes);
     }
 
@@ -82,15 +59,93 @@ public class ClothesController {
     }
 
     @GetMapping("search/{name}")
-    public ResponseEntity<List<ClothesVo>> getClothesById(@PathVariable("name") String name) {
-        List<ClothesVo> clothesVo = clothesService.searchClothesByNameOrderByDailyView(name);
-        return ResponseEntity.ok(clothesVo);
+    public ResponseEntity<List<ClothesVo>> getClothesByName(@RequestParam(name = "gender", required = false) Integer genderCategory, @RequestParam(name = "major_category", required = false) Long majorCategoryId, @RequestParam(name = "sub_category", required = false) Long subCategoryId, @PathVariable("name") String name) {
+        List<ClothesVo> clothesVos = null;
+        if (genderCategory != null) {
+            if (majorCategoryId != null) {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.searchClothesByGenderCategoryAndMajorCategoryAndSubCategoryAndName(genderCategory, majorCategoryId, subCategoryId, name);
+                }
+                else {
+                    clothesVos = clothesService.searchClothesByGenderCategoryAndMajorCategoryAndName(genderCategory, majorCategoryId, name);
+                }
+            }
+            else {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.searchClothesByGenderCategoryAndSubCategoryAndName(genderCategory, subCategoryId, name);
+                }
+                else {
+                    clothesVos = clothesService.searchClothesByGenderCategoryAndName(genderCategory, name);
+                }
+            }
+        }
+        else {
+            if (majorCategoryId != null) {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.searchClothesByMajorCategoryAndSubCategoryAndName(majorCategoryId, subCategoryId, name);
+                }
+                else {
+                    clothesVos = clothesService.searchClothesByMajorCategoryAndName(majorCategoryId, name);
+                }
+            }
+            else {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.searchClothesBySubCategoryAndName(subCategoryId, name);
+                }
+                else {
+                    clothesVos = clothesService.searchClothesByName(name);
+                }
+            }
+        }
+        return ResponseEntity.ok(clothesVos);
     }
 
     @GetMapping
-    public ResponseEntity<List<ClothesDto>> getAllClothes() {
-        List<ClothesDto> clothes = clothesService.getAllClothes();
-        return ResponseEntity.ok(clothes);
+    public ResponseEntity<List<ClothesVo>> getClothes(@RequestParam(name = "gender", required = false) Integer genderCategory, @RequestParam(name = "major_category", required = false) Long majorCategoryId, @RequestParam(name = "sub_category", required = false) Long subCategoryId) {
+        List<ClothesVo> clothesVos = null;
+        if (genderCategory != null) {
+            if (majorCategoryId != null) {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.getClothesByGenderCategoryAndMajorCategoryAndSubCategory(genderCategory, majorCategoryId, subCategoryId);
+                }
+                else {
+                    clothesVos = clothesService.getClothesByGenderCategoryAndMajorCategory(genderCategory, majorCategoryId);
+                }
+            }
+            else {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.getClothesByGenderCategoryAndSubCategory(genderCategory, subCategoryId);
+                }
+                else {
+                    clothesVos = clothesService.getClothesByGenderCategory(genderCategory);
+                }
+            }
+        }
+        else {
+            if (majorCategoryId != null) {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.getClothesByMajorCategoryAndSubCategory(majorCategoryId, subCategoryId);
+                }
+                else {
+                    clothesVos = clothesService.getClothesByMajorCategory(majorCategoryId);
+                }
+            }
+            else {
+                if (subCategoryId != null) {
+                    clothesVos = clothesService.getClothesBySubCategory(subCategoryId);
+                }
+                else {
+                    clothesVos = clothesService.getAllClothes();
+                }
+            }
+        }
+        return ResponseEntity.ok(clothesVos);
+    }
+
+    @PutMapping("sort/{id}")
+    public ResponseEntity<List<ClothesVo>> sortClothesVos(@PathVariable("id") Integer sortId, @RequestBody List<ClothesVo> clothes) {
+        List<ClothesVo> sortedClothes = clothesService.sortClothesVos(clothes, sortId);
+        return ResponseEntity.ok(sortedClothes);
     }
 
     @PutMapping("{id}")

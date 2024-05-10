@@ -53,4 +53,7 @@ public class ReceiptDetail {
 
     @Column(name = "quantity")
     private Long quantity;
+
+    @Column(name = "status")
+    private Integer status;
 }

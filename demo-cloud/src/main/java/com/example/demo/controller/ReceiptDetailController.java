@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,12 @@ public class ReceiptDetailController {
     public ResponseEntity<List<ReceiptDetailDto>> getAllReceiptDetail() {
         List<ReceiptDetailDto> receiptDetails = receiptDetailService.getAllReceiptDetail();
         return ResponseEntity.ok(receiptDetails);
+    }
+
+    @PutMapping("{id}/{status}")
+    public ResponseEntity<ReceiptDetailDto> updateReceiptDetailStatus(@PathVariable("id") Long detailId, @PathVariable("status") Integer status) {
+        ReceiptDetailDto receiptDetailDto = receiptDetailService.updateReceiptDetailStatus(detailId, status);
+        return ResponseEntity.ok(receiptDetailDto);
     }
 
     @DeleteMapping("{id}")

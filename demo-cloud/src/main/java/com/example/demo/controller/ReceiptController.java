@@ -47,7 +47,7 @@ public class ReceiptController {
 
     @PutMapping("{id}/{status}")
     public ResponseEntity<ReceiptDto> updateReceiptStatus(@PathVariable("id") Long receiptId, @PathVariable("status") Integer status) {
-        ReceiptDto receiptDto = receiptService.updateReceiptStatis(receiptId, status);
+        ReceiptDto receiptDto = receiptService.updateReceiptStatus(receiptId, status);
         return ResponseEntity.ok(receiptDto);
     }
 

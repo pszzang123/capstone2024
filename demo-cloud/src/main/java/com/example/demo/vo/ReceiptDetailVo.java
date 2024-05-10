@@ -18,4 +18,5 @@ public class ReceiptDetailVo {
     private Long price;
     private String imageUrl;
     private Long quantity;
+    private Integer status;
 }

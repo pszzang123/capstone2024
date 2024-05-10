@@ -14,4 +14,5 @@ public class ReceiptDetailDto {
     private Long receiptId;
     private Long detailId;
     private Long quantity;
+    private Integer status;
 }

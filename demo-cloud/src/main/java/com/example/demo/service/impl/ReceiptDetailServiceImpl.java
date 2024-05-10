@@ -121,6 +121,52 @@ public class ReceiptDetailServiceImpl implements ReceiptDetailService {
     }
 
     @Override
+    public ReceiptDetailDto updateReceiptDetailStatus(Long detailId, Integer status) {
+        ReceiptDetail receiptDetail = receiptDetailRepository.findById(detailId).orElseThrow(
+            () -> new ResourceNotFoundException("Receipt Detail is not exist with given id : " + detailId)
+        );
+
+        receiptDetail.setStatus(status);
+
+        Receipt receipt = receiptDetail.getReceipt();
+        List<ReceiptDetail> receiptDetails = receiptDetailRepository.findAllByReceipt(receipt);
+        Boolean isStatusSame = false;
+        Boolean isReturnExist = false;
+        for (ReceiptDetail rd : receiptDetails) {
+            if (status == rd.getStatus()) {
+                isStatusSame = true;
+                continue;
+            } else {
+                isStatusSame = false;
+                if (rd.getStatus() == 4 || rd.getStatus() == 5) {
+                    isReturnExist = true;
+                    status = 4;
+                }
+                if (rd.getStatus() == 6) {
+                    isReturnExist = true;
+                    status = 6;
+                }
+                break;
+            }
+        }
+
+        if (isStatusSame && !isReturnExist) {
+            if (status == 6) {
+                status = 7;
+            }
+        }
+
+        if (isStatusSame || isReturnExist) {
+            receipt.setStatus(status);
+            receiptRepository.save(receipt);
+        }
+
+        ReceiptDetail updatedReceiptDetailObj = receiptDetailRepository.save(receiptDetail);
+
+        return ReceiptDetailMapper.mapToReceiptDetailDto(updatedReceiptDetailObj);
+    }
+
+    @Override
     public void deleteReceiptDetailByReceiptId(Long receiptId) {
         List<ReceiptDetail> receiptDetails = null;
         try{
