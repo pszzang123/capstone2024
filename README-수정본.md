@@ -48,13 +48,13 @@
     <td rowspan="3">회원정보 관리</td>
     <td>로그인/로그아웃</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none;color:black">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none;color:black">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none;color:black">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -62,13 +62,13 @@
   <tr>
     <td>회원 가입/수정/탈퇴</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -76,13 +76,13 @@
   <tr>
     <td>결제정보 추가/수정/제거</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -91,13 +91,13 @@
     <td rowspan="2">장바구니 관리</td>
     <td>의류 등록/제거</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -105,13 +105,13 @@
   <tr>
     <td>선택항목 구매</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -120,13 +120,13 @@
     <td rowspan="2">구매내역 관리</td>
     <td>배송 내역 관리</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -134,13 +134,13 @@
   <tr>
     <td>환불/주문취소 처리</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -150,7 +150,7 @@
     <td rowspan="1">의류정보 관리</td>
     <td>신규 의류 등록/수정/삭제</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
     </td>
@@ -159,13 +159,13 @@
     <td rowspan="1">검색 관리</td>
     <td colspan="2">의류 검색</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -194,6 +194,7 @@
       <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
+    <td>.</td>
   </tr>
   <tr>
     <td>김준기</td>
@@ -203,6 +204,7 @@
       <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
+    <td>.</td>
   </tr>
   <tr>
     <td>김필수</td>
@@ -212,6 +214,7 @@
       <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
+    <td>.</td>
   </tr>
   <tr>
     <td>조성현</td>
@@ -221,6 +224,7 @@
       <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
       <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
     </td>
+    <td>.</td>
   </tr>
 </table>
 </div>
