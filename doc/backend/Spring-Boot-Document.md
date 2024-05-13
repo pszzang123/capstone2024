@@ -21,19 +21,11 @@
 
 ## 📋REST API
 
-<script>
-  function toggleDescription() {
-    var description = document.getElementById("customerDescription");
-    if (description.style.display === "none") {
-        description.style.display = "table-row";
-    } else {
-        description.style.display = "none";
-    }
-  }
-</script>
+1. [Customer](#customer)
 
 <div>
 <table>
+
 <tr>
 <th>API</th>
 <th>HTTP 메서드</th>
@@ -42,46 +34,37 @@
 </tr>
 
 <tr>
-<td colspan="4" style="text-align:center">
+<td colspan="4">
 
-### Customer
+#### Customer
 
 </td>
 </tr>
 
-<tr onclick="toggleDescription()">
-<td>
+<tr>
+  <td>
+
+```
 /api/customers
-</td>
-<td>
-<img src="https://img.shields.io/badge/POST-yellow">
-<img src="https://img.shields.io/badge/GET-green">
-<img src="https://img.shields.io/badge/PUT-blue">
-<img src="https://img.shields.io/badge/DELETE-red">
-</td>
-<td>
-<img src="https://img.shields.io/badge/JSON-purple">
-</td>
-<td>
-회원가입
-</td>
-</tr>
-<tr id="customerDescription" class="description">
-<td>
-
-### Request
-
-```json
-asdf
 ```
 
-### Response
-
-```json
-asdf
-```
-</td>
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/POST-yellow">
+    <img src="https://img.shields.io/badge/GET-green">
+    <img src="https://img.shields.io/badge/PUT-blue">
+    <img src="https://img.shields.io/badge/DELETE-red">
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/customers/createCustomer.md">
+      회원가입
+    </a>
+  </td>
 </tr>
+
 </table>
 </div>
 
