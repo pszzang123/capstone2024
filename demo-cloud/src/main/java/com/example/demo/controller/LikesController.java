@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/like")
+@RequestMapping("/api/like")
 public class LikesController {
     private LikesService likesService;
 

@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/sellers")
+@RequestMapping("/api/sellers")
 public class SellerController {
     private SellerService sellerService;
 

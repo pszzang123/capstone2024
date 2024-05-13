@@ -36,7 +36,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/detail")
+@RequestMapping("/api/detail")
 public class ClothesDetailController {
     private ClothesDetailService clothesDetailService;
     private ClothesService clothesService;

@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/receipt")
+@RequestMapping("/api/receipt")
 public class ReceiptController {
     private ReceiptService receiptService;
 

@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/major_category")
+@RequestMapping("/api/major_category")
 public class MajorCategoryController {
     private MajorCategoryService majorCategoryService;
 

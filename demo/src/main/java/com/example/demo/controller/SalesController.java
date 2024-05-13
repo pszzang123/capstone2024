@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/sales")
+@RequestMapping("/api/sales")
 public class SalesController {
     private SalesService salesService;
 

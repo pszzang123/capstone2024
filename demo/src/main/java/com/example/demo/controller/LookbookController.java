@@ -22,7 +22,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/lookbook")
+@RequestMapping("/api/lookbook")
 public class LookbookController {
     private LookbookService lookbookService;
 

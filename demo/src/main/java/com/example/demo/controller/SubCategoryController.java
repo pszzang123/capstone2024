@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 @CrossOrigin("*")
 @AllArgsConstructor
 @RestController
-@RequestMapping("/sub_category")
+@RequestMapping("/api/sub_category")
 public class SubCategoryController {
     private SubCategoryService subCategoryService;
 

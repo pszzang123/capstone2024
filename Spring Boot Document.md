@@ -1,11 +1,4 @@
-# capstone2024
-
-<img src="https://capsule-render.vercel.app/api?type=cylinder&color=auto&height=300&section=header&text=Design%20The%20Style&fontSize=90" />
-
-
-## 📋PC, 모바일, 태블릿에서 원활하게 작동하는 쇼핑몰
-
-<br/>
+# Spring Boot Document
 
 ## 📋목차
 
