@@ -1,5 +1,3 @@
-# capstone2024
-
 <img src="https://capsule-render.vercel.app/api?type=cylinder&color=auto&height=300&section=header&text=Design%20The%20Style&fontSize=90" />
 
 
@@ -237,3 +235,7 @@
 <br/>
 
 ## 📋개선점
+1. 소비자가 의류를 선택할 때 도움을 줄 'Lookbook' 기능 추가
+2. 회원 가입 시 보안 적용
+3. 각 API에 권한 할당
+4. CI/CD 자동화
