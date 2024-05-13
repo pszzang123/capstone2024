@@ -9,10 +9,11 @@
 
 ## 📋목차
 
-1. [개요](#📋개요)
-2. [프로젝트 환경 설정 (개발환경)](#📋프로젝트-환경-설정-개발환경)
-3. [페이지](#📋-페이지)
-4. [팀원별 역할](#📋-팀원별-역할)
+1. [개요](#개요)
+2. [프로젝트 환경 설정 (개발환경)](#프로젝트-환경-설정-개발환경)
+3. [페이지](#페이지)
+4. [팀원별 역할](#팀원별-역할)
+5. [개선점](#개선점)
 
 ## 📋개요
 
@@ -31,7 +32,7 @@
 
 <br/>
 
-## 📋 페이지
+## 📋페이지
 
 <div>
 <table>
@@ -49,7 +50,7 @@
     <td>로그인/로그아웃</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -63,7 +64,7 @@
     <td>회원 가입/수정/탈퇴</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -77,7 +78,7 @@
     <td>결제정보 추가/수정/제거</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -92,7 +93,7 @@
     <td>의류 등록/제거</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -106,7 +107,7 @@
     <td>선택항목 구매</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -121,7 +122,7 @@
     <td>배송 내역 관리</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -135,7 +136,7 @@
     <td>환불/주문취소 처리</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -160,7 +161,7 @@
     <td colspan="2">의류 검색</td>
     <td>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" onclick=>
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
@@ -175,7 +176,7 @@
 
 <br/>
 
-## 📋 팀원별 역할
+## 📋팀원별 역할
 
 <div>
 <table>
@@ -224,7 +225,15 @@
       <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
       <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
     </td>
-    <td>.</td>
+    <td>
+      <a href="./doc/backend/Spring-Boot-Document.md">
+        문서
+      </a>
+    </td>
   </tr>
 </table>
 </div>
+
+<br/>
+
+## 📋개선점
