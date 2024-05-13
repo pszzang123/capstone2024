@@ -1,4 +1,4 @@
-# 회원 가입
+# 회원 정보 수정
 
 ## 목차
 
@@ -12,14 +12,14 @@
 <tr>
   <td>HTTP 메서드</td>
   <td>
-    <img src="https://img.shields.io/badge/POST-yellow">
+    <img src="https://img.shields.io/badge/PUT-blue">
   </td>
 </tr>
 <tr>
   <td>API</td>
   <td>
 
-  `/api/customers`
+  `/api/customers/{email}`
 
   </td>
 </tr>
@@ -32,7 +32,7 @@
 <tr>
   <td>Response Body</td>
   <td>
-    .
+    <img src="https://img.shields.io/badge/JSON-purple">
   </td>
 </tr>
 </table>

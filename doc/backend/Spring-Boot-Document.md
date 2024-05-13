@@ -29,14 +29,15 @@
 <tr>
 <th>API</th>
 <th>HTTP 메서드</th>
-<th>Body 형식</th>
+<th>Request Body</th>
+<th>Response Body</th>
 <th>기능</th>
 </tr>
 
 <tr>
 <td colspan="4">
 
-#### Customer
+### Customer
 
 </td>
 </tr>
@@ -49,17 +50,135 @@
   </td>
   <td>
     <img src="https://img.shields.io/badge/POST-yellow">
-    <img src="https://img.shields.io/badge/GET-green">
-    <img src="https://img.shields.io/badge/PUT-blue">
-    <img src="https://img.shields.io/badge/DELETE-red">
   </td>
   <td>
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/customers/createCustomer.md">
-      회원가입
-    </a>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/customers/createCustomer.md">회원 가입</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/customers/{email}`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/customers/getCustomerByEmail.md">회원 정보 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/customers/{email}/{password}`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/boolean-grey">
+  </td>
+  <td>
+    <a href="./api/customers/checkCustomerByLoginInfo.md">로그인 정보 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/customers/email/{email}`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/boolean-grey">
+  </td>
+  <td>
+    <a href="./api/customers/checkCustomerByEmail.md">이메일 중복 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/customers`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/customers/getAllCustomers.md">모든 회원 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/customers/{email}`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/PUT-blue">
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/customers/updateCustomer.md">회원 정보 수정</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/customers/{email}`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/DELETE-red">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/string-grey">
+  </td>
+  <td>
+    <a href="./api/customers/deleteCustomer.md">회원 탈퇴</a>
   </td>
 </tr>
 
@@ -70,55 +189,4 @@
 <br/>
 
 ## 📋개선점
-
-<div>
-<table>
-  <tr>
-    <th>이름</th>
-    <th>주 개발</th>
-    <th>세부 개발</th>
-    <th>개발 환경</th>
-    <th>Doc/Youtube</th>
-  </tr>
-  <tr>
-    <td>김경훈</td>
-    <td>Front-End 개발</td>
-    <td>반응형 웹 개발</td>
-    <td>
-      <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-      <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
-    </td>
-    <td>.</td>
-  </tr>
-  <tr>
-    <td>김준기</td>
-    <td>Front-End 개발</td>
-    <td>Android App 개발</td>
-    <td>
-      <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
-      <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
-    </td>
-    <td>.</td>
-  </tr>
-  <tr>
-    <td>김필수</td>
-    <td>Front-End 개발</td>
-    <td>IOS App 개발</td>
-    <td>
-      <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
-      <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
-    </td>
-    <td>.</td>
-  </tr>
-  <tr>
-    <td>조성현</td>
-    <td>Backend 개발</td>
-    <td>API 개발</td>
-    <td>
-      <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
-      <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
-    </td>
-    <td>.</td>
-  </tr>
-</table>
-</div>
+1. 권한 추가
