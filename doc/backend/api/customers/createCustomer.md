@@ -2,27 +2,24 @@
 
 <table>
 <tr>
-<td>HTTP 메서드</td>
-<td>
-  <img src="https://img.shields.io/badge/POST-yellow">
-</td>
+  <td>HTTP 메서드</td>
+  <td>
+    <img src="https://img.shields.io/badge/POST-yellow">
+  </td>
 </tr>
 <tr>
-<td>API</td>
-<td>
+  <td>API</td>
+  <td>
 
+  `/api/customers`
 
-```
-/api/customers
-```
-
-</td>
+  </td>
 </tr>
 <tr>
-<td>BODY</td>
-<td>
-  <img src="https://img.shields.io/badge/JSON-purple">
-</td>
+  <td>BODY</td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
 </tr>
 </table>
 

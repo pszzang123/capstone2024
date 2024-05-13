@@ -44,9 +44,7 @@
 <tr>
   <td>
 
-```
-/api/customers
-```
+  `/api/customers`
 
   </td>
   <td>
