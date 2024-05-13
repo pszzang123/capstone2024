@@ -40,7 +40,7 @@
     <th>주 기능</th>
     <th>세부 기능</th>
     <th>
-      <img src="	https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
+      <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white">
     </th>
   </tr>
   <tr>
@@ -48,7 +48,7 @@
     <td rowspan="3">회원정보 관리</td>
     <td>로그인/로그아웃</td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none;color:black">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
