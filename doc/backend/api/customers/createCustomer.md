@@ -32,7 +32,7 @@
 <tr>
   <td>Response Body</td>
   <td>
-    .
+    <img src="https://img.shields.io/badge/JSON-purple">
   </td>
 </tr>
 </table>
