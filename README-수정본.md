@@ -217,7 +217,7 @@
   </tr>
   <tr>
     <td>조성현</td>
-    <td>Backend 개발</td>
+    <td>Back-End 개발</td>
     <td>API 개발</td>
     <td>
       <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
