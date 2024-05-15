@@ -20,6 +20,7 @@ public class ReceiptDetailMapper {
 
     public static ReceiptDetailVo mapToReceiptDetailVo(ReceiptDetail receiptDetail, String imageUrl) {
         return new ReceiptDetailVo(
+            receiptDetail.getReceiptDetailId(),
             receiptDetail.getReceipt().getCustomer().getEmail(),
             receiptDetail.getClothesDetail().getClothes().getClothesId(),
             receiptDetail.getName(),

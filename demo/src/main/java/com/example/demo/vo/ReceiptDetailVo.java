@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReceiptDetailVo {
+    private Long receiptDetailId;
     private String customerEmail;
     private Long clothesId;
     private String name;
