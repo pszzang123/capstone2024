@@ -1,4 +1,4 @@
-# 로그인 정보 확인
+# 회원 탈퇴
 
 ## 목차
 
@@ -12,14 +12,14 @@
 <tr>
   <td>HTTP 메서드</td>
   <td>
-    <img src="https://img.shields.io/badge/GET-green">
+    <img src="https://img.shields.io/badge/DELETE-red">
   </td>
 </tr>
 <tr>
   <td>API</td>
   <td>
 
-  `/api/customers/{email}/{password}`
+  `/api/customers/{email}`
 
   </td>
 </tr>
@@ -32,7 +32,7 @@
 <tr>
   <td>Response Body</td>
   <td>
-    <img src="https://img.shields.io/badge/boolean-grey">
+    <img src="https://img.shields.io/badge/string-grey">
   </td>
 </tr>
 </table>
@@ -47,16 +47,10 @@
 
 ## Response
 
-#### 로그인 정보 일치
+#### 탈퇴 성공
 
 ```json
-true
-```
-
-#### 로그인 정보 미일치
-
-```json
-false
+Customer deleted successfully.
 ```
 
 <br/>

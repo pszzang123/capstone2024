@@ -39,6 +39,12 @@ public class ReceiptDetailController {
         return ResponseEntity.ok(receiptDetailVos);
     }
 
+    @GetMapping("clothes/{id}")
+    public ResponseEntity<List<ReceiptDetailVo>> getReceiptDetailByClothesId(@PathVariable("id") Long clothesId) {
+        List<ReceiptDetailVo> receiptDetailVos = receiptDetailService.getReceiptDetailByClothesId(clothesId);
+        return ResponseEntity.ok(receiptDetailVos);
+    }
+
     @GetMapping
     public ResponseEntity<List<ReceiptDetailDto>> getAllReceiptDetail() {
         List<ReceiptDetailDto> receiptDetails = receiptDetailService.getAllReceiptDetail();

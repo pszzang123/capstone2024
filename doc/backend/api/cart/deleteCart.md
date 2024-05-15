@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/cart/{email}/{cartId}`
 
   </td>
 </tr>

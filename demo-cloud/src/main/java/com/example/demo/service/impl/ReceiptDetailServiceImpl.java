@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -112,6 +113,37 @@ public class ReceiptDetailServiceImpl implements ReceiptDetailService {
         }).collect(Collectors.toList());
         
         return receiptDetailVos;
+    }
+
+    @Override
+    public List<ReceiptDetailVo> getReceiptDetailByClothesId(Long clothesId) {
+        Clothes clothesInfo = clothesRepository.findById(clothesId).orElseThrow(() -> 
+            new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
+        );
+
+        String imageUrl = "";
+        List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothesInfo);
+        for (ClothesImages clothesImage : clothesImages) {
+            if (clothesImage.getOrder() == 1) {
+                imageUrl = clothesImage.getImageUrl();
+                break;
+            } else {
+                continue;
+            }
+        }
+
+        List<ClothesDetail> clothesDetails = clothesDetailRepository.findAllByClothes(clothesInfo);
+
+        List<ReceiptDetailVo> receiptVos = new ArrayList<>();
+        for (ClothesDetail clothesDetail : clothesDetails) {
+            List<ReceiptDetail> receiptDetails = receiptDetailRepository.findAllByClothesDetail(clothesDetail);
+            for(ReceiptDetail receiptDetail : receiptDetails) {
+                ReceiptDetailVo receiptDetailVo = ReceiptDetailMapper.mapToReceiptDetailVo(receiptDetail, imageUrl);
+                receiptVos.add(receiptDetailVo);
+            }
+        };
+
+        return receiptVos;
     }
 
     @Override

@@ -12,6 +12,8 @@ public interface ReceiptDetailService {
 
     List<ReceiptDetailVo> getReceiptDetailByReceiptId(Long receiptId);
 
+    List<ReceiptDetailVo> getReceiptDetailByClothesId(Long clothesId);
+
     List<ReceiptDetailDto> getAllReceiptDetail();
 
     ReceiptDetailDto updateReceiptDetailStatus(Long detailId, Integer status);
