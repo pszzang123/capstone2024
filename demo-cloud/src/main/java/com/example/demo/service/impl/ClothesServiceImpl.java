@@ -85,20 +85,10 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public List<ClothesVo> getClothesBySeller(Seller seller) {
+    public List<ClothesDto> getClothesBySeller(Seller seller) {
         List<Clothes> clothes = clothesRepository.findAllBySeller(seller);
         return clothes.stream().map((clothe) -> {
-            String imageUrl = "";
-            List<ClothesImages> clothesImages = clothesImagesRepository.findAllByClothes(clothe);
-            for (ClothesImages clothesImage : clothesImages) {
-                if (clothesImage.getOrder() == 1) {
-                    imageUrl = clothesImage.getImageUrl();
-                    break;
-                } else {
-                    continue;
-                }
-            }
-            return ClothesMapper.mapToClothesVo(clothe, imageUrl);
+            return ClothesMapper.mapToClothesDto(clothe);
         }).collect(Collectors.toList());
     }
 

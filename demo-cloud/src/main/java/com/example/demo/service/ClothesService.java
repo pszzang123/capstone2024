@@ -14,7 +14,7 @@ public interface ClothesService {
 
     StatisticsDto getStatisticsById(Long clothesId);
 
-    List<ClothesVo> getClothesBySeller(Seller seller);
+    List<ClothesDto> getClothesBySeller(Seller seller);
 
     List<ClothesVo> getClothesByGenderCategory(Integer genderCategory);
 

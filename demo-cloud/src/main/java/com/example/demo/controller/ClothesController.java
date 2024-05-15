@@ -46,9 +46,9 @@ public class ClothesController {
     }
 
     @GetMapping("seller/{email}")
-    public ResponseEntity<List<ClothesVo>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
+    public ResponseEntity<List<ClothesDto>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
         Seller seller = SellerMapper.mapToSeller(sellerService.getSellerByEmail(sellerEmail));
-        List<ClothesVo> clothes = clothesService.getClothesBySeller(seller);
+        List<ClothesDto> clothes = clothesService.getClothesBySeller(seller);
         return ResponseEntity.ok(clothes);
     }
 
