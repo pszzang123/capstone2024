@@ -50,6 +50,8 @@ public interface ClothesService {
 
     List<ClothesVo> sortClothesVos(List<ClothesVo> clothes, Integer sortId);
 
+    StatisticsDto viewClothes(Long clothesId);
+
     ClothesDto updateClothes(Long clothesId, ClothesDto updatedClothes);
 
     void deleteClothes(Long clothesId);

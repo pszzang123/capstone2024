@@ -482,6 +482,21 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
+    public StatisticsDto viewClothes(Long clothesId) {
+        Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(
+            () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
+        );
+
+        clothes.setDailyView(clothes.getDailyView() + 1);
+        clothes.setMonthlyView(clothes.getMonthlyView() + 1);
+        clothes.setTotalView(clothes.getTotalView() + 1);
+
+        Clothes updatedClothesObj = clothesRepository.save(clothes);
+
+        return ClothesMapper.mapToStatisticsDto(updatedClothesObj);
+    }
+
+    @Override
     public ClothesDto updateClothes(Long clothesId, ClothesDto updatedClothes) {
         Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(
             () -> new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)

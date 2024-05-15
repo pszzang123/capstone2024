@@ -148,6 +148,12 @@ public class ClothesController {
         return ResponseEntity.ok(sortedClothes);
     }
 
+    @PutMapping("view/{id}")
+    public ResponseEntity<StatisticsDto> viewClothes(@PathVariable("id") Long clothesId) {
+        StatisticsDto statisticsDto = clothesService.viewClothes(clothesId);
+        return ResponseEntity.ok(statisticsDto);
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<ClothesDto> updateClothes(@PathVariable("id") Long clothesId, @RequestBody ClothesDto updatedClothes) {
         ClothesDto clothesDto = clothesService.updateClothes(clothesId, updatedClothes);
