@@ -20,4 +20,5 @@ public class ReceiptDetailVo {
     private String imageUrl;
     private Long quantity;
     private Integer status;
+    private String date;
 }

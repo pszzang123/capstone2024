@@ -29,7 +29,8 @@ public class ReceiptDetailMapper {
             receiptDetail.getPrice(),
             imageUrl,
             receiptDetail.getQuantity(),
-            receiptDetail.getStatus()
+            receiptDetail.getStatus(),
+            receiptDetail.getReceipt().getDate()
         );
     }
 
