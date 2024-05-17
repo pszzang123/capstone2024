@@ -1254,27 +1254,27 @@
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/receipt/{receiptId}/{status}`
 
   </td>
   <td>
     <img src="https://img.shields.io/badge/PUT-blue">
   </td>
   <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
+    .
   </td>
   <td>
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/updateCart.md">장바구니 수정</a>
+    <a href="./api/receipt/updateReceiptStatus.md">영수증 배송 상태 변경</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/receipt/{receiptId}`
 
   </td>
   <td>
@@ -1287,7 +1287,7 @@
     <img src="https://img.shields.io/badge/string-grey">
   </td>
   <td>
-    <a href="./api/cart/deleteCart.md">장바구니 제거</a>
+    <a href="./api/receipt/deleteReceipt.md">영수증 제거</a>
   </td>
 </tr>
 <!--Receipt-->
@@ -1306,7 +1306,7 @@
 <tr>
   <td>
 
-  `/api/cart`
+  `/api/receipt_detail`
 
   </td>
   <td>
@@ -1319,34 +1319,14 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/createCart.md">장바구니 추가</a>
+    <a href="./api/receipt detail/createReceiptDetail.md">세부 영수증 추가</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/GET-green">
-  </td>
-  <td>
-    .
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/boolean-grey">
-  </td>
-  <td>
-    <a href="./api/cart/getCartByCustomerEmail.md">회원 장바구니 확인</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/cart`
+  `/api/receipt_detail/{receiptDetailId}`
 
   </td>
   <td>
@@ -1359,34 +1339,74 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/getAllCart.md">모든 장바구니 확인</a>
+    <a href="./api/receipt detail/getReceiptDetailByReceiptId.md">영수증에 포함된 세부 영수증 확인</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/receipt_detail/clothes/{clothesId}`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/receipt detail/getReceiptDetailByClothesId.md">의류가 구매된 영수증 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/receipt_detail`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/receipt detail/getAllReceiptDetail.md">모든 세부 영수증 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/receipt_detail/{receiptDetailId}/{status}`
 
   </td>
   <td>
     <img src="https://img.shields.io/badge/PUT-blue">
   </td>
   <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
+    .
   </td>
   <td>
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/updateCart.md">장바구니 수정</a>
+    <a href="./api/receipt detail/updateReceiptDetailStatus.md">세부 영수증 배송 상태 변경</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/receipt_detail/{receiptDetailId}`
 
   </td>
   <td>
@@ -1399,7 +1419,7 @@
     <img src="https://img.shields.io/badge/string-grey">
   </td>
   <td>
-    <a href="./api/cart/deleteCart.md">장바구니 제거</a>
+    <a href="./api/receipt detail/deleteReceiptDetail.md">세부 영수증 제거</a>
   </td>
 </tr>
 <!--Receipt Detail-->
@@ -1418,47 +1438,7 @@
 <tr>
   <td>
 
-  `/api/cart`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/POST-yellow">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <a href="./api/cart/createCart.md">장바구니 추가</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/cart/{email}`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/GET-green">
-  </td>
-  <td>
-    .
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/boolean-grey">
-  </td>
-  <td>
-    <a href="./api/cart/getCartByCustomerEmail.md">회원 장바구니 확인</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/cart`
+  `/api/sales/clothes/{clothesId}`
 
   </td>
   <td>
@@ -1471,47 +1451,27 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/getAllCart.md">모든 장바구니 확인</a>
+    <a href="./api/sales/getSalesByClothesId.md">의류 판매내역 확인</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/sales/customer/{email}`
 
   </td>
   <td>
-    <img src="https://img.shields.io/badge/PUT-blue">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <a href="./api/cart/updateCart.md">장바구니 수정</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/cart/{email}/{id}`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/DELETE-red">
+    <img src="https://img.shields.io/badge/GET-green">
   </td>
   <td>
     .
   </td>
   <td>
-    <img src="https://img.shields.io/badge/string-grey">
+    <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/deleteCart.md">장바구니 제거</a>
+    <a href="./api/sales/getSalesByCustomerEmail.md">회원 구매내역 확인</a>
   </td>
 </tr>
 <!--Sales-->
