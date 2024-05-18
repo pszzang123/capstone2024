@@ -3,21 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.1",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-brands-svg-icons": "^6.5.1",
-    "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.8",
-    "bootstrap": "^5.3.3",
     "chart.js": "^4.4.2",
     "firebase": "^10.9.0",
-    "font-awesome": "^4.7.0",
+    "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
@@ -26,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-grid-system": "^8.2.0",
     "react-icons": "^5.0.1",
+    "react-lazy-load-image-component": "^1.6.0",
     "react-query": "^3.39.3",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
@@ -35,7 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false npx react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -56,5 +52,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-react-app": "^7.0.1"
   }
 }

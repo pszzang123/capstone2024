@@ -94,32 +94,6 @@ function Join(props) {
     handleNumericInput(e, setPhone3);
   }
 
-
-  // let handlePhone1Change = (e) => {
-  //   if (e.target.value.length <= 3) {
-  //     setPhone1(e.target.value);
-  //   }
-  //   if (e.target.value.length === 3) {
-  //     document.getElementById('phone2').focus();
-  //   }
-  // }
-
-  // let handlePhone2Change = (e) => {
-  //   if (e.target.value.length <= 4) {
-  //     setPhone2(e.target.value);
-  //   }
-  //   if (e.target.value.length === 4) {
-  //     document.getElementById('phone3').focus();
-  //   }
-  // }
-
-  // let handlePhone3Change = (e) => {
-  //   if (e.target.value.length <= 4) {
-  //     setPhone3(e.target.value);
-  //   }
-  // }
-
-
   let handleEmail = (e) => {
     setEmail(e.target.value);
     let regex =
@@ -317,7 +291,7 @@ function Join(props) {
                     placeholder="0000"
                     className='login-InputPhone' />
                 </div>
-             
+
               </Form.Group>
 
 
@@ -345,6 +319,7 @@ function Join(props) {
                 <Form.Label className='login-InputTitle'>비밀번호</Form.Label>
                 <div className='login-InputWrap'>
                   <Form.Control
+                    style={{ fontFamily: 'serif' }}
                     value={pw}
                     onChange={handlePw}
                     type="password" placeholder="비밀번호를 입력하세요." className='login-Input' />
@@ -362,6 +337,7 @@ function Join(props) {
                 <Form.Label className='login-InputTitle'>비밀번호 확인</Form.Label>
                 <div className='login-InputWrap'>
                   <Form.Control
+                    style={{ fontFamily: 'serif' }}
                     value={pwConfirm}
                     onChange={handlePwConfirm}
                     type="password" placeholder="비밀번호를 입력하세요." className='login-Input' />

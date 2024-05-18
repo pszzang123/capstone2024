@@ -134,14 +134,6 @@ function OrderComplete() {
                 ))}
             </Row>
 
-            {/* <Row>
-                <Col>배송지:</Col>
-                <Col>{address}</Col>
-            </Row>
-            <Row>
-                <Col>주문 금액:</Col>
-                <Col>{amount.toLocaleString()}원</Col>
-            </Row> */}
 
             <Row style={{ marginTop: '100px' }}>
                 <Col md={{span: 3, offset: 3}} xs={6}>

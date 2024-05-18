@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout, pwConfirmReset } from "../store/userSlice";
+import { pwConfirmReset } from "../store/userSlice";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import DaumPostcode from 'react-daum-postcode';
 import Modal from 'react-bootstrap/Modal';

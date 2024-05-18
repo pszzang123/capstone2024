@@ -4,29 +4,9 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { NavLink as ReactRouterNavLink } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sellerLogin, sellerLogout } from "../store/sellerSlice";
+import { sellerLogout } from "../store/sellerSlice";
 import { FaShirt, FaCartShopping, FaChartPie, FaList, FaCircleUser } from "react-icons/fa6";
 
-
-// const StyledNavLink = styled(ReactRouterNavLink)`
-//   display: block;
-//   margin: 10px 0;
-//   color: white;
-//   font-weight: 700;
-//   font-size: 18px;
-//   white-space: nowrap;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   text-decoration: none;
-
-//   &:hover {
-//     color: lightgray;  // 호버 시 색상 변경
-//   }
-
-//   @media (max-width: 768px) {
-//     font-size: 16px;  // 반응형 폰트 크기 조정
-//   }
-// `;
 
 const StyledNavLink = styled(ReactRouterNavLink)`
   display: flex;
@@ -68,32 +48,6 @@ function SellerLayout(props) {
     const toggleSidebar = () => setIsOpen(!isOpen);
     const [loading, setLoading] = useState(true);
 
-    // useEffect(() => {
-    //     const sellerIsLoggedIn = localStorage.getItem('sellerIsLoggedIn') === 'true';
-    //     const loginTime = parseInt(localStorage.getItem('sellerLoginTime'), 10);
-    //     const now = new Date().getTime();
-    //     const expirationTime = 60 * 60 * 1000; // 로그인 성공 후 1시간 지났으면 로그아웃
-    //     // const expirationTime = 5 * 1000; // 테스트용, 로그인 후 5초 후 재접속 시 로그아웃
-    //     const sellerData = JSON.parse(localStorage.getItem('sellerData'));
-        
-    //     if (sellerIsLoggedIn && (now - loginTime > expirationTime)) {
-    //         // 로그인 시간이 유효 기간을 초과했을 경우 로그아웃 처리
-    //         localStorage.removeItem('sellerIsLoggedIn');
-    //         localStorage.removeItem('sellerLoginTime');
-    //         localStorage.removeItem('sellerData');
-    //         dispatch(sellerLogout()); // Redux 상태 업데이트
-    //         alert('로그인 세션이 만료되었습니다. 다시 로그인 해주세요.');
-    //         navigate('/seller/login');
-    //         return;
-    //     }
-        
-    //     if (sellerIsLoggedIn && sellerData) {
-    //         dispatch(sellerLogin({ 'email_id': sellerData }));
-    //     }
-    //     setLoading(false);  // 로딩 상태 업데이트
-    // }, [dispatch]);
-    
-
     useEffect(() => {
         if(isLoggedIn) {
             navigate('/seller/statisticsanalysis');
@@ -101,9 +55,6 @@ function SellerLayout(props) {
     },[])
 
     useEffect(() => {
-        // function handleResize() {
-        //     
-        // }
         function handleResize() {
             setIsOpen(window.innerWidth >= 768);
             if (window.innerWidth < 768) {
@@ -123,46 +74,31 @@ function SellerLayout(props) {
     }, []);
 
 
-    // useEffect(() => {
-    //     if (!isLoggedIn) {
-    //         alert('로그인 후 이용해주세요.');
-    //         navigate('/seller/login');
-    //     }
-    // }, [isLoggedIn, navigate]);
-
     useEffect(() => {
 
        if (!loading && !isLoggedIn && location.pathname !== '/seller/login' && location.pathname !== '/seller/sellerjoin') {
-            // 로그인 상태가 아니고 현재 위치가 로그인 페이지가 아니라면 로그인 페이지로 리디렉션
-            // alert('로그인 후 이용해주세요.');
             navigate('/seller/login');
         }
     }, [loading, isLoggedIn, location.pathname, navigate]);
 
     return (
         <div>
-            {/* 판매자 레이아웃
-            <Outlet></Outlet> */}
-
-
             <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                 <div className="content" style={{ flex: 1 }}>
 
-                    <Navbar bg="light" data-bs-theme="light" style={{ marginLeft: '20px' }} >
-                        <Button style={{ background: '#003458' }} onClick={toggleSidebar}>☰</Button>
-                        <Navbar.Brand onClick={() => navigate('/seller')} style={{ fontSize: '24px', fontWeight: '700', color: '#1263CE', cursor: 'pointer', marginLeft: '10px' }}>
-                            D<span style={{ fontSize: '20px', fontWeight: '600' }}>esign </span>
-                            T<span style={{ fontSize: '20px', fontWeight: '600' }}>he </span>
-                            S<span style={{ fontSize: '20px', fontWeight: '700' }}>tyle 판매자 대시보드</span>
+                    <Navbar bg="light" data-bs-theme="light" style={{ position:'fixed', width:'100%', zIndex: 1000 }} >
+                        <Button style={{ background: '#343A40', marginLeft: '20px' }} onClick={toggleSidebar}>☰</Button>
+                        <Navbar.Brand onClick={() => navigate('/seller/statisticsanalysis')} style={{ cursor: 'pointer', marginLeft: '10px' }}>
+                            <img src={process.env.PUBLIC_URL + '/img/logo2.png'} style={{ height:'28px' }} alt="Logo"></img>
                         </Navbar.Brand>
                     </Navbar>
 
                     {/* <Container fluid style={{ paddingLeft: '0', paddingRight: '0' }}> */}
                     <Container style={{ maxWidth: '100%', paddingLeft: '0px', paddingRight: '15px' }}>
                         <Row>
-                            <Col xs={isOpen ? 12 : 0} md={isOpen ? 2 : 0} className="sidebar">
+                            <Col xs={isOpen ? 12 : 0} md={isOpen ? 2 : 0} className="sidebar" style={{ paddingTop: '56px', backgroundColor: '#343A40' }}>
                                 <div style={{ display: isOpen ? 'block' : 'none' }}>
-                                    <ul className="nav flex-column" style={{ backgroundColor: '#003458', minHeight: '100vh', ...sidebarStyle, padding: '1rem' }}>
+                                    <ul className="nav flex-column" style={{ backgroundColor: '#343A40', minHeight: '100vh', ...sidebarStyle, padding: '1rem' }}>
                                         <li className="nav-item">
                                             <StyledNavLink to="/seller/ordermanagement"><FaCartShopping /> 주문 관리</StyledNavLink>
                                         </li>
@@ -187,7 +123,7 @@ function SellerLayout(props) {
                                     </ul>
                                 </div>
                             </Col>
-                            <Col xs={12} md={isOpen ? 10 : 12}>
+                            <Col xs={12} md={isOpen ? 10 : 12} style={{ paddingTop: '56px' }}>
                                 <Outlet></Outlet>
                             </Col>
                         </Row>
@@ -195,7 +131,7 @@ function SellerLayout(props) {
                 </div>
 
 
-                <Navbar bg="light" data-bs-theme="light" style={{ width: '100%' }}>
+                <Navbar bg="light" data-bs-theme="light" style={{ width: '100%', zIndex: 1000 }}>
                     <Container>
                         <Nav className="me-auto">
                             <Nav.Link href="/" style={{ fontWeight: '700' }}>구매자 페이지</Nav.Link>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import { Hidden } from 'react-grid-system';
 import styled from 'styled-components';
@@ -83,38 +83,6 @@ function Checkout(props) {
     let [detailAddress, setDetailAddress] = useState('');
     const [paymentMethod, setPaymentMethod] = useState('');
 
-    // const handleSubmit = () => {
-    //     // 영수증 생성을 위한 초기 API 호출
-    //     axios.post(`${process.env.REACT_APP_API_URL}/receipt`, {
-    //         customerEmail: userInfo.email_id,
-    //         status: 0  // 예를 들어, '0'이 '생성 중' 상태를 의미할 수 있습니다.
-    //     })
-    //         .then(response1 => {
-    //             // 성공적으로 첫 번째 영수증이 생성되면, 각 상품에 대한 세부 영수증을 생성합니다.
-    //             const receiptId = response1.data.receiptId;  // 서버로부터 받은 영수증 ID
-
-    //             // 모든 아이템에 대해 세부 영수증 요청을 보냅니다.
-    //             items.forEach(item => {
-    //                 axios.post(`${process.env.REACT_APP_API_URL}/receipt_detail`, {
-    //                     receiptId: receiptId,       // 영수증 번호
-    //                     detailId: item.detailId,  // 상품 ID
-    //                     quantity: item.quantity  // 구매 수량
-    //                 })
-    //                     .then(response2 => {
-    //                         console.log(`영수증 세부정보 생성 완료: ${response2.data.detailId}`);
-    //                     })
-    //                     .catch(error => {
-    //                         console.error('영수증 세부정보 생성 실패', error);
-    //                     });
-    //             });
-
-    //             alert('구매가 완료되었습니다!');
-    //             navigate('/'); // 구매 후 홈페이지로 이동
-    //         })
-    //         .catch(error => {
-    //             console.error('영수증 생성 실패', error);
-    //         });
-    // };
     const handleSubmit = () => {
         axios.post(`${process.env.REACT_APP_API_URL}/receipt`, {
             customerEmail: userInfo.email_id,
@@ -127,7 +95,8 @@ function Checkout(props) {
                     axios.post(`${process.env.REACT_APP_API_URL}/receipt_detail`, {
                         receiptId: receiptId,
                         detailId: item.detailId,
-                        quantity: item.quantity
+                        quantity: item.quantity,
+                        status: 0
                     })
                         .then(response2 => {
                             console.log(`영수증 세부정보 생성 완료: ${response2.data.detailId}`);
@@ -140,10 +109,6 @@ function Checkout(props) {
                             console.error('영수증 세부정보 생성 실패', error);
                         });
                 });
-
-                // alert('구매가 완료되었습니다!');
-                // window.location.assign('/');
-                // navigate('/');
 
                 // 네비게이션 이동 및 주문 정보 전달
                 navigate('/ordercomplete', {
@@ -349,18 +314,6 @@ function Checkout(props) {
                     </Form>
                 </Col>
             </Row>
-            {/* <Row>
-                <Col md={{ span: 2, offset: 1 }} xs={12}>
-                    <h1 style={{ fontSize: '20px', fontWeight: '700', marginBottom: '30px', marginTop: '100px', textAlign: 'left' }}>
-                        총 결제 금액
-                    </h1>
-                </Col>
-            </Row> */}
-            {/* <Row>
-                <Col>
-                    <h5>총액: {totalAmount.toLocaleString()}원</h5>
-                </Col>
-            </Row> */}
             <Row style={{ marginTop: '100px' }}>
                 <Col>
                     <StyledButton onClick={handleSubmit}>결제하기</StyledButton>

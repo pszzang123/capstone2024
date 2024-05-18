@@ -1,39 +1,49 @@
-import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Col, Container, Row } from "react-bootstrap";
+import './StatisticsAnalysis.css'; // 스타일시트
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-function StatisticsAnalysis(props) {
-    let dispatch = useDispatch();
-    let { sellerInfo, isLoggedIn } = useSelector((state) => state.seller);
-
+function StatisticsAnalysis() {
+    const dispatch = useDispatch();
+    const { sellerInfo } = useSelector((state) => state.seller);
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [statistics, setStatistics] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/clothes/seller/${sellerInfo.email_id}`);
-            setProducts(response.data);
-            if (response.data.length > 0) {
-                setSelectedProduct(response.data[0].clothesId);
+        async function fetchProducts() {
+            setLoading(true);
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/clothes/seller/${sellerInfo.email_id}`);
+                setProducts(response.data);
+                setSelectedProduct(response.data.length > 0 ? response.data[0].clothesId : null);
+            } catch (error) {
+                console.error('Error fetching products', error);
             }
-        };
-
+            setLoading(false);
+        }
         fetchProducts();
-    }, []);
+    }, [sellerInfo.email_id]);
 
     useEffect(() => {
-        const fetchStatistics = async () => {
+        async function fetchStatistics() {
             if (selectedProduct) {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/clothes/statistics/${selectedProduct}`);
-                setStatistics(response.data);
+                setLoading(true);
+                try {
+                    const response = await axios.get(`${process.env.REACT_APP_API_URL}/clothes/statistics/${selectedProduct}`);
+                    setStatistics(response.data);
+                } catch (error) {
+                    console.error('Error fetching statistics', error);
+                }
+                setLoading(false);
             }
-        };
-
+        }
         fetchStatistics();
     }, [selectedProduct]);
 
@@ -64,16 +74,32 @@ function StatisticsAnalysis(props) {
     };
 
     return (
-        <div>
-            <h1>통계 분석</h1>
-            <select onChange={e => setSelectedProduct(e.target.value)}>
-                {products.map(product => (
-                    <option key={product.clothesId} value={product.clothesId}>{product.name}</option>
-                ))}
-            </select>
-            <Bar data={data} options={{ responsive: true, scales: { y: { beginAtZero: true } } }} />
-        </div>
-    )
+        <Container className="mt-5">
+            <Row>
+                <Col className="text-center mb-4">
+                    <h1 style={{ fontSize: '30px', fontWeight: '700' }}>통계 분석</h1>
+                </Col>
+            </Row>
+            <Row className="select-container">
+                <Col xs={12} md={6}>
+                    <select className="form-control" value={selectedProduct} onChange={e => setSelectedProduct(e.target.value)}>
+                        {products.map(product => (
+                            <option key={product.clothesId} value={product.clothesId}>{product.name}</option>
+                        ))}
+                    </select>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <Bar data={data} options={{ responsive: true, scales: { y: { beginAtZero: true } } }} />
+                    )}
+                </Col>
+            </Row>
+        </Container>
+    );
 }
 
 export default StatisticsAnalysis;

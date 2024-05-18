@@ -1,48 +1,39 @@
-import { lazy, Suspense, useEffect, useState } from "react";
-import { Button, Navbar, Container, Nav, Row, Col, Form, FormControl } from 'react-bootstrap';
+import { lazy, Suspense, useEffect } from "react";
 import './App.css';
-import { Routes, Route, useNavigate, Outlet, Link } from 'react-router-dom';
-import axios from 'axios'
-import { useQuery } from "react-query";
-import ProductRegistration from "./pages/ProductRegistration.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from "react-redux";
-import { login, logout, setUserLoading, setUserLoginState } from "./store/userSlice.js";
-import Badge from 'react-bootstrap/Badge';
-import { FaShoppingCart } from 'react-icons/fa';
-import { BsCart2 } from "react-icons/bs";
-import { FaUser } from "react-icons/fa";
-import SellerLogin from "./pages/SellerLogin.js";
-import Dashboard from "./pages/Dashboard.js";
-import SellerLayout from "./pages/SellerLayout.js";
-import UserLayout from "./pages/UserLayout.js";
-import ProductList from "./pages/ProductList.js";
-import OrderManagement from "./pages/OrderManagement.js";
-import StatisticsAnalysis from "./pages/StatisticsAnalysis.js";
-import SellerJoin from "./pages/SellerJoin.js";
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { login, logout, setUserLoading } from "./store/userSlice.js";
 import { sellerLogin, sellerLogout, setSellerLoading } from "./store/sellerSlice.js";
-import Checkout from "./pages/Checkout.js";
-import OrderComplete from "./pages/OrderComplete.js";
-import SearchResults from "./pages/SearchResults.js";
-import OrderDeliveryStatus from "./pages/OrderDeliveryStatus.js";
-import OrderDetails from "./pages/OrderDetails.js";
-import ProtectedRoute from "./pages/ProtectedRoute.js";
-import ProtectedRouteSeller from "./pages/ProtectedRouteSeller.js";
 
+import UserLayout from "./pages/UserLayout.js";
+import Main from "./pages/Main.js";
+
+const ProductRegistration = lazy(() => import("./pages/ProductRegistration.js"));
+const SellerLogin = lazy(() => import("./pages/SellerLogin.js"));
+const SellerLayout = lazy(() => import("./pages/SellerLayout.js"));
+const ProductList = lazy(() => import("./pages/ProductList.js"));
+const OrderManagement = lazy(() => import("./pages/OrderManagement.js"));
+const StatisticsAnalysis = lazy(() => import("./pages/StatisticsAnalysis.js"));
+const SellerJoin = lazy(() => import("./pages/SellerJoin.js"));
+const Checkout = lazy(() => import("./pages/Checkout.js"));
+const OrderComplete = lazy(() => import("./pages/OrderComplete.js"));
+const SearchResults = lazy(() => import("./pages/SearchResults.js"));
+const OrderDeliveryStatus = lazy(() => import("./pages/OrderDeliveryStatus.js"));
+const OrderDetails = lazy(() => import("./pages/OrderDetails.js"));
+const ProtectedRoute = lazy(() => import("./pages/ProtectedRoute.js"));
+const ProtectedRouteSeller = lazy(() => import("./pages/ProtectedRouteSeller.js"));
 const DeleteCustomer = lazy(() => import("./pages/DeleteCustomer.js"));
-const Main = lazy(() => import("./pages/Main.js"));
 const ItemList = lazy(() => import("./pages/ItemList.js"));
 const Login = lazy(() => import("./pages/Login.js"));
 const Join = lazy(() => import("./pages/Join.js"));
 const Mypage = lazy(() => import("./pages/Mypage.js"));
-const About = lazy(() => import("./pages/About.js"));
 const ProductEdit = lazy(() => import("./pages/ProductEdit.js"));
 const UpdateCustomer = lazy(() => import("./pages/UpdateCustomer.js"));
 const PwConfirm = lazy(() => import("./pages/PwConfirm.js"));
 const Cart = lazy(() => import('./pages/Cart.js'));
 const Detail = lazy(() => import('./pages/Detail.js'));
-
+const Comments = lazy(() => import('./pages/Comments.js'));
+const LikesPage = lazy(() => import('./pages/LikesPage.js'));
 
 function App() {
 
@@ -156,28 +147,28 @@ function App() {
             <Route path="search/:query" element={<SearchResults />} />
             <Route path="/ordercomplete" element={<OrderComplete />} />
             <Route path="*" element={<div>없는 페이지입니다.</div>} />
-            <Route path="/about" element={<About />} >
-              <Route path="member" element={<div> 멤버 페이지입니다. </div>} />
-              <Route path="location" element={<div> 위치정보 페이지입니다. </div>} />
-            </Route>
+           
 
-            <Route path="/itemlist" element={<ItemList />} />
-            <Route path="/itemlist/:category" element={<ItemList />} />
-            <Route path="/itemlist/:category/:major" element={<ItemList />} />
-            <Route path="/itemlist/:category/:major/:minor" element={<ItemList />} />
+            <Route path="/itemlist/:gender" element={<ItemList />}>
+              <Route path=":major" element={<ItemList />}>
+                <Route path=":minor" element={<ItemList />} />
+              </Route>
+            </Route>
 
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/Join" element={<Join />} />
-            <Route path="/ProductEdit" element={<ProductEdit />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/productedit" element={<ProductEdit />} />
+            <Route path="/likespage" element={<LikesPage />} />
 
             {/* <Route path="/mypage" element={<Mypage />} > */}
             <Route path="/mypage" element={<ProtectedRoute><Mypage /></ProtectedRoute>}>
               <Route path="orderdeliverystatus" element={<OrderDeliveryStatus />} />
               <Route path="orderdeliverystatus/orderdetails/:receiptId" element={<OrderDetails />} />
-              <Route path="deleteCustomer" element={<DeleteCustomer />} />
-              <Route path="updateCustomer" element={<UpdateCustomer />} />
-              <Route path="PwConfirm" element={<PwConfirm />} />
+              <Route path="deletecustomer" element={<DeleteCustomer />} />
+              <Route path="updatecustomer" element={<UpdateCustomer />} />
+              <Route path="pwconfirm" element={<PwConfirm />} />
+              <Route path="comments" element={<Comments />} />
             </Route>
           </Route>
 
@@ -185,38 +176,14 @@ function App() {
             <Route index path="login" element={<SellerLogin />} />
             <Route path="*" element={<div>없는 페이지입니다.</div>} />
             <Route path="sellerjoin" element={<SellerJoin />} />
-            {/* <Route path="dashboard" element={<Dashboard />} /> */}
-            <Route path="ProductRegistration" element={<ProtectedRouteSeller><ProductRegistration /></ProtectedRouteSeller>} />
+            <Route path="productregistration" element={<ProtectedRouteSeller><ProductRegistration /></ProtectedRouteSeller>} />
             <Route path="productlist" element={<ProtectedRouteSeller><ProductList /></ProtectedRouteSeller>} />
-            <Route path="productedit/:editid" element={<ProtectedRouteSeller><ProductEdit /></ProtectedRouteSeller>} />
-            {/* <Route path="/seller/ordermanagement/orderdetailsseller/:receiptId" element={<ProtectedRouteSeller><OrderDetailsSeller /></ProtectedRouteSeller>} /> */}
+            <Route path="productedit/:editId" element={<ProtectedRouteSeller><ProductEdit /></ProtectedRouteSeller>} />
             <Route path="ordermanagement" element={<ProtectedRouteSeller><OrderManagement /></ProtectedRouteSeller>} />
             <Route path="statisticsanalysis" element={<ProtectedRouteSeller><StatisticsAnalysis /></ProtectedRouteSeller>} />
           </Route>
         </Routes>
       </Suspense>
-
-      {/* <div className="col-md-3 recent-items">
-        <h5>최근 본 상품</h5>
-        {recentItemId && recentItemId.length > 0 ? (
-          <div>
-            {recentItemId.map(function (a, i) {
-              return (
-                <div key={i}>
-                  <img src={process.env.PUBLIC_URL + '/img/shoes' + (recentItemId[i] + 1) + '.jpg'} alt={`Shoe ${recentItemId[i] + 1}`} style={{ width: '100%', cursor: 'pointer' }}
-                    onClick={() => {
-                      navigate(`/detail/${recentItemId[i]}`)
-                    }} />
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <p>최근 본 상품이 없습니다.</p>
-        )}
-      </div> */}
-
-
     </div>
   );
 }

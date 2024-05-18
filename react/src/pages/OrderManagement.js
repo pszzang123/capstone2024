@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, Button, Modal, Container, Row, Col } from 'react-bootstrap';
+import { Table, Button, Modal, Container, Row, Col, Dropdown } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 const OrderManagement = () => {
@@ -48,13 +48,13 @@ const OrderManagement = () => {
     const handleProductSelect = (product) => {
         setSelectedProduct(product);
         setShowModal(true);
-        axios.get(`${process.env.REACT_APP_API_URL}/sales/clothes/${product.clothesId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/receipt_detail/clothes/${product.clothesId}`)
             .then(response => setSales(response.data))
             .catch(error => console.error('Error fetching sales data', error));
     };
 
-    const handleStatusChange = (receiptId, newStatus) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/receipt/${receiptId}/${newStatus}`)
+    const handleStatusChange = (receiptDetailId, newStatus) => {
+        axios.put(`${process.env.REACT_APP_API_URL}/receipt_detail/${receiptDetailId}/${newStatus}`)
             .then(() => {
                 alert('Order status updated successfully');
                 // Optionally refresh the sales data or update state locally
@@ -64,6 +64,17 @@ const OrderManagement = () => {
 
     const closeModal = () => {
         setShowModal(false);
+    };
+
+    // 주문 상태 코드를 문자열로 매핑
+    const receiptDetailStatusLabels = {
+        0: "상품 준비",
+        1: "배송 준비",
+        2: "배송 중",
+        3: "배송 완료",
+        4: "반품 신청",
+        5: "반품 중",
+        6: "반품 완료"
     };
 
     return (
@@ -95,7 +106,7 @@ const OrderManagement = () => {
                                 <td>{getCategoryName(product.subCategoryId, false)}</td>
                                 <td style={{ whiteSpace: 'nowrap' }}>{product.price.toLocaleString()}원</td>
                                 <td>
-                                    <Button onClick={() => handleProductSelect(product)}>주문관리</Button>
+                                    <Button style={{backgroundColor:'black', whiteSpace:'nowrap'}} onClick={() => handleProductSelect(product)}>주문관리</Button>
                                 </td>
                             </tr>
                         ))}
@@ -112,19 +123,34 @@ const OrderManagement = () => {
                                 <tr style={{ whiteSpace: 'nowrap' }}>
                                     <th>주문일</th>
                                     <th>개수</th>
-                                    <th>총 주문금액</th>
-                                    <th>주문상태</th>
-                                    <th>Update Status</th>
+                                    <th>총 주문 금액</th>
+                                    <th>주문 상태</th>
+                                    <th>상태 변경</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {sales.map(sale => (
-                                    <tr key={sale.receiptId}>
+                                    <tr key={sale.receiptDetailId}>
                                         <td>{sale.date}</td>
-                                        <td style={{textAlign:'center'}}>{sale.quantity}</td>
+                                        <td style={{ textAlign: 'center' }}>{sale.quantity}</td>
                                         <td style={{ whiteSpace: 'nowrap' }}>{sale.price.toLocaleString()}원</td>
+                                        <td>{receiptDetailStatusLabels[sale.status]}</td>        
+                                        {/* status로 변경하기. */}
                                         <td>
-                                            <Button onClick={() => handleStatusChange(sale.receiptId, 3)}>Set Delivered</Button>
+                                            {/* <Button onClick={() => handleStatusChange(sale.receiptId, 3)}>Set Delivered</Button> */}
+                                            <Dropdown>
+                                                <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
+                                                    상태 변경
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    {Object.entries(receiptDetailStatusLabels).map(([status, label]) => (
+                                                        <Dropdown.Item key={status} onClick={() => handleStatusChange(sale.receiptDetailId, Number(status))}>
+                                                            {label}
+                                                        </Dropdown.Item>
+                                                    ))}
+                                                </Dropdown.Menu>
+                                            </Dropdown>
                                         </td>
                                     </tr>
                                 ))}

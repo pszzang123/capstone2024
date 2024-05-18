@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { logout, pwConfirm } from "../store/userSlice";
+import { pwConfirm } from "../store/userSlice";
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 
@@ -68,31 +68,36 @@ function PwConfirm(props) {
     return (
         <Container>
             <Row>
-            <Col md={{span: 8, offset: 1}} xs={12}>
+                <Col md={{ span: 8, offset: 1 }} xs={12}>
                     <h1 style={{ fontSize: '30px', fontWeight: '700' }}>비밀번호 확인</h1>
                     <br /><br />
                 </Col>
             </Row>
             <Row>
-                <div style={{ fontSize: '15px', fontWeight: '500', textAlign: 'left' }}>
-                    <div style={{ marginBottom: '10px' }}>
-                        회원님은 현재 {userInfo != null ? userInfo.email_id : ''}로 로그인하셨습니다.<br></br>
-                        개인정보보호를 위해 비밀번호를 입력해주세요.
+                <Col md={{ span: 8, offset: 1 }} xs={12}>
+
+                    <div style={{ fontSize: '15px', fontWeight: '500', textAlign: 'left' }}>
+                        <div style={{ marginBottom: '10px', textAlign: 'center' }}>
+                            <strong>
+                                회원님은 현재 {userInfo != null ? userInfo.email_id : ''}로 로그인하셨습니다.<br></br>
+                                개인정보보호를 위해 비밀번호를 입력해주세요.</strong>
+                        </div>
+                        <Form>
+                            <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
+                                <Form.Control type="password" name="pwConfirm" value={pw} onChange={handlePwChange} controlId="formPw"
+                                    style={{ fontFamily: 'serif' }}
+                                    placeholder="비밀번호를 입력하세요."
+                                />
+                            </Form.Group>
+
+                            <Button onClick={onClickPwConfirm} variant="secondary" className='login-Button'>
+                                {/* type="submit"  */}
+                                비밀번호 확인
+                            </Button>
+                        </Form>
+
                     </div>
-                    <Form>
-                        <Form.Group className="mb-3 text-start" controlId="formBasicEmail">
-                            <Form.Control type="password" name="pwConfirm" value={pw} onChange={handlePwChange} controlId="formPw"
-                                placeholder="비밀번호를 입력하세요."
-                            />
-                        </Form.Group>
-
-                        <Button onClick={onClickPwConfirm} variant="primary" className='login-Button'>
-                            {/* type="submit"  */}
-                            비밀번호 확인
-                        </Button>
-                    </Form>
-
-                </div>
+                </Col>
             </Row>
         </Container>
     )

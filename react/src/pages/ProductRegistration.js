@@ -46,6 +46,7 @@ function ProductRegistration() {
         subCategoryId: '',
         sellerEmail: ''
     });
+    const [displayPrice, setDisplayPrice] = useState('');
 
     const [productDetails, setProductDetails] = useState([{
         color: '',
@@ -91,6 +92,16 @@ function ProductRegistration() {
         }));
     };
 
+    const handlePriceChange = (e) => {
+        const value = e.target.value.replace(/\D/g, ''); // 숫자가 아닌 모든 문자 제거
+        const formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        setDisplayPrice(formattedValue); // 화면에 보여줄 값 업데이트
+        setCategory(prevState => ({
+            ...prevState,
+            price: parseInt(value, 10) || 0  // 실제 저장될 숫자 값 업데이트
+        }));
+    };
+    
     // 대분류 변경 이벤트 핸들러
     const handleMajorCategoryChange = (e) => {
         setCategory(prevState => ({
@@ -241,7 +252,7 @@ function ProductRegistration() {
                         <br /><br />
                     </Col>
                 </Row>
-                <Row className="mb-3">
+                <Row className="mb-3 justify-content-center">
                     <Form.Group as={Row} controlId="formProductName">
                         <Form.Label column sm="2">이름</Form.Label>
                         <Col sm="10">
@@ -250,7 +261,7 @@ function ProductRegistration() {
                     </Form.Group>
                 </Row>
                 {/* 상세 설명 */}
-                <Row className="mb-3">
+                <Row className="mb-3 justify-content-center">
                     <Form.Group as={Row} controlId="formProductDetail">
                         <Form.Label column sm="2">상세 설명</Form.Label>
                         <Col sm="10">
@@ -260,16 +271,16 @@ function ProductRegistration() {
                 </Row>
 
                 {/* 가격 */}
-                <Row className="mb-3">
+                <Row className="mb-3 justify-content-center">
                     <Form.Group as={Row} controlId="formPrice">
                         <Form.Label column sm="2">가격</Form.Label>
                         <Col sm="10">
-                            <Form.Control type="number" name="price" value={category.price} onChange={handleCategoryChange} />
+                            <Form.Control type="text" name="price" value={displayPrice} onChange={handlePriceChange} />
                         </Col>
                     </Form.Group>
                 </Row>
 
-                <Row className="mb-3">
+                <Row className="mb-3 justify-content-center">
                     <Form.Group as={Row} controlId="formGenderCategory">
                         <Form.Label column sm="2">성별 카테고리</Form.Label>
                         <Col sm="10">
@@ -289,7 +300,7 @@ function ProductRegistration() {
 
 
                 {/* 대분류 선택 */}
-                <Row className="mb-3">
+                <Row className="mb-3 justify-content-center">
                     <Form.Group as={Row} controlId="formMajorCategory">
                         <Form.Label column sm="2">대분류</Form.Label>
                         <Col sm="10">
@@ -305,7 +316,7 @@ function ProductRegistration() {
                 </Row>
 
                 {/* 소분류 선택 */}
-                <Row className="mb-3">
+                <Row className="mb-3 justify-content-center">
                     <Form.Group as={Row} controlId="formSubCategory">
                         <Form.Label column sm="2">소분류</Form.Label>
                         <Col sm="10">
