@@ -8,10 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CustomerDto;
 import com.example.demo.entity.Cart;
+import com.example.demo.entity.Comment;
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Likes;
+import com.example.demo.entity.Receipt;
+import com.example.demo.entity.ReceiptDetail;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
+import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.LikesRepository;
+import com.example.demo.repository.ReceiptDetailRepository;
+import com.example.demo.repository.ReceiptRepository;
 import com.example.demo.service.CustomerService;
 import com.example.mapper.CustomerMapper;
 
@@ -22,6 +30,10 @@ import lombok.AllArgsConstructor;
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
     private CartRepository cartRepository;
+    private CommentRepository commentRepository;
+    private LikesRepository likesRepository;
+    private ReceiptRepository receiptRepository;
+    private ReceiptDetailRepository receiptDetailRepository;
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
@@ -86,6 +98,38 @@ public class CustomerServiceImpl implements CustomerService {
         if (carts != null) {
             carts.forEach((cart) -> {
                 cartRepository.delete(cart);
+            });
+        }
+
+        List<Comment> comments = null;
+        comments = commentRepository.findAllByCustomer(customer);
+        if (comments != null) {
+            comments.forEach((comment) -> {
+                commentRepository.delete(comment);
+            });
+        }
+
+        List<Likes> likes = null;
+        likes = likesRepository.findAllByCustomer(customer);
+        if (likes != null) {
+            likes.forEach((like) -> {
+                likesRepository.delete(like);
+            });
+        }
+
+        List<ReceiptDetail> receiptDetails = null;
+        receiptDetails = receiptDetailRepository.findAllByCustomer(customer);
+        if (receiptDetails != null) {
+            receiptDetails.forEach((receiptDetail) -> {
+                receiptDetailRepository.delete(receiptDetail);
+            });
+        }
+
+        List<Receipt> receipts = null;
+        receipts = receiptRepository.findAllByCustomer(customer);
+        if (receipts != null) {
+            receipts.forEach((receipt) -> {
+                receiptRepository.delete(receipt);
             });
         }
 

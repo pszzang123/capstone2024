@@ -14,7 +14,10 @@ import com.example.demo.entity.Cart;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesDetail;
 import com.example.demo.entity.ClothesImages;
+import com.example.demo.entity.Comment;
+import com.example.demo.entity.Likes;
 import com.example.demo.entity.MajorCategory;
+import com.example.demo.entity.ReceiptDetail;
 import com.example.demo.entity.Seller;
 import com.example.demo.entity.SubCategory;
 import com.example.demo.exception.ResourceNotFoundException;
@@ -22,7 +25,10 @@ import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ClothesDetailRepository;
 import com.example.demo.repository.ClothesImagesRepository;
 import com.example.demo.repository.ClothesRepository;
+import com.example.demo.repository.CommentRepository;
+import com.example.demo.repository.LikesRepository;
 import com.example.demo.repository.MajorCategoryRepository;
+import com.example.demo.repository.ReceiptDetailRepository;
 import com.example.demo.repository.SellerRepository;
 import com.example.demo.repository.SubCategoryRepository;
 import com.example.demo.service.ClothesService;
@@ -41,6 +47,9 @@ public class ClothesServiceImpl implements ClothesService {
     private CartRepository cartRepository;
     private MajorCategoryRepository majorCategoryRepository;
     private SubCategoryRepository subCategoryRepository;
+    private CommentRepository commentRepository;
+    private LikesRepository likesRepository;
+    private ReceiptDetailRepository receiptDetailRepository;
 
     @Override
     public ClothesDto createClothes(ClothesDto clothesDto) {
@@ -544,8 +553,31 @@ public class ClothesServiceImpl implements ClothesService {
                     cartRepository.delete(cart);
                 });
             }
+            List<ReceiptDetail> receiptDetails = null;
+            receiptDetails = receiptDetailRepository.findAllByClothesDetail(clothesDetail);
+            if (receiptDetails != null) {
+                receiptDetails.forEach((receiptDetail) -> {
+                    receiptDetailRepository.delete(receiptDetail);
+                });
+            }
             clothesDetailRepository.delete(clothesDetail);
         });
+
+        List<Comment> comments = null;
+        comments = commentRepository.findAllByClothes(clothes);
+        if (comments != null) {
+            comments.forEach((comment) -> {
+                commentRepository.delete(comment);
+            });
+        }
+
+        List<Likes> likes = null;
+        likes = likesRepository.findAllByClothes(clothes);
+        if (likes != null) {
+            likes.forEach((like) -> {
+                likesRepository.delete(like);
+            });
+        }
         
         clothesRepository.deleteById(clothesId);
     }

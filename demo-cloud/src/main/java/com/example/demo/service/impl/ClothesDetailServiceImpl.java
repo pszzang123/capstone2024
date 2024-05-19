@@ -10,10 +10,12 @@ import com.example.demo.dto.ClothesDetailDto;
 import com.example.demo.entity.Cart;
 import com.example.demo.entity.Clothes;
 import com.example.demo.entity.ClothesDetail;
+import com.example.demo.entity.ReceiptDetail;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.repository.ClothesDetailRepository;
 import com.example.demo.repository.ClothesRepository;
+import com.example.demo.repository.ReceiptDetailRepository;
 import com.example.demo.service.ClothesDetailService;
 import com.example.mapper.ClothesDetailMapper;
 
@@ -25,6 +27,7 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
     private ClothesDetailRepository clothesDetailRepository;
     private ClothesRepository clothesRepository;
     private CartRepository cartRepository;
+    private ReceiptDetailRepository receiptDetailRepository;
 
     @Override
     public ClothesDetailDto createClothesDetail(ClothesDetailDto clothesDetailDto) {
@@ -85,6 +88,14 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
                 cartRepository.delete(cart);
             });
         }
+
+        List<ReceiptDetail> receiptDetails = null;
+        receiptDetails = receiptDetailRepository.findAllByClothesDetail(clothesDetail);
+        if (receiptDetails != null) {
+            receiptDetails.forEach((receiptDetail) -> {
+                receiptDetailRepository.delete(receiptDetail);
+            });
+        }
         
         clothesDetailRepository.deleteById(detailId);
     }
@@ -101,6 +112,13 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
                 if (carts != null) {
                     carts.forEach((cart) -> {
                         cartRepository.delete(cart);
+                    });
+                }
+                List<ReceiptDetail> receiptDetails = null;
+                receiptDetails = receiptDetailRepository.findAllByClothesDetail(clothesDetail);
+                if (receiptDetails != null) {
+                    receiptDetails.forEach((receiptDetail) -> {
+                        receiptDetailRepository.delete(receiptDetail);
                     });
                 }
                 clothesDetailRepository.delete(clothesDetail);
