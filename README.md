@@ -1,6 +1,6 @@
-<rect width="80" height="80" fill="white">
-  <img src="./doc/logo/1715849181321-0.png" style="max-width:100%; height:auto;"/>
-</rect>
+
+<img src="./doc/logo/1715849181321-0.png"/>
+
 
 
 ## 📋PC, 모바일, 태블릿에서 원활하게 작동하는 쇼핑몰
