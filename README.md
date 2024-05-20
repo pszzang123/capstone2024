@@ -1,5 +1,5 @@
-<div style="backgroud-color:#ffffff; border-radius:20px;">
-  <img src="./doc/logo/1715849181321-0.png"/>
+<div>
+  <img src="https://capsule-render.vercel.app/api?type=rounded&color=ffffff&height=300&section=header&text=design%20the%20style&fontsize=90"/>
 </div>
 
 
