@@ -1,7 +1,20 @@
-<img src="https://capsule-render.vercel.app/api?type=cylinder&color=auto&height=300&section=header&text=Design%20The%20Style&fontSize=90" />
+<div style="backgroud-color:#000000; border-radius:20px;">
+  <img src="./doc/logo/1715849181321-0.png"/>
+</div>
 
 
 ## 📋PC, 모바일, 태블릿에서 원활하게 작동하는 쇼핑몰
+- Code
+  - [Front-End (React)](https://github.com/pszzang123/capstone2024/tree/react)
+  - [Front-End (Flutter)](https://github.com/pszzang123/capstone2024/tree/flutter)
+  - [Back-End (Spring boot)](https://github.com/pszzang123/capstone2024/tree/main)
+- Youtube
+  - [Front-End (React)]()
+  - [Front-End (Flutter)]()
+  - [Back-End (Spring boot)]()
+- Doc
+  - [Rest API](./doc/backend/Backend-Document.md#rest-api)
+  - [기능 구성도](#기능-구성-및-시연-동영상)
 
 <br/>
 
@@ -9,7 +22,7 @@
 
 1. [개요](#개요)
 2. [프로젝트 환경 설정 (개발환경)](#프로젝트-환경-설정-개발환경)
-3. [페이지](#페이지)
+3. [기능 구성 및 시연 동영상](#기능-구성-및-시연-동영상)
 4. [팀원별 역할](#팀원별-역할)
 5. [기대 효과](#기대-효과)
 6. [개선점](#개선점)
@@ -35,7 +48,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
 
 <br/>
 
-## 📋페이지
+## 📋기능 구성 및 시연 동영상
 
 <div>
 <table>
