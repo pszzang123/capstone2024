@@ -1,4 +1,4 @@
-<div style="backgroud-color:#000000; border-radius:20px;">
+<div style="backgroud-color:#ffffff; border-radius:20px;">
   <img src="./doc/logo/1715849181321-0.png"/>
 </div>
 
