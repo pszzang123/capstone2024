@@ -49,7 +49,10 @@ public class ClothesDetailServiceImpl implements ClothesDetailService {
     }
 
     @Override
-    public List<ClothesDetailDto> getClothesDetailByClothes(Clothes clothes) {
+    public List<ClothesDetailDto> getClothesDetailByClothes(Long clothesId) {
+        Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(() -> 
+            new ResourceNotFoundException("Clothes is not exist with given id : " + clothesId)
+        );
         List<ClothesDetail> clothesDetails = clothesDetailRepository.findAllByClothes(clothes);
         return clothesDetails.stream().map((clothesDetail) -> ClothesDetailMapper.mapToClothesDetailDto(clothesDetail)).collect(Collectors.toList());
     }

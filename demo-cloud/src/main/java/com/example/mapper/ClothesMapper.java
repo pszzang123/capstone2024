@@ -6,6 +6,7 @@ import com.example.demo.entity.Clothes;
 import com.example.demo.entity.MajorCategory;
 import com.example.demo.entity.Seller;
 import com.example.demo.entity.SubCategory;
+import com.example.demo.vo.ClothesPageVo;
 import com.example.demo.vo.ClothesVo;
 
 public class ClothesMapper {
@@ -37,6 +38,20 @@ public class ClothesMapper {
             clothes.getMonthlyLike(),
             clothes.getTotalLike(),
             clothes.getUpdateDate()
+        );
+    }
+
+    public static ClothesPageVo mapToClothesPageVo(Clothes clothes) {
+        return new ClothesPageVo(
+            clothes.getClothesId(),
+            clothes.getName(),
+            clothes.getDetail(),
+            clothes.getGenderCategory(),
+            clothes.getMajorCategory().getMajorCategoryId(),
+            clothes.getSubCategory().getSubCategoryId(),
+            clothes.getPrice(),
+            clothes.getSeller().getEmail(),
+            clothes.getSeller().getCompanyName()
         );
     }
 

@@ -5,16 +5,17 @@ import java.util.List;
 import com.example.demo.dto.ClothesDto;
 import com.example.demo.dto.StatisticsDto;
 import com.example.demo.entity.Seller;
+import com.example.demo.vo.ClothesPageVo;
 import com.example.demo.vo.ClothesVo;
 
 public interface ClothesService {
     ClothesDto createClothes(ClothesDto clothesDto);
 
-    ClothesDto getClothesById(Long clothesId);
+    ClothesPageVo getClothesById(Long clothesId);
 
     StatisticsDto getStatisticsById(Long clothesId);
 
-    List<ClothesDto> getClothesBySeller(Seller seller);
+    List<ClothesPageVo> getClothesBySeller(Seller seller);
 
     List<ClothesVo> getClothesByGenderCategory(Integer genderCategory);
 

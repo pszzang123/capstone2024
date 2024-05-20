@@ -20,6 +20,7 @@ import com.example.demo.dto.StatisticsDto;
 import com.example.demo.entity.Seller;
 import com.example.demo.service.ClothesService;
 import com.example.demo.service.SellerService;
+import com.example.demo.vo.ClothesPageVo;
 import com.example.demo.vo.ClothesVo;
 import com.example.mapper.SellerMapper;
 
@@ -40,15 +41,15 @@ public class ClothesController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ClothesDto> getClothesById(@PathVariable("id") Long clothesId) {
-        ClothesDto clothesDto = clothesService.getClothesById(clothesId);
-        return ResponseEntity.ok(clothesDto);
+    public ResponseEntity<ClothesPageVo> getClothesById(@PathVariable("id") Long clothesId) {
+        ClothesPageVo clothes = clothesService.getClothesById(clothesId);
+        return ResponseEntity.ok(clothes);
     }
 
     @GetMapping("seller/{email}")
-    public ResponseEntity<List<ClothesDto>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
+    public ResponseEntity<List<ClothesPageVo>> getClothesBySeller(@PathVariable("email") String sellerEmail) {
         Seller seller = SellerMapper.mapToSeller(sellerService.getSellerByEmail(sellerEmail));
-        List<ClothesDto> clothes = clothesService.getClothesBySeller(seller);
+        List<ClothesPageVo> clothes = clothesService.getClothesBySeller(seller);
         return ResponseEntity.ok(clothes);
     }
 

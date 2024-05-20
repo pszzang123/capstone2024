@@ -32,6 +32,7 @@ import com.example.demo.repository.ReceiptDetailRepository;
 import com.example.demo.repository.SellerRepository;
 import com.example.demo.repository.SubCategoryRepository;
 import com.example.demo.service.ClothesService;
+import com.example.demo.vo.ClothesPageVo;
 import com.example.demo.vo.ClothesVo;
 import com.example.mapper.ClothesMapper;
 
@@ -76,12 +77,12 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public ClothesDto getClothesById(Long clothesId) {
+    public ClothesPageVo getClothesById(Long clothesId) {
         Clothes clothes = clothesRepository.findById(clothesId).orElseThrow(() -> 
             new ResourceNotFoundException("Clothes are not exist with given id : " + clothesId)
         );
         
-        return ClothesMapper.mapToClothesDto(clothes);
+        return ClothesMapper.mapToClothesPageVo(clothes);
     }
 
     @Override
@@ -94,10 +95,10 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public List<ClothesDto> getClothesBySeller(Seller seller) {
+    public List<ClothesPageVo> getClothesBySeller(Seller seller) {
         List<Clothes> clothes = clothesRepository.findAllBySeller(seller);
         return clothes.stream().map((clothe) -> {
-            return ClothesMapper.mapToClothesDto(clothe);
+            return ClothesMapper.mapToClothesPageVo(clothe);
         }).collect(Collectors.toList());
     }
 
