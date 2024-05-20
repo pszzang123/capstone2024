@@ -49,6 +49,8 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
 
 ## 📋기능 구성 및 시연 동영상
 
+<img src="./doc/images/Preview.jpg">
+
 <div>
 <table>
   <tr>
