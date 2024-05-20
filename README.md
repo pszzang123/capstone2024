@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 <div>
   <img src="https://capsule-render.vercel.app/api?type=rounded&color=ffffff&height=300&section=header&text=design%20the%20style&fontsize=90"/>
 </div>
+=======
+
+<img src="./doc/logo/1715849181321-0.png"/>
+
+>>>>>>> fcb3a8da690788e624c985f3d519bd58c8191979
 
 
 ## 📋PC, 모바일, 태블릿에서 원활하게 작동하는 쇼핑몰
