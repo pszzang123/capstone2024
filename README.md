@@ -242,7 +242,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     </td>
     <td>
       <a href="./doc/backend/Backend-Document.md">
-        문서
+        📋
       </a>
     </td>
   </tr>
