@@ -8,10 +8,10 @@
   - [Front-End (Flutter)](https://github.com/pszzang123/capstone2024/tree/flutter)
   - [Back-End (Spring boot)](https://github.com/pszzang123/capstone2024/tree/main)
 - Youtube
-  - [Front-End (React)]()
+  - [Front-End (React-PC)]()
+  - [Front-End (React-Mobile)]()
   - [Front-End (IOS)]()
   - [Front-End (Android)]()
-  - [Back-End (Spring boot)]()
 - Doc
   - [Rest API](./doc/backend/Backend-Document.md#rest-api)
   - [기능 구성도](#기능-구성-및-시연-동영상)
