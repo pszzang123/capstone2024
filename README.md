@@ -13,8 +13,8 @@
   - [Front-End (IOS)]()
   - [Front-End (Android)]()
 - Doc
-  - [Rest API](./doc/backend/Backend-Document.md#rest-api)
   - [기능 구성도](#기능-구성-및-시연-동영상)
+  - [Rest API](./doc/backend/Backend-Document.md#rest-api)
 
 <br/>
 
