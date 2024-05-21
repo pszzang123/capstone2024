@@ -45,7 +45,6 @@ function Main(props) {
         }
     }, [])
 
-    // 상품 데이터를 가져오고 정렬하는 함수
     const fetchAndSortProducts = async (gender, sortType) => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_API_URL}/clothes?gender=${gender}`);
@@ -53,7 +52,6 @@ function Main(props) {
             return sortedResponse.data;
         } catch (error) {
             console.error(`Failed to fetch or sort products: ${error}`);
-            // 여기에서 사용자에게 에러 상황을 알리는 UI 처리를 할 수 있습니다.
             return [];
         }
     }
@@ -107,12 +105,13 @@ function Main(props) {
 
 
             {/* 인기상품 */}
-            <h1 style={{ fontSize: '30px', fontWeight: '700' }}>인기상품</h1>
+            <h1 style={{ fontSize: '32px', fontWeight: '800' }}>인기상품</h1>
             <br />
 
             <RankingButton onClick={() => { setBestTab(0) }} isActive={bestTab === 0}>남성 의류</RankingButton>
             <RankingButton onClick={() => { setBestTab(1) }} isActive={bestTab === 1}>여성 의류</RankingButton>
-            <br></br>
+      
+            <div style={{marginTop:'10px'}}></div>
             <RankingConTent tab={bestTab} products={(bestTab === 0 ? maleBestProducts : femaleBestProducts).slice(0, 12)} />
             <br></br>
 
@@ -122,14 +121,14 @@ function Main(props) {
             <br />
             <br />
             <br />
-            <h1 style={{ fontSize: '30px', fontWeight: '700' }}>신상품</h1>
+            <h1 style={{ fontSize: '32px', fontWeight: '800' }}>신상품</h1>
             <br />
 
 
 
             <RankingButton onClick={() => { setNewTab(0) }} isActive={newTab === 0}>남성 의류</RankingButton>
             <RankingButton onClick={() => { setNewTab(1) }} isActive={newTab === 1}>여성 의류</RankingButton>
-            <br></br>
+            <div style={{marginTop:'10px'}}></div>
             <RankingConTent tab={newTab} products={(newTab === 0 ? maleNewProducts : femaleNewProducts).slice(0, 12)} />
 
             <br></br>
@@ -160,7 +159,7 @@ function RankingConTent({ tab, products }) {
                         <CardItem products={product} key={product.clothesId} alt={product.name} navigate={navigate}></CardItem>
                     ))
                 ) : (
-                    <p>No products available</p>
+                    <p>상품 불러오는 중..</p>
                 )}
             </Row>
         </Container>

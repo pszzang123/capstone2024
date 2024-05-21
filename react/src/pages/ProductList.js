@@ -29,47 +29,45 @@ const HeartButton = styled.button`
 
 function ProductItem(props) {
 
-
     const handleDelete = () => {
         const confirmDelete = window.confirm("상품을 제거하시겠습니까?");
         if (confirmDelete) {
-            // 먼저 상품 데이터 삭제 요청
-            axios.delete(`${process.env.REACT_APP_API_URL}/clothes/${props.item.clothesId}`)
-                .then(result => {
-                    // 상품 삭제가 성공한 후, 이미지 URL을 가져온다.
-                    axios.get(`${process.env.REACT_APP_API_URL}/clothes_images/${props.item.clothesId}`)
-                        .then(response => {
-                            const imageDeletions = response.data.map(image => {
-                                const storage = getStorage();
-                                const imageRef = ref(storage, image.imageUrl);
+            // 1. 상품 이미지 데이터를 먼저 가져온다
+            axios.get(`${process.env.REACT_APP_API_URL}/clothes_images/${props.item.clothesId}`)
+                .then(response => {
+                    const imageDeletions = response.data.map(image => {
+                        const storage = getStorage();
+                        const imageRef = ref(storage, image.imageUrl);
 
-                                // Firebase Storage에서 각 이미지 삭제
-                                return deleteObject(imageRef)
-                                    .then(() => console.log(`Deleted image ${image.imageUrl}`))
-                                    .catch(error => {
-                                        console.error(`Failed to delete image ${image.imageUrl}:`, error);
-                                    });
+                        // Firebase Storage에서 각 이미지 삭제
+                        return deleteObject(imageRef)
+                            .then(() => console.log(`${image.imageUrl} 이미지 삭제 성공`))
+                            .catch(error => {
+                                console.error(`${image.imageUrl} 이미지 삭제 실패:`, error);
                             });
+                    });
 
-                            // 모든 이미지 삭제를 처리
-                            Promise.all(imageDeletions)
+                    // 모든 이미지 삭제 처리 후, 상품 데이터 삭제 요청
+                    Promise.all(imageDeletions)
+                        .then(() => {
+                            // 2. 상품 데이터 삭제
+                            axios.delete(`${process.env.REACT_APP_API_URL}/clothes/${props.item.clothesId}`)
                                 .then(() => {
                                     alert('상품이 성공적으로 제거되었습니다.');
                                     props.onDelete(props.item.clothesId); // 인터페이스 업데이트
                                 })
                                 .catch(error => {
-                                    console.error('Some images may not have been deleted:', error);
-                                    // alert('Failed to delete some images. Please check the logs.');
+                                    console.error('상품 삭제 실패:', error);
+                                    alert('상품 삭제 실패. 다시 시도해 주세요.');
                                 });
                         })
                         .catch(error => {
-                            console.error('Failed to retrieve image data:', error);
-                            // alert('Failed to retrieve image data. Please try again.');
+                            console.error('일부 이미지 삭제 실패:', error);
                         });
                 })
                 .catch(error => {
-                    console.error('Failed to delete the product:', error);
-                    alert('Failed to delete the product. Please try again.');
+                    console.error('이미지 데이터 가져오기 실패:', error);
+                    alert('이미지 데이터 가져오기 실패. 다시 시도해 주세요.');
                 });
         }
     };
@@ -136,7 +134,7 @@ function ProductList(props) {
     useEffect(() => {
 
         if (!isLoggedIn || !sellerInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return; 
         }
 
         // 카테고리 정보를 가져오기

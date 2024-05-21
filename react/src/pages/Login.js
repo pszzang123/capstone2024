@@ -123,7 +123,7 @@ function Login(props) {
   }, [emailValid, pwValid])
 
 
-  // Enter 키 이벤트 리스너를 설정하는 useEffect를 추가합니다.
+  // Enter 키 이벤트 리스너를 설정
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === 'Enter' && !notAllow) {
@@ -131,21 +131,17 @@ function Login(props) {
       }
     };
 
-    // 'email-input' 요소를 가져오기
     const emailInput = document.getElementById('email-input');
-    // 'password-input' 요소를 가져오기
     const passwordInput = document.getElementById('password-input');
 
-    // 'email-input' 요소가 존재하면 이벤트 리스너를 추가
     if (emailInput) {
       emailInput.addEventListener('keydown', handleKeyPress);
     }
 
-    // 'password-input' 요소가 존재하면 이벤트 리스너를 추가
     if (passwordInput) {
       passwordInput.addEventListener('keydown', handleKeyPress);
     }
-    // 컴포넌트가 언마운트될 때 이벤트 리스너를 정리
+
     return () => {
       if (emailInput) {
         emailInput.removeEventListener('keydown', handleKeyPress);
@@ -206,10 +202,10 @@ function Login(props) {
                   onChange={handleCheckboxChange}
                   label="아이디 저장" />
               </Form.Group>
-              <Button onClick={onClickConfirmButton} disabled={notAllow} variant="primary" className='login-Button'>
+              <Button onClick={onClickConfirmButton} disabled={notAllow} variant="secondary" className='login-Button'>
                 로그인
               </Button>
-              <Button onClick={() => { navigate('/join') }} variant="primary" className='join-Button'>
+              <Button onClick={() => { navigate('/join') }} variant="secondary" className='join-Button'>
                 회원가입
               </Button>
             </Form>

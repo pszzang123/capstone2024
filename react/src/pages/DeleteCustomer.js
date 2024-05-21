@@ -48,7 +48,7 @@ function DeleteCustomer(props) {
     // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
     useEffect(() => {
         if (!isLoggedIn || !userInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return; 
         }
         if (!isLoggedIn) {
             // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션

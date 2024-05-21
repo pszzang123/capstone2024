@@ -23,7 +23,6 @@ function SellerLogin(props) {
 
     let navigate = useNavigate();
 
-    // Redirect if already logged in
     useEffect(() => {
         if (isLoggedIn) {
             navigate('/seller/statisticsanalysis');
@@ -80,8 +79,6 @@ function SellerLogin(props) {
                         localStorage.setItem('sellerEmail', email);
                         localStorage.setItem('sellerRememberMe', 'true');
                     } else {
-                        // localStorage.removeItem('userEmail');
-                        // localStorage.removeItem('rememberMe');
                         localStorage.setItem('sellerEmail', '');
                         localStorage.setItem('sellerRememberMe', 'false');
                     }
@@ -114,7 +111,7 @@ function SellerLogin(props) {
     }, [emailValid, pwValid])
 
 
-    // Enter 키 이벤트 리스너를 설정하는 useEffect를 추가합니다.
+    // Enter 키 이벤트 리스너를 설정
     useEffect(() => {
         const handleKeyPress = (e) => {
             if (e.key === 'Enter' && !notAllow) {
@@ -122,21 +119,17 @@ function SellerLogin(props) {
             }
         };
 
-        // 'email-input' 요소를 가져오기
         const emailInput = document.getElementById('email-input');
-        // 'password-input' 요소를 가져오기
         const passwordInput = document.getElementById('password-input');
 
-        // 'email-input' 요소가 존재하면 이벤트 리스너를 추가
         if (emailInput) {
             emailInput.addEventListener('keydown', handleKeyPress);
         }
 
-        // 'password-input' 요소가 존재하면 이벤트 리스너를 추가
         if (passwordInput) {
             passwordInput.addEventListener('keydown', handleKeyPress);
         }
-        // 컴포넌트가 언마운트될 때 이벤트 리스너를 정리
+
         return () => {
             if (emailInput) {
                 emailInput.removeEventListener('keydown', handleKeyPress);

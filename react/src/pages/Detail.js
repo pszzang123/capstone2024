@@ -9,6 +9,8 @@ import { Dropdown } from 'react-bootstrap';
 import styled from 'styled-components';
 import { FaHeart } from 'react-icons/fa6';
 import Cookies from 'js-cookie';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 const StyledDropdownToggle = styled(Dropdown.Toggle)`
@@ -157,12 +159,12 @@ function Detail(props) {
                 const clothesResponse = await axios.get(`${process.env.REACT_APP_API_URL}/clothes/${clothesId}`);
                 const detailsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/detail/clothes/${clothesId}`);
                 const imagesResponse = await axios.get(`${process.env.REACT_APP_API_URL}/clothes_images/${clothesId}`);
-    
+
                 // 응답 데이터 설정
                 setClothes(clothesResponse.data);
                 setDetails(detailsResponse.data);
                 setImgUrls(imagesResponse.data);
-    
+
                 // 최근 본 상품 정보 업데이트
                 const imgUrl = imagesResponse.data.length > 0 ? imagesResponse.data[0].imageUrl : ''; // 첫 번째 이미지 URL
                 const newItem = { id: clothesId, imageUrl: imgUrl };
@@ -170,18 +172,17 @@ function Detail(props) {
                 if (!items.some(item => item.id === newItem.id)) {
                     items = [...items, newItem];
                     sessionStorage.setItem('watched', JSON.stringify(items));
-                    // 커스텀 이벤트 발생
                     window.dispatchEvent(new CustomEvent('recent-items-updated'));
                 }
-    
+
             } catch (error) {
                 console.log('데이터 로딩 에러:', error);
             }
         };
-    
+
         fetchData();
     }, [clothesId]);
-    
+
 
 
     const handleAddToCart = () => {
@@ -242,7 +243,6 @@ function Detail(props) {
             alert('옵션을 선택해주세요.');
             return;
         }
-        // navigate('/checkout');
 
         // 선택된 상품 옵션과 수량을 Checkout 페이지로 전달
         navigate('/checkout', {
@@ -260,14 +260,13 @@ function Detail(props) {
     };
 
     // 최근 본 상품 기능
-    // useEffect에서 로컬 스토리지를 업데이트하는 로직 추가
     useEffect(() => {
-        let watchedItems = JSON.parse(sessionStorage.getItem('watched') || '[]');  // 'const'를 'let'으로 변경
+        let watchedItems = JSON.parse(sessionStorage.getItem('watched') || '[]'); 
         if (imgUrls.length > 0) {
             const imgUrl = imgUrls.find(item => item.order === 1)?.imageUrl;
             if (imgUrl) {  // imgUrl이 존재하는지 확인
                 const newItem = { id: clothesId, imageUrl: imgUrl };
-    
+
                 // watchedItems 중에 newItem과 동일한 id를 가진 항목이 없을 경우 추가
                 if (!watchedItems.some(item => item.id === newItem.id)) {
                     watchedItems.push(newItem);
@@ -277,20 +276,20 @@ function Detail(props) {
                 }
             }
         }
-    }, [clothesId, imgUrls]);  // clothesId, imgUrls가 변경될 때마다 이 useEffect 실행
-    
+    }, [clothesId, imgUrls]); 
+
     useEffect(() => {
         let t = setTimeout(() => { setFade1('end') }, 300)
         return () => {
             clearTimeout(t)
             setFade1('')
         }
-    }, [])
+    }, [clothesId])
 
     // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
     useEffect(() => {
         if (!isLoggedIn || !userInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return; 
         }
 
         axios.get(`${process.env.REACT_APP_API_URL}/cart/${userInfo.email_id}`)
@@ -330,10 +329,12 @@ function Detail(props) {
                             {
                                 imgUrls.map((img, index) => (
                                     <Carousel.Item interval={null} key={index} style={{ height: '500px' }} >
-                                        <img
+                                        <LazyLoadImage
                                             src={img.imageUrl}
                                             alt={`Slide ${index + 1}`}
+                                            effect="blur"
                                             style={{ width: '100%', height: '500px', objectFit: 'cover' }}
+                                            loading="lazy"
                                         />
                                     </Carousel.Item>
                                 ))
@@ -344,7 +345,7 @@ function Detail(props) {
                         <div className="pt-5" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <div>
                                 <div style={{ fontSize: '20px', fontWeight: '500', marginBottom: '10px', color: '#555' }}>
-                                    {clothes.brandName ? clothes.brandName : '브랜드 로딩 중...'}
+                                    {clothes.companyName ? clothes.companyName : '브랜드 로딩 중...'}
                                 </div>
                                 <div style={{ fontSize: '25px', fontWeight: '700', marginBottom: '15px' }}>
                                     {clothes.name ? clothes.name : '로딩 중...'}
@@ -365,7 +366,7 @@ function Detail(props) {
 
                         <Dropdown onSelect={(eventKey) => {
                             const selectedDetail = details.find(detail => detail.detailId === parseInt(eventKey, 10));
-                            setSelectedDetail(selectedDetail);  // 선택된 상세 정보를 상태로 저장
+                            setSelectedDetail(selectedDetail); 
                             console.log('Selected detail:', selectedDetail);
                         }}>
                             <StyledDropdownToggle variant="outline-secondary" id="dropdown-basic">
@@ -389,7 +390,7 @@ function Detail(props) {
                                             value={quantity}
                                             onChange={e => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
                                             type="text"
-                                            style={{ width: '50px', textAlign: 'center' }} // 너비 조정 필요
+                                            style={{ width: '50px', textAlign: 'center' }} 
                                             onKeyPress={e => {
                                                 if (!/[0-9]/.test(e.key)) {
                                                     e.preventDefault();
@@ -411,7 +412,7 @@ function Detail(props) {
                                     onClick={handleAddToCart}
                                     style={{
                                         width: '100%',
-                                        borderColor: '#000000',  // Bootstrap의 기본 'primary' 색상
+                                        borderColor: '#000000', 
                                         borderWidth: '1px',
                                         borderStyle: 'solid',
                                         color: '#000000',
@@ -460,14 +461,22 @@ function TabContent({ tab, imgUrls, clothesId }) {
         }
     }, [tab])
 
-    // Function to render images vertically
     const renderImages = () => {
         return imgUrls.map((img, index) => (
             <Row>
                 <Col md={{ offset: 2, span: 8 }} xs={12}>
-                    <img key={index} src={img.imageUrl} alt={`Clothes Image ${index + 1}`}
-                        style={{ width: '100%', marginBottom: '10px', display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
-                        loading='lazy' />
+                   <LazyLoadImage
+                        key={index} src={img.imageUrl}
+                        alt={`Clothes Image ${index + 1}`}
+                        effect="blur" 
+                        style={{
+                            width: '100%',
+                            marginBottom: '10px', display: 'block',
+                            marginLeft: 'auto',
+                            marginRight: 'auto'
+                        }}
+                        loading='lazy'
+                    />
                 </Col>
             </Row >
 
@@ -511,7 +520,7 @@ function CommentsSection({ clothesId }) {
 
         axios.post(`${process.env.REACT_APP_API_URL}/comment`, newComment)
             .then(() => {
-                setComments([...comments, newComment]);  // 선택적으로 댓글을 다시 가져올 수도 있습니다
+                setComments([...comments, newComment]);  
                 setCommentText('');
             })
             .catch(error => console.error("댓글 게시 실패", error));

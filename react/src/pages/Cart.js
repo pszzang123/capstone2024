@@ -137,7 +137,7 @@ function CartItem(props) {
                 <Col xs={1} md={{ span: 1, offset: 1 }}>
                     <CustomCheckbox
                         checked={props.isChecked}
-                        onChange={(e) => props.onCheckboxChange(props.item.detailId, !props.isChecked)} // 체크 상태를 토글
+                        onChange={(e) => props.onCheckboxChange(props.item.detailId, !props.isChecked)} 
                     />
                 </Col>
 
@@ -156,7 +156,6 @@ function CartItem(props) {
                         const newQuantity = parseInt(eventKey, 10);
                         axios.put(`${process.env.REACT_APP_API_URL}/cart/${userInfo.email_id}/${props.item.detailId}`, { quantity: newQuantity })
                             .then(result => {
-                                // 장바구니 상태 업데이트
                                 dispatch(updateItemQuantity({ detailId: props.item.detailId, quantity: newQuantity }));
                             })
                             .catch(error => {
@@ -212,7 +211,7 @@ function Cart(props) {
     // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
     useEffect(() => {
         if (!isLoggedIn || !userInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return;
         }
 
         if (!isLoggedIn) {
@@ -230,8 +229,6 @@ function Cart(props) {
         }
     }, [isLoggedIn, userInfo]);
 
-    // 선택된 항목을 Checkout으로 전달하고 이동하는 함수
-    // 선택된 아이템만 필터링하고 데이터 구조 재구성
     const handleCheckout = () => {
         const selectedProductDetails = cartItems
             .filter(item => selectedItems[item.detailId]) // 선택된 아이템만 필터
@@ -251,17 +248,16 @@ function Cart(props) {
             }));
 
         if (selectedProductDetails.length === 0) {
-            alert('선택된 상품이 없습니다'); // Alert if no items are selected
-            return; // Prevent navigation
+            alert('선택된 상품이 없습니다'); 
+            return; 
         }
 
-        // navigate 함수를 사용하여 Checkout 컴포넌트로 데이터 전달
         navigate('/checkout', { state: { items: selectedProductDetails } });
     };
 
 
     const initialSelectedItems = cartItems.reduce((items, item) => {
-        items[item.detailId] = true; // 모든 상품을 선택된 상태(true)로 초기화
+        items[item.detailId] = true; 
         return items;
     }, {});
 
@@ -316,7 +312,7 @@ function Cart(props) {
 
                     <Col md={{ span: 1, offset: 1 }} xs={1} style={{ fontSize: '16px', fontWeight: '700' }}>
                         <CustomCheckbox
-                            checked={Object.values(selectedItems).every(Boolean)} // Check if all items are selected
+                            checked={Object.values(selectedItems).every(Boolean)} 
                             onChange={handleSelectAllChange}
                             className="select-all-checkbox"
                         />
@@ -341,11 +337,6 @@ function Cart(props) {
                         </Col>
                     </Hidden>
                 </Row>
-                {/* <Row>
-                    <Col xs={12} md={{ span: 10, offset: 1 }}>
-                        <div style={{ height: '2px', backgroundColor: '#000000' }}></div>
-                    </Col>
-                </Row> */}
                 <Row>
                     <Col xs={12} md={{ span: 10, offset: 1 }}>
                         <hr style={{ border: 0, height: '2px', background: '#000000' }} />
@@ -359,8 +350,8 @@ function Cart(props) {
                         <CartItem
                             key={item.detailId}
                             item={item}
-                            isChecked={!!selectedItems[item.detailId]} // 선택 상태 결정
-                            onCheckboxChange={handleCheckboxChange} // 체크박스 변경 이벤트 핸들러
+                            isChecked={!!selectedItems[item.detailId]} 
+                            onCheckboxChange={handleCheckboxChange}
                         />
                     ))}
                 </Row>

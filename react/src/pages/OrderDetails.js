@@ -103,7 +103,7 @@ function OrderDetails() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    // 주문 상태 코드를 문자열로 매핑
+    // 주문 상태 코드
     const receiptStatusLabels = {
         0: "상품 준비",
         1: "배송 준비",
@@ -115,7 +115,7 @@ function OrderDetails() {
         7: "반품 완료"
     };
 
-    // 주문 상태 코드를 문자열로 매핑
+    // 주문 상태 코드
     const receiptDetailStatusLabels = {
         0: "상품 준비",
         1: "배송 준비",
@@ -153,9 +153,9 @@ function OrderDetails() {
                             <Col md={4} xs={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <Card.Img src={item.imageUrl || 'default-image.jpg'} alt={item.name}
                                     style={{
-                                        width: "100%", // 이미지의 너비를 카드에 맞춤
-                                        height: "200px", // 고정된 높이 설정
-                                        objectFit: "cover" // 이미지가 비율을 유지하며 지정된 영역을 채우도록 함
+                                        width: "100%", 
+                                        height: "200px", 
+                                        objectFit: "cover" 
                                     }} />
                             </Col>
                             <Col md={6} xs={12}>

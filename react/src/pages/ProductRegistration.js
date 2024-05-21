@@ -189,7 +189,7 @@ function ProductRegistration() {
                 sellerEmail: sellerInfo.email_id
             });
 
-            console.log('Category Response:', categoryResponse.data);
+            console.log('Category :', categoryResponse.data);
 
             // 상품의 category 등록에 성공한 후, 각 detail 등록
             for (let detail of productDetails) {

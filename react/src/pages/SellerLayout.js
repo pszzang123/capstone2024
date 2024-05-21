@@ -93,7 +93,6 @@ function SellerLayout(props) {
                         </Navbar.Brand>
                     </Navbar>
 
-                    {/* <Container fluid style={{ paddingLeft: '0', paddingRight: '0' }}> */}
                     <Container style={{ maxWidth: '100%', paddingLeft: '0px', paddingRight: '15px' }}>
                         <Row>
                             <Col xs={isOpen ? 12 : 0} md={isOpen ? 2 : 0} className="sidebar" style={{ paddingTop: '56px', backgroundColor: '#343A40' }}>

@@ -23,7 +23,6 @@ function SellerJoin(props) {
 
 
   let [emailValid, setEmailValid] = useState(true);
-  // let [emailDupCheck, setEmailDupCheck] = useState(null);
   let [pwValid, setPwValid] = useState(false);
   let [pwConfirmValid, setPwConfirmValid] = useState(false);
   let [notAllow, setNotAllow] = useState(true);
@@ -48,7 +47,6 @@ function SellerJoin(props) {
 
     setZoneCode(data.zonecode);
     setAddress(fullAddress);
-    // setFullAddress(data.jibunAddress); // 또는 roadAddress 등 필요에 따라 선택
     setShowPostcode(false);
   };
 
@@ -288,7 +286,6 @@ function SellerJoin(props) {
                   {
                     email.length == 0 ? null :
                       (!emailValid ? <div>이메일을 올바르게 입력해주세요.</div> :
-                        //   emailDupCheck ? <div>사용 중인 이메일입니다.</div> :
                         <div style={{ color: 'green' }}>사용 가능한 이메일입니다.</div>)
                   }
                 </Form.Text>
@@ -331,7 +328,6 @@ function SellerJoin(props) {
               </Form.Group>
 
               <Button onClick={onClickConfirmButton} disabled={notAllow} variant="secondary" className='login-Button' style={{ marginBottom: '10px' }}>
-                {/* type="submit"  */}
                 가입하기
               </Button>
             </Form>

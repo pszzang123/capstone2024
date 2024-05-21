@@ -63,7 +63,7 @@ function UserLayout(props) {
         };
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Call it initially to set the right logo
+        handleResize(); 
 
         return () => {
             window.removeEventListener('resize', handleResize);
@@ -72,7 +72,7 @@ function UserLayout(props) {
 
     let handleSearch = (e) => {
         e.preventDefault();
-        const searchQuery = e.target.elements.search.value; // Assuming the input field's name is 'search'
+        const searchQuery = e.target.elements.search.value;
         if (searchQuery.trim()) {
             navigate(`/search/${searchQuery}`);
         }
@@ -81,7 +81,7 @@ function UserLayout(props) {
     // 장바구니 데이터 불러오기 (장바구니 개수)
     useEffect(() => {
         if (!isLoggedIn || !userInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return;
         }
 
         axios.get(`${process.env.REACT_APP_API_URL}/cart/${userInfo.email_id}`)
@@ -113,7 +113,7 @@ function UserLayout(props) {
                                     placeholder="검색어를 입력하세요"
                                     className="search-input me-2"
                                     aria-label="Search"
-                                    name="search"  // Name attribute to easily retrieve the input value
+                                    name="search" 
                                 />
 
                                 <Button type="submit" typevariant="outline-success" className="search-button">

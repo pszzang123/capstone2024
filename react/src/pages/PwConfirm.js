@@ -42,7 +42,7 @@ function PwConfirm(props) {
     // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
     useEffect(() => {
         if (!isLoggedIn || !userInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return; 
         }
         if (!isLoggedIn) {
             // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
@@ -54,7 +54,7 @@ function PwConfirm(props) {
     useEffect(() => {
         const handleEnterPress = (event) => {
             if (event.key === 'Enter') {
-                event.preventDefault(); // 폼 제출 기본 이벤트 방지
+                event.preventDefault(); 
                 onClickPwConfirm();
             }
         };
@@ -91,7 +91,6 @@ function PwConfirm(props) {
                             </Form.Group>
 
                             <Button onClick={onClickPwConfirm} variant="secondary" className='login-Button'>
-                                {/* type="submit"  */}
                                 비밀번호 확인
                             </Button>
                         </Form>

@@ -8,7 +8,7 @@ import CardItem from "./CardItem.js";
 import "firebase/firestore";
 import { useParams } from 'react-router-dom';
 
-// Categories Data
+// 카테고리 데이터
 const categoriesData = {
   male: [
     { id: 1, name: "아우터" },
@@ -50,6 +50,7 @@ const categoriesData = {
   ]
 };
 
+// 카테고리 상세 데이터
 const categoriesDetailData = [
   {
     "subCategoryId": 1,
@@ -441,62 +442,61 @@ const categoriesDetailData = [
 
 function ItemList(props) {
 
-  const { gender, major, minor } = useParams(); // useParams를 사용하여 라우트 파라미터 가져오기
+  const { gender, major, minor } = useParams();
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // 로딩 상태 추가
-  const [error, setError] = useState(null); // 오류 상태 추가
-  const [sortOrder, setSortOrder] = useState('인기상품순'); // 정렬 상태 초기화
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [sortOrder, setSortOrder] = useState('인기상품순');
   const navigate = useNavigate();
 
-    // fade 애니메이션
-    let [fade1, setFade1] = useState('');
+  // fade 애니메이션
+  let [fade1, setFade1] = useState('');
 
-    useEffect(() => {
-      let t = setTimeout(() => { setFade1('end') }, 500)
-      return () => {
-          clearTimeout(t)
-          setFade1('')
-      }
+  useEffect(() => {
+    let t = setTimeout(() => { setFade1('end') }, 500)
+    return () => {
+      clearTimeout(t)
+      setFade1('')
+    }
   }, [gender, major, minor])
 
-    useEffect(() => {
+  useEffect(() => {
     const validateCategory = async () => {
       if (!categoriesData[gender]) {
         console.error("Invalid gender specified.");
-        navigate('/'); // 유효하지 않은 gender 값에 대해 메인 페이지로 리디렉션
+        navigate('/'); 
         return;
       }
 
       if (major && !categoriesData[gender].some(cat => cat.id === parseInt(major))) {
         console.error("Invalid major category ID");
-        navigate('/'); // 유효하지 않은 major 카테고리 ID에 대해 메인 페이지로 리디렉션
+        navigate('/'); 
         return;
       }
-  
+
       if (minor && !categoriesDetailData.some(subcat => subcat.subCategoryId === parseInt(minor))) {
         console.error("Invalid minor category ID");
-        navigate('/'); // 유효하지 않은 minor 카테고리 ID에 대해 메인 페이지로 리디렉션
+        navigate('/');
         return;
       }
-  
+
       fetchProducts(gender, major, minor);
     };
-  
+
     validateCategory();
   }, [gender, major, minor, navigate]);
 
-  
+
   function generateCategoryLinks() {
     if (!categoriesData[gender]) {
-      // 유효하지 않은 gender 값인 경우
       console.error("Invalid gender specified.");
-      return null; // 또는 사용자에게 유효하지 않은 경로임을 알리는 UI 요소를 반환할 수 있습니다.
+      return null;
     }
-  
+
     if (minor || major) {
       const majorId = major ? parseInt(major) : categoriesDetailData.find(item => item.subCategoryId === parseInt(minor)).majorCategoryId;
       const filteredMinors = categoriesDetailData.filter(item => item.majorCategoryId === majorId);
-  
+
       return filteredMinors.map(subcat => (
         <Nav.Link key={subcat.subCategoryId} onClick={() => navigate(`/itemlist/${gender}/${major}/${subcat.subCategoryId}`)}>{subcat.name}</Nav.Link>
       ));
@@ -506,12 +506,12 @@ function ItemList(props) {
       ));
     }
   }
-  
+
 
   const categoryLinks = generateCategoryLinks();
   async function fetchProducts(gender, major, minor) {
-    setLoading(true); // 데이터 로딩 시작
-    setError(null); // 오류 초기화
+    setLoading(true); 
+    setError(null); 
     let url = `${process.env.REACT_APP_API_URL}/clothes`;
 
     let params = new URLSearchParams();
@@ -524,7 +524,7 @@ function ItemList(props) {
 
 
     if (major) {
-      params.set('major_category', major); // major 값이 지정된 경우 오버라이드
+      params.set('major_category', major); 
     }
     if (minor) {
       params.append('sub_category', minor);
@@ -536,8 +536,8 @@ function ItemList(props) {
       .then((response1) => {
         axios.put(`${process.env.REACT_APP_API_URL}/clothes/sort/1`, response1.data)
           .then((response2) => {
-            setProducts(response2.data || []); // response2.data가 null일 경우 빈 배열로 설정
-            setLoading(false); // 데이터 로딩 완료
+            setProducts(response2.data || []); 
+            setLoading(false); 
           })
           .catch((error) => {
             console.error('상품 정렬 실패:', error);
@@ -579,10 +579,9 @@ function ItemList(props) {
 
   const sortProducts = async (sortKey, sortText) => {
     try {
-      // 서버에 PUT 요청을 보내 데이터 정렬 요청
       const response = await axios.put(`${process.env.REACT_APP_API_URL}/clothes/sort/${sortKey}`, products);
       console.log("정렬 상품:", response.data);
-      setProducts(response.data || []); // response.data가 null일 경우 빈 배열로 설정
+      setProducts(response.data || []); 
       setSortOrder(sortText);
     } catch (error) {
       console.error('상품 정렬 실패:', error);
@@ -659,7 +658,7 @@ function ItemList(props) {
               <Dropdown.Toggle
                 variant="success"
                 id="dropdown-basic"
-                className="bg-transparent border-0 text-dark btn-sm" // 배경, 테두리 없애고 글씨는 검은색으로, 작은 크기
+                className="bg-transparent border-0 text-dark btn-sm" 
               >{sortOrder}
               </Dropdown.Toggle>
               <Dropdown.Menu align="end">

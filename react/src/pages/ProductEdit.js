@@ -34,7 +34,7 @@ function ProductEdit(props) {
 
     let { editId } = useParams();
 
-    // 접근제한 놓기
+    // 접근제한
     // 등록한 사람이 아니면 접근못함 + 로그인한 사람만
 
     let navigate = useNavigate();
@@ -89,7 +89,7 @@ function ProductEdit(props) {
 
             if (sellerInfo.email_id !== fetchedCategory.sellerEmail) {
                 alert('이 상품의 등록자만 접근할 수 있습니다.');
-                navigate('/seller'); // 혹은 적절한 에러 페이지로 리다이렉션
+                navigate('/seller');
             }
         })
         .catch(error => {
@@ -180,12 +180,6 @@ function ProductEdit(props) {
         }));
     };
 
-    // const handleProductDetailChange = (e, index) => {
-    //     const { name, value } = e.target;
-    //     const list = [...productDetails];
-    //     list[index][name] = value;
-    //     setProductDetails(list);
-    // };
     const handleProductDetailChange = (e, index) => {
         const { name, value } = e.target;
         const list = [...productDetails];
@@ -204,7 +198,7 @@ function ProductEdit(props) {
                 console.log("데이터베이스에서 제거 완료.");
                 alert('옵션 제거 완료');
             } catch (error) {
-                console.error("Error removing detail: ", error);
+                console.error("옵션 제거 실패: ", error);
             }
         }
         const list = [...productDetails];
@@ -336,11 +330,6 @@ function ProductEdit(props) {
             console.error("Error removing image: ", error);
         }
     };
-
-    // dd
-
-
-
 
     return (
 

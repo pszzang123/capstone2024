@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import { Hidden } from 'react-grid-system';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -71,7 +71,7 @@ function Checkout(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const { items } = location.state || { items: [] }; // 상세 페이지에서 넘겨받은 상품 정보
+    const { items } = location.state || { items: [] }; 
 
 
     const { userInfo, isLoggedIn } = useSelector(state => state.user);
@@ -86,7 +86,7 @@ function Checkout(props) {
     const handleSubmit = () => {
         axios.post(`${process.env.REACT_APP_API_URL}/receipt`, {
             customerEmail: userInfo.email_id,
-            status: 0  // '0'이 '생성 중' 상태를 의미
+            status: 0 
         })
             .then(response1 => {
                 const receiptId = response1.data.receiptId;
@@ -100,9 +100,8 @@ function Checkout(props) {
                     })
                         .then(response2 => {
                             console.log(`영수증 세부정보 생성 완료: ${response2.data.detailId}`);
-                            // 여기서 root 속성 체크
                             if (item.root === 'cart') {
-                                removeItemFromCart(userInfo.email_id, item.detailId);  // 구매한 상품을 장바구니에서 삭제
+                                removeItemFromCart(userInfo.email_id, item.detailId); 
                             }
                         })
                         .catch(error => {
@@ -110,7 +109,6 @@ function Checkout(props) {
                         });
                 });
 
-                // 네비게이션 이동 및 주문 정보 전달
                 navigate('/ordercomplete', {
                     state: {
                         address: address,
@@ -144,7 +142,7 @@ function Checkout(props) {
     // 비밀번호 확인을 하지 않은 상태라면 비밀번호 확인 페이지로 리디렉션
     useEffect(() => {
         if (!isLoggedIn || !userInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return; 
         }
         if (!isLoggedIn) {
             alert('로그인 후 이용해주세요.')

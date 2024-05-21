@@ -25,7 +25,7 @@ function Comments() {
                     const productDetailsRequests = comments.map(comment =>
                         axios.get(`${process.env.REACT_APP_API_URL}/clothes/${comment.clothesId}`)
                             .then(response => ({ ...comment, productName: response.data.name }))
-                            .catch(error => ({ ...comment, productName: 'Unknown' })) // Handle error gracefully
+                            .catch(error => ({ ...comment, productName: 'Unknown' }))
                     );
                     Promise.all(productDetailsRequests)
                         .then(commentsWithProducts => setComments(commentsWithProducts));

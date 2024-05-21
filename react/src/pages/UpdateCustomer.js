@@ -48,7 +48,6 @@ function UpdateCustomer(props) {
         setZoneCode(data.zonecode);
         setAddress(fullAddress);
         setDetailAddress('');
-        // setFullAddress(data.jibunAddress); // 또는 roadAddress 등 필요에 따라 선택
         setShowPostcode(false);
     };
 
@@ -124,23 +123,10 @@ function UpdateCustomer(props) {
             })
     }
 
-    // // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
-    // useEffect(() => {
-    //     if (!isLoggedIn || !userInfo) {
-    //         return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
-    //     }
-    //     if (!isLoggedIn) {
-    //         // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
-    //         alert('로그인 후 이용해주세요.')
-    //         navigate('/login');
-    //     }
-    // }, [isLoggedIn, userInfo]);
-
-
     // 비밀번호 확인을 하지 않은 상태라면 비밀번호 확인 페이지로 리디렉션
     useEffect(() => {
         if (!isLoggedIn || !userInfo) {
-            return; // 로그인 상태나 sellerInfo가 유효하지 않은 경우 early return을 사용
+            return; 
         }
         if (!isLoggedIn) {
             // 로그인하지 않은 상태라면 로그인 페이지로 리디렉션
@@ -230,19 +216,6 @@ function UpdateCustomer(props) {
                                         className='login-Input' />
                                 </div>
                             </Form.Group>
-                            {/* 
-                <Form.Group className="mb-3 text-start" controlId="formBasicAddress">
-                    <Form.Label className='login-InputTitle'>주소</Form.Label>
-                    <div className='login-InputWrap'>
-                        <Form.Control
-                            value={address}
-                            onChange={handleAddress}
-                            type="text"
-                            placeholder="주소를 입력하세요."
-                            className='login-Input' />
-                    </div>
-                </Form.Group> */}
-
 
                             <Form.Group className="mb-3 text-start" controlId="formBasicZoneCode">
                                 <Form.Label className='login-InputTitle'>주소</Form.Label>
@@ -336,34 +309,7 @@ function UpdateCustomer(props) {
                                         placeholder="0000"
                                         className='login-InputPhone' />
                                 </div>
-                                {/* <div className='login-InputWrap' style={{ display: 'flex', gap: '10px' }}>
-          <Form.Control
-            id="phone1"
-            value={phone1}
-            onChange={handlePhone1Change}
-            type="tel"
-            maxLength="3"
-            placeholder="000"
-            className='login-Input' style={{ width: '60px' }} />
-          <Form.Control
-            id="phone2"
-            value={phone2}
-            onChange={handlePhone2Change}
-            type="tel"
-            maxLength="4"
-            placeholder="0000"
-            className='login-Input' style={{ width: '80px' }} />
-          <Form.Control
-            id="phone3"
-            value={phone3}
-            onChange={handlePhone3Change}
-            type="tel"
-            maxLength="4"
-            placeholder="0000"
-            className='login-Input' style={{ width: '80px' }} />
-        </div> */}
                             </Form.Group>
-
 
                             <Form.Group className="mb-3 text-start" controlId="formBasicPassword">
                                 <Form.Label className='login-InputTitle'>비밀번호</Form.Label>
@@ -400,7 +346,6 @@ function UpdateCustomer(props) {
                             </Form.Group>
 
                             <Button onClick={onClickConfirmButton} disabled={notAllow} variant="primary" className='login-Button' style={{ marginBottom: '10px' }}>
-                                {/* type="submit"  */}
                                 회원정보수정
                             </Button>
                         </Form>

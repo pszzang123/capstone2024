@@ -16,14 +16,14 @@ const OrderManagement = () => {
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/clothes/seller/${sellerInfo.email_id}`)
             .then(response => setProducts(response.data))
-            .catch(error => console.error('Error fetching products', error));
+            .catch(error => console.error('상품 불러오기 에러', error));
 
         axios.get(`${process.env.REACT_APP_API_URL}/major_category`)
             .then(response => {
                 setMajorCategories(response.data);
             })
             .catch(error => {
-                console.error('Major categories fetching error:', error);
+                console.error('Major categories 가져오기 에러:', error);
             });
 
         axios.get(`${process.env.REACT_APP_API_URL}/sub_category`)
@@ -31,7 +31,7 @@ const OrderManagement = () => {
                 setSubCategories(response.data);
             })
             .catch(error => {
-                console.error('Sub categories fetching error:', error);
+                console.error('Sub categories 가져오기 에러:', error);
             });
     }, []);
 
@@ -50,23 +50,33 @@ const OrderManagement = () => {
         setShowModal(true);
         axios.get(`${process.env.REACT_APP_API_URL}/receipt_detail/clothes/${product.clothesId}`)
             .then(response => setSales(response.data))
-            .catch(error => console.error('Error fetching sales data', error));
+            .catch(error => console.error('주문 데이터 가져오기 실패', error));
     };
 
     const handleStatusChange = (receiptDetailId, newStatus) => {
         axios.put(`${process.env.REACT_APP_API_URL}/receipt_detail/${receiptDetailId}/${newStatus}`)
             .then(() => {
-                alert('Order status updated successfully');
-                // Optionally refresh the sales data or update state locally
+                alert('주문 상태가 성공적으로 변경되었습니다.');
+                // 상태가 변경된 후 sales 상태도 업데이트합니다.
+                const updatedSales = sales.map(sale => {
+                    if (sale.receiptDetailId === receiptDetailId) {
+                        return { ...sale, status: newStatus }; // 상태 변경
+                    }
+                    return sale;
+                });
+                setSales(updatedSales); // 업데이트된 sales 배열로 상태를 설정
             })
-            .catch(error => console.error('Error updating order status', error));
+            .catch(error => {
+                console.error('주문 상태 변경 실패', error);
+            });
     };
 
+    
     const closeModal = () => {
         setShowModal(false);
     };
 
-    // 주문 상태 코드를 문자열로 매핑
+    // 주문 상태 코드
     const receiptDetailStatusLabels = {
         0: "상품 준비",
         1: "배송 준비",
@@ -135,9 +145,7 @@ const OrderManagement = () => {
                                         <td style={{ textAlign: 'center' }}>{sale.quantity}</td>
                                         <td style={{ whiteSpace: 'nowrap' }}>{sale.price.toLocaleString()}원</td>
                                         <td>{receiptDetailStatusLabels[sale.status]}</td>        
-                                        {/* status로 변경하기. */}
                                         <td>
-                                            {/* <Button onClick={() => handleStatusChange(sale.receiptId, 3)}>Set Delivered</Button> */}
                                             <Dropdown>
                                                 <Dropdown.Toggle variant="Secondary" id="dropdown-basic">
                                                     상태 변경

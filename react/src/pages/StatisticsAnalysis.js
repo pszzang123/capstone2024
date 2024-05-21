@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Col, Container, Row } from "react-bootstrap";
-import './StatisticsAnalysis.css'; // 스타일시트
+import './StatisticsAnalysis.css'; 
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -24,7 +24,7 @@ function StatisticsAnalysis() {
                 setProducts(response.data);
                 setSelectedProduct(response.data.length > 0 ? response.data[0].clothesId : null);
             } catch (error) {
-                console.error('Error fetching products', error);
+                console.error('상품 가져오기 실패', error);
             }
             setLoading(false);
         }
@@ -39,7 +39,7 @@ function StatisticsAnalysis() {
                     const response = await axios.get(`${process.env.REACT_APP_API_URL}/clothes/statistics/${selectedProduct}`);
                     setStatistics(response.data);
                 } catch (error) {
-                    console.error('Error fetching statistics', error);
+                    console.error('통계 가져오기 실패', error);
                 }
                 setLoading(false);
             }
