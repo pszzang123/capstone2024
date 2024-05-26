@@ -1,0 +1,16 @@
+io.flutter.plugins.firebase.functions.cloud_functions-jetified-annotation-experimental-1.1.0-0 C:\Users\re-ac\.gradle\caches\transforms-3\308a0857d9511b986a0a28ab79a43195\transformed\jetified-annotation-experimental-1.1.0\res
+io.flutter.plugins.firebase.functions.cloud_functions-jetified-window-java-1.0.0-beta04-1 C:\Users\re-ac\.gradle\caches\transforms-3\51f2918890fffa8ac42351fd708db86a\transformed\jetified-window-java-1.0.0-beta04\res
+io.flutter.plugins.firebase.functions.cloud_functions-jetified-window-1.0.0-beta04-2 C:\Users\re-ac\.gradle\caches\transforms-3\5a3ba33da1e4eacc760d15398561baf7\transformed\jetified-window-1.0.0-beta04\res
+io.flutter.plugins.firebase.functions.cloud_functions-jetified-firebase-common-20.4.3-3 C:\Users\re-ac\.gradle\caches\transforms-3\5fc8e3dbceef312ffda86d3f10588d10\transformed\jetified-firebase-common-20.4.3\res
+io.flutter.plugins.firebase.functions.cloud_functions-jetified-play-services-basement-18.3.0-4 C:\Users\re-ac\.gradle\caches\transforms-3\8bc7c5a37fbf541f970f3fc939898587\transformed\jetified-play-services-basement-18.3.0\res
+io.flutter.plugins.firebase.functions.cloud_functions-jetified-play-services-base-18.1.0-5 C:\Users\re-ac\.gradle\caches\transforms-3\9025000920826fff1a281477069f7396\transformed\jetified-play-services-base-18.1.0\res
+io.flutter.plugins.firebase.functions.cloud_functions-core-1.6.0-6 C:\Users\re-ac\.gradle\caches\transforms-3\cf73cc8a4ba953430926b62a90018a2f\transformed\core-1.6.0\res
+io.flutter.plugins.firebase.functions.cloud_functions-main-7 C:\Users\re-ac\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_functions-4.7.2\android\src\main\res
+io.flutter.plugins.firebase.functions.cloud_functions-release-8 C:\Users\re-ac\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_functions-4.7.2\android\src\release\res
+io.flutter.plugins.firebase.functions.cloud_functions-pngs-9 C:\Users\re-ac\Desktop\flutter6\build\cloud_functions\generated\res\pngs\release
+io.flutter.plugins.firebase.functions.cloud_functions-resValues-10 C:\Users\re-ac\Desktop\flutter6\build\cloud_functions\generated\res\resValues\release
+io.flutter.plugins.firebase.functions.cloud_functions-rs-11 C:\Users\re-ac\Desktop\flutter6\build\cloud_functions\generated\res\rs\release
+io.flutter.plugins.firebase.functions.cloud_functions-mergeReleaseResources-12 C:\Users\re-ac\Desktop\flutter6\build\cloud_functions\intermediates\incremental\release\mergeReleaseResources\merged.dir
+io.flutter.plugins.firebase.functions.cloud_functions-mergeReleaseResources-13 C:\Users\re-ac\Desktop\flutter6\build\cloud_functions\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+io.flutter.plugins.firebase.functions.cloud_functions-merged_res-14 C:\Users\re-ac\Desktop\flutter6\build\cloud_functions\intermediates\merged_res\release
+io.flutter.plugins.firebase.functions.cloud_functions-packaged_res-15 C:\Users\re-ac\Desktop\flutter6\build\firebase_core\intermediates\packaged_res\release

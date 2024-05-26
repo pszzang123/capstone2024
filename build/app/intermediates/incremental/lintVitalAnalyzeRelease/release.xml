@@ -1,0 +1,40 @@
+<variant
+    name="release"
+    package="com.example.capstone"
+    minSdkVersion="21"
+    targetSdkVersion="34"
+    shrinking="true"
+    mergedManifest="C:\Users\re-ac\Desktop\flutter6\build\app\intermediates\merged_manifest\release\AndroidManifest.xml"
+    proguardFiles="C:\Users\re-ac\Desktop\flutter6\build\app\intermediates\default_proguard_files\global\proguard-android.txt-7.3.0;C:\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
+    partialResultsDir="C:\Users\re-ac\Desktop\flutter6\build\app\intermediates\lint_vital_partial_results\release\out"
+    desugaredMethodsFiles="C:\Users\re-ac\.gradle\caches\transforms-3\a7d2fa21bcc13fabeda1ae4b50cf433a\transformed\D8BackportedDesugaredMethods.txt">
+  <buildFeatures
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifest="src\main\AndroidManifest.xml"
+        javaDirectories="src\main\java;src\main\kotlin"
+        resDirectories="src\main\res"
+        assetsDirectories="src\main\assets"/>
+    <sourceProvider
+        manifest="src\release\AndroidManifest.xml"
+        javaDirectories="src\release\java;src\release\kotlin"
+        resDirectories="src\release\res"
+        assetsDirectories="src\release\assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <testFixturesSourceProviders>
+  </testFixturesSourceProviders>
+  <manifestPlaceholders>
+    <placeholder
+        name="applicationName"
+        value="android.app.Application" />
+  </manifestPlaceholders>
+  <mainArtifact
+      classOutputs="C:\Users\re-ac\Desktop\flutter6\build\app\intermediates\javac\release\classes;C:\Users\re-ac\Desktop\flutter6\build\app\tmp\kotlin-classes\release;C:\Users\re-ac\Desktop\flutter6\build\app\kotlinToolingMetadata;C:\Users\re-ac\Desktop\flutter6\build\app\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\R.jar"
+      applicationId="com.example.capstone"
+      generatedSourceFolders="C:\Users\re-ac\Desktop\flutter6\build\app\generated\ap_generated_sources\release\out;C:\Users\re-ac\Desktop\flutter6\build\app\generated\aidl_source_output_dir\release\out;C:\Users\re-ac\Desktop\flutter6\build\app\generated\source\buildConfig\release;C:\Users\re-ac\Desktop\flutter6\build\app\generated\renderscript_source_output_dir\release\out"
+      generatedResourceFolders="C:\Users\re-ac\Desktop\flutter6\build\app\generated\res\rs\release;C:\Users\re-ac\Desktop\flutter6\build\app\generated\res\resValues\release">
+  </mainArtifact>
+</variant>
