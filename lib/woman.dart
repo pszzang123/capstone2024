@@ -255,7 +255,7 @@ class _HomeState extends State<Home> {
 
   Future<void> getWomanRankingItems() async {
     var data = await http.get(
-        Uri.parse('http://3.25.202.52:8080/api/clothes?gender=${gender}&major_category=1&sub_category=4'));
+        Uri.parse('http://3.25.202.52:8080/api/clothes?gender=${gender}&major_category=1&sub_category=2'));
     // widget.item = 전달받은 clothes id값. id값을 통해 data get.
 
 
@@ -367,7 +367,7 @@ class _HomeState extends State<Home> {
 
   Future<void> getWomanPantsItems() async {
     var data = await http.get(
-        Uri.parse('http://3.25.202.52:8080/api/clothes?gender=${gender}&major_category=3&sub_category=10'));
+        Uri.parse('http://3.25.202.52:8080/api/clothes?gender=${gender}&major_category=3&sub_category=16'));
     // widget.item = 전달받은 clothes id값. id값을 통해 data get.
 
 
@@ -463,952 +463,953 @@ class _HomeState extends State<Home> {
     return isLoading
         ? Center(child: CircularProgressIndicator())
         : ListView.builder(
-            itemCount: 1,
-            controller: scroll,
-            itemBuilder: (c, i) {
-              return Column(
-                children: [
-                  SizedBox(height: 50),
-                  Center(
-                    child: Text(
-                      "WOMAN",
-                      style: TextStyle(
-                        fontSize: 24.0, // 원하는 크기로 조정
-                        fontWeight: FontWeight.bold, // 굵은 글꼴
-                      ),
-                    ),
+        itemCount: 1,
+        controller: scroll,
+        itemBuilder: (c, i) {
+          return Column(
+            children: [
+              SizedBox(height: 50),
+              Center(
+                child: Text(
+                  "WOMAN",
+                  style: TextStyle(
+                    fontSize: 24.0, // 원하는 크기로 조정
+                    fontWeight: FontWeight.bold, // 굵은 글꼴
                   ),
+                ),
+              ),
 
-                  SizedBox(height: 50),
-                  SizedBox(
-                      height: 400,
-                      child: Stack(
-                        children: [
-                          sliderWidget(),
-                          sliderIndicator(),
-                        ],
-                      )),
-                  SizedBox(height: 50),
-                  SizedBox(
-                    height: (MediaQuery.of(context).size.width / 5)*3+100,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('all clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 0),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/all.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('전체 상품'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('outer clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 1),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/outer.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('아우터'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('jacket clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 4),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/jacket.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('자켓'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('knit clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 6),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/knit.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('니트'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('onePiece clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 12),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/onePiece.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('원피스'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16), // 간격 조절
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('shirts clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 5),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/shirts.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('셔츠'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('tShirts clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 7),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/tShirts.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('티셔츠'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('pants clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 3),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/pants.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('바지'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('skirt clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 13),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/skirt.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('치마'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('underWear clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 9),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                    FadeTransition(
-                                                        opacity: a1,
-                                                        child: child),
-                                            transitionDuration:
-                                                Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/underWear.jpg',
-                                        width:
-                                            MediaQuery.of(context).size.width / 5,
-                                        height:
-                                            MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('언더웨어'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 16), // 간격 조절
-
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('beachWear clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 15),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/womanBeachWear.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('비치웨어'),
-                                ],
-                              ),
-                            ),
-
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('accessory clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 8),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/womanAccessory.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('패션잡화'),
-                                ],
-                              ),
-                            ),
-
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('jewerlyAndWatch clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 10),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/womanJewerlyWatch.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('쥬얼리/시계'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('woman shoes clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 22),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/womanShoes.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('신발'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('kids outer clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 16),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/kidsOuter.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('키즈아우터'),
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('knit clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 20),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/knit.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('키즈니트'),
-                                ],
-                              ),
-                            ),
-
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('kids pants clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 21),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/pants.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('키즈팬츠'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('kids Tshirts clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 17),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/kidsTShirts.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('여아티셔츠'),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
-                                      print('WShirts clicked!');
-                                      Navigator.push(
-                                          context,
-                                          PageRouteBuilder(
-                                            pageBuilder: (context, a1, a2) =>
-                                                category(gender : gender, majorCategory: 19),
-                                            transitionsBuilder:
-                                                (context, a1, a2, child) =>
-                                                FadeTransition(
-                                                    opacity: a1,
-                                                    child: child),
-                                            transitionDuration:
-                                            Duration(milliseconds: 500),
-                                          ));
-                                    },
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image.asset(
-                                        'assets/girlKid.jpg',
-                                        width:
-                                        MediaQuery.of(context).size.width / 5,
-                                        height:
-                                        MediaQuery.of(context).size.width / 5,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Text('여아셔츠'),
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 50),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text('랭킹',
-                        style:
-                            TextStyle(fontSize: fontSize1(context).toDouble())),
-                  ),
-
-                  
-                  SizedBox(
-                    child: Row(
+              SizedBox(height: 50),
+              SizedBox(
+                  height: 400,
+                  child: Stack(
+                    children: [
+                      sliderWidget(),
+                      sliderIndicator(),
+                    ],
+                  )),
+              SizedBox(height: 50),
+              SizedBox(
+                child: Column(
+                  children: [
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  changeCategoryIndex(0);
-                                });
-                              },
-                              child: Text('전체', style: TextStyle(fontSize: 10),)),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('all clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 0),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/all.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('전체 상품'),
+                            ],
+                          ),
                         ),
                         Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  changeCategoryIndex(1);
-                                });
-                              },
-                              child: Text('아우터', style: TextStyle(fontSize: 10),)),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('outer clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 1),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/outer.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('아우터'),
+                            ],
+                          ),
                         ),
                         Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  changeCategoryIndex(2);
-                                });
-                              },
-                              child: Text('재킷', style: TextStyle(fontSize: 10),)),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('jacket clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 4),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/jacket.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('자켓'),
+                            ],
+                          ),
                         ),
                         Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  changeCategoryIndex(3);
-                                });
-                              },
-                              child: Text('니트', style: TextStyle(fontSize: 10),)),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('knit clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 6),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/knit.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('니트'),
+                            ],
+                          ),
                         ),
                         Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  changeCategoryIndex(4);
-                                });
-                              },
-                              child: Text('티셔츠', style: TextStyle(fontSize: 10),)),
-                        ),
-                        Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  changeCategoryIndex(5);
-                                });
-                              },
-                              child: Text('셔츠', style: TextStyle(fontSize: 10),)),
-                        ),
-                        Expanded(
-                          child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  changeCategoryIndex(6);
-                                });
-                              },
-                              child: Text('팬츠', style: TextStyle(fontSize: 10),)),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('onePiece clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 12),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/onePiece.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('원피스'),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(height: 50),
-                  SizedBox(
-                    height: 350,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    SizedBox(height: 16), // 간격 조절
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder: (context, a1, a2) => productDetail(item:womanRankingImageList[0].getClothesId),
-                                      transitionsBuilder: (context, a1, a2, child) =>
-                                          FadeTransition(opacity: a1, child: child),
-                                      transitionDuration: Duration(milliseconds: 100),
-                                    )
-                                );
-                              },
-                              child: SizedBox(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      child: Text(
-                                        '1',
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image(
-                                        image: NetworkImage(
-                                            womanRankingImageList[0].getImageUrl),
-                                        width:
-                                            MediaQuery.of(context).size.width / 3,
-                                        height: MediaQuery.of(context).size.width / 3,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ],
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('shirts clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 5),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/shirts.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder: (context, a1, a2) => productDetail(item:womanRankingImageList[1].getClothesId),
-                                      transitionsBuilder: (context, a1, a2, child) =>
-                                          FadeTransition(opacity: a1, child: child),
-                                      transitionDuration: Duration(milliseconds: 100),
-                                    )
-                                );
-                              },
-                              child: SizedBox(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      child: Text(
-                                        '2',
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      child: Image(
-                                        image: NetworkImage(
-                                            womanRankingImageList[1].getImageUrl),
-                                        width:
-                                            MediaQuery.of(context).size.width / 3,
-                                        height: MediaQuery.of(context).size.width / 3,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ],
+                              Text('셔츠'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('tShirts clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 7),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/tShirts.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
-                            ),
+                              Text('티셔츠'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('pants clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 3),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/pants.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('바지'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('skirt clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 13),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/skirt.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('치마'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('underWear clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 9),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/underWear.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('언더웨어'),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16), // 간격 조절
 
-                          ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('beachWear clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 15),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/womanBeachWear.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('비치웨어'),
+                            ],
+                          ),
                         ),
 
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('accessory clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 8),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/womanAccessory.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('패션잡화'),
+                            ],
+                          ),
+                        ),
 
-
-
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('jewerlyAndWatch clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 10),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/womanJewerlyWatch.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('쥬얼리/시계'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('woman shoes clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 22),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/womanShoes.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('신발'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('kids outer clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 16),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/kidsOuter.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('키즈아우터'),
+                            ],
+                          ),
+                        ),
 
                       ],
                     ),
-                  ),
+                    SizedBox(height: 16), // 간격 조절
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('knit clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 20),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/knit.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('키즈니트'),
+                            ],
+                          ),
+                        ),
+
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('kids pants clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 21),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/pants.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('키즈팬츠'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('kids Tshirts clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 17),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/kidsTShirts.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('여아티셔츠'),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // 버튼이 클릭되었을 때 수행할 작업을 여기에 추가하세요
+                                  print('WShirts clicked!');
+                                  Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                        pageBuilder: (context, a1, a2) =>
+                                            category(gender : gender, majorCategory: 19),
+                                        transitionsBuilder:
+                                            (context, a1, a2, child) =>
+                                            FadeTransition(
+                                                opacity: a1,
+                                                child: child),
+                                        transitionDuration:
+                                        Duration(milliseconds: 500),
+                                      ));
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image.asset(
+                                    'assets/girlKid.jpg',
+                                    width:
+                                    MediaQuery.of(context).size.width / 5,
+                                    height:
+                                    MediaQuery.of(context).size.width / 5,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Text('여아셔츠'),
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    ),
+                    SizedBox(height: 16), // 간격 조절
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('랭킹',
+                    style:
+                    TextStyle(fontSize: fontSize1(context).toDouble())),
+              ),
 
 
-                ],
-              );
-            });
+              SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              changeCategoryIndex(0);
+                            });
+                          },
+                          child: Text('전체', style: TextStyle(fontSize: 10),)),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              changeCategoryIndex(1);
+                            });
+                          },
+                          child: Text('아우터', style: TextStyle(fontSize: 10),)),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              changeCategoryIndex(2);
+                            });
+                          },
+                          child: Text('재킷', style: TextStyle(fontSize: 10),)),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              changeCategoryIndex(3);
+                            });
+                          },
+                          child: Text('니트', style: TextStyle(fontSize: 10),)),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              changeCategoryIndex(4);
+                            });
+                          },
+                          child: Text('티셔츠', style: TextStyle(fontSize: 10),)),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              changeCategoryIndex(5);
+                            });
+                          },
+                          child: Text('셔츠', style: TextStyle(fontSize: 10),)),
+                    ),
+                    Expanded(
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              changeCategoryIndex(6);
+                            });
+                          },
+                          child: Text('팬츠', style: TextStyle(fontSize: 10),)),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              SizedBox(
+                height: 350,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, a1, a2) => productDetail(item:womanRankingImageList[0].getClothesId),
+                                  transitionsBuilder: (context, a1, a2, child) =>
+                                      FadeTransition(opacity: a1, child: child),
+                                  transitionDuration: Duration(milliseconds: 100),
+                                )
+                            );
+                          },
+                          child: SizedBox(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  child: Text(
+                                    '1',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image(
+                                    image: NetworkImage(
+                                        womanRankingImageList[0].getImageUrl),
+                                    width:
+                                    MediaQuery.of(context).size.width / 3,
+                                    height: MediaQuery.of(context).size.width / 3,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, a1, a2) => productDetail(item:womanRankingImageList[1].getClothesId),
+                                  transitionsBuilder: (context, a1, a2, child) =>
+                                      FadeTransition(opacity: a1, child: child),
+                                  transitionDuration: Duration(milliseconds: 100),
+                                )
+                            );
+                          },
+                          child: SizedBox(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  child: Text(
+                                    '2',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  child: Image(
+                                    image: NetworkImage(
+                                        womanRankingImageList[1].getImageUrl),
+                                    width:
+                                    MediaQuery.of(context).size.width / 3,
+                                    height: MediaQuery.of(context).size.width / 3,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+
+
+
+
+
+                  ],
+                ),
+              ),
+
+
+            ],
+          );
+        });
   }
 
   Widget sliderWidget() {
@@ -1436,7 +1437,7 @@ class _HomeState extends State<Home> {
 
               },
               child: SizedBox(
-                  //width:MediaQuery.of(context).size.width,
+                //width:MediaQuery.of(context).size.width,
                   width: targetWidth,
                   height: targetWidth /
                       (MediaQuery.of(context).size.width /
@@ -1476,7 +1477,7 @@ class _HomeState extends State<Home> {
                 width: 12,
                 height: 12,
                 margin:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white
@@ -1504,4 +1505,3 @@ buttonFontSize1(context) {
     return 14.0;
   }
 }
-
