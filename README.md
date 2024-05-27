@@ -25,7 +25,8 @@
 3. [기능 구성 및 시연 동영상](#기능-구성-및-시연-동영상)
 4. [팀원별 역할](#팀원별-역할)
 5. [기대 효과](#기대-효과)
-6. [9월 25일 한성공학경진대회 추가 발표 사항](#9월-25일-한성공학경진대회-추가-발표-사항)
+6. [2023 수상작 비교](#2023-수상작-비교)
+7. [9월 25일 한성공학경진대회 추가 발표 사항](#9월-25일-한성공학경진대회-추가-발표-사항)
 
 <br/>
 
@@ -52,6 +53,9 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
 
 <img src="./doc/images/Preview.jpg">
 
+<br/>
+<br/>
+
 <div>
 <table>
   <tr>
@@ -63,10 +67,10 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     </th>
   </tr>
   <tr>
-    <td rowspan="7">회원관리</td>
-    <td rowspan="3">회원정보 관리</td>
+    <td rowspan="2">회원관리</td>
+    <td rowspan="2">회원정보 관리</td>
     <td>로그인/로그아웃</td>
-    <td>
+    <td rowspan="2">
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
@@ -80,36 +84,12 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
   </tr>
   <tr>
     <td>회원 가입/수정/탈퇴</td>
-    <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
-      </a>
-    </td>
   </tr>
   <tr>
-    <td>결제정보 추가/수정/제거</td>
-    <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
-      </a>
-    </td>
-  </tr>
-  <tr>
+    <td rowspan="4">구매 관리</td>
     <td rowspan="2">장바구니 관리</td>
     <td>의류 등록/제거</td>
-    <td>
+    <td rowspan="4">
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
@@ -123,22 +103,19 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
   </tr>
   <tr>
     <td>선택항목 구매</td>
-    <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
-      </a>
-    </td>
   </tr>
   <tr>
     <td rowspan="2">구매내역 관리</td>
     <td>배송 내역 관리</td>
-    <td>
+  </tr>
+  <tr>
+    <td>환불/주문취소 요청</td>
+  </tr>
+  <tr>
+    <td rowspan="2">검색 관리</td>
+    <td rowspan="2">의류 검색</td>
+    <td>이름 검색</td>
+    <td rowspan="2">
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
@@ -151,8 +128,13 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     </td>
   </tr>
   <tr>
-    <td>환불/주문취소 처리</td>
-    <td>
+    <td>카테고리 검색</td>
+  </tr>
+  <tr>
+    <td rowspan="7">판매 관리</td>
+    <td rowspan="2">판매자 정보 관리</td>
+    <td>판매자 가입</td>
+    <td rowspan="7">
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
@@ -165,29 +147,25 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     </td>
   </tr>
   <tr>
-    <td rowspan="1">의류관리</td>
-    <td rowspan="1">의류정보 관리</td>
-    <td>신규 의류 등록/수정/삭제</td>
-    <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-      </a>
-    </td>
+    <td>판매자 로그인/로그아웃</td>
   </tr>
   <tr>
-    <td rowspan="1">검색 관리</td>
-    <td colspan="2">의류 검색</td>
-    <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
-      </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
-        <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
-      </a>
-    </td>
+    <td rowspan="2">상품 관리</td>
+    <td>상품 등록/수정/삭제</td>
+  </tr>
+  <tr>
+    <td>등록 상품 조회</td>
+  </tr>
+  <tr>
+    <td rowspan="2">주문 관리</td>
+    <td>상품 별 주문 조회</td>
+  </tr>
+  <tr>
+    <td>주문 상태 관리</td>
+  </tr>
+  <tr>
+    <td>통계 조회</td>
+    <td>상품 별 통계 조회</td>
   </tr>
 </table>
 </div>
@@ -256,6 +234,59 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
 
 ## 📋기대 효과
 모든 기기에서 원활한 쇼핑 경험을 제공함으로써 사용자 접근성을 대폭 향상시킬 것입니다. 또한, 다양한 플랫폼에서의 원활한 기능 제공을 통해 의류 쇼핑의 비대면 구매를 활성화하고, 이를 통해 시간과 장소에 구애받지 않는 편리한 쇼핑 환경을 조성할 것입니다.
+
+<br/>
+
+## 📋2023 수상작 비교
+<table>
+  <tr>
+    <th></th>
+    <th>Design The Style</th>
+    <th>
+      2023 최우수상
+      <br>
+      <a href="https://github.com/capstone-aloha">aloharoom</a>
+    </th>
+    <th>
+      2023 우수상
+      <br>
+      <a href="https://github.com/TeamCookCaps/FrontImageApp">Designer Image Web Application</a>
+    </th>
+    <th>
+      2023 우수상
+      <br>
+      <a href="https://github.com/godi00/capstone">FIND DOG</a>
+    </th>
+  </tr>
+  <tr>
+    <td>CODE</td>
+    <td>O</td>
+    <td>O</td>
+    <td>O</td>
+    <td>O</td>
+  </tr>
+  <tr>
+    <td>DOC</td>
+    <td>O</td>
+    <td>O</td>
+    <td>X</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>동영상</td>
+    <td>O</td>
+    <td>X</td>
+    <td>X</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>Client</td>
+    <td>React (Web, Mobile)<br>IOS, Android</td>
+    <td>React (Web, Mobile)</td>
+    <td>React (Web, Mobile)</td>
+    <td>React (Web, Mobile)</td>
+  </tr>
+</table>
 
 <br/>
 
