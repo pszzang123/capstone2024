@@ -11,7 +11,7 @@
   - [Front-End (React-PC)]()
   - [Front-End (React-Mobile)]()
   - [Front-End (IOS)]()
-  - [Front-End (Android)]()
+  - [Front-End (Android)](https://www.youtube.com/watch?v=f7ISUhxcLwg)
 - Doc
   - [기능 구성도](#기능-구성-및-시연-동영상)
   - [Rest API](./doc/backend/Backend-Document.md#rest-api)
@@ -77,7 +77,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://www.youtube.com/watch?v=f7ISUhxcLwg" style="text-decoration:none">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -96,7 +96,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://www.youtube.com/watch?v=-BId9Ws8t_g" style="text-decoration:none">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
@@ -122,7 +122,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://www.youtube.com/watch?v=P7HSYhuJKAY" style="text-decoration:none">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>
