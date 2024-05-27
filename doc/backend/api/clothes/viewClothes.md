@@ -1,4 +1,4 @@
-# 회원 정보 수정
+# 조회수 증가
 
 ## 목차
 
@@ -19,14 +19,14 @@
   <td>API</td>
   <td>
 
-  `/api/customers/{email}`
+  `/api/clothes/view/{clothesId}`
 
   </td>
 </tr>
 <tr>
   <td>Request Body</td>
   <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
+    .
   </td>
 </tr>
 <tr>
@@ -39,54 +39,8 @@
 
 ## Request
 
-#### Value Type 
-<table>
-<tr>
-  <th>key</th>
-  <th>value type</th>
-</tr>
-<tr>
-    <td>email</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
-    <td><img src="https://img.shields.io/badge/number-grey"></td>
-</tr>
-<tr>
-    <td>phone</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-</table>
-
-<br/>
-
 ```json
-{
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
-}
+
 ```
 
 <br/>
@@ -100,31 +54,55 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>dailySales</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
+    <td>monthlySales</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>totalSales</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>dailyView</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>monthlyView</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>totalView</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>dailyComment</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>monthlyComment</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>totalComment</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>dailyLike</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>monthlyLike</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>totalLike</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>updateDate</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 </table>
@@ -133,13 +111,19 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "dailySales": ,
+    "monthlySales": ,
+    "totalSales": ,
+    "dailyView": ,
+    "monthlyView": ,
+    "totalView": ,
+    "dailyComment": ,
+    "monthlyComment": ,
+    "totalComment": ,
+    "dailyLike": ,
+    "monthlyLike": ,
+    "totalLike": ,
+    "updateDate": ""
 }
 ```
 

@@ -1,4 +1,4 @@
-# 회원 가입
+# 댓글 추가
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers`
+  `/api/comment`
 
   </td>
 </tr>

@@ -1,4 +1,4 @@
-# 회원 탈퇴
+# 의류에 포함된 모든 상세정보 제거
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers/{email}`
+  `/api/detail/clothes/{clothesId}`
 
   </td>
 </tr>
@@ -49,8 +49,8 @@
 
 #### 탈퇴 성공
 
-```json
-Customer deleted successfully.
+```
+Clothes Detail deleted successfully.
 ```
 
 <br/>

@@ -1,4 +1,4 @@
-# 회원 정보 확인
+# 의류에 포함된 모든 상세정보 확인
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers{email}`
+  `/api/detail/clothes/{clothesId}`
 
   </td>
 </tr>
@@ -54,32 +54,24 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>detailId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
+    <td>color</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
+<tr>
+    <td>size</td>
+    <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
+<tr>
+    <td>remaining</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>clothesId</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 </table>
 
@@ -87,13 +79,11 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "detailId": ,
+    "color": "",
+    "size": "",
+    "remaining": ,
+    "clothesId": 
 }
 ```
 

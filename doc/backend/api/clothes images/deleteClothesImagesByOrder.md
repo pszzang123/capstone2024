@@ -1,4 +1,4 @@
-# 회원 탈퇴
+# 의류 순서에 해당하는 이미지 제거
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers/{email}`
+  `/api/clothes_images/{clothesId}/{order}`
 
   </td>
 </tr>
@@ -47,10 +47,10 @@
 
 ## Response
 
-#### 탈퇴 성공
+#### 의류 이미지 제거 성공
 
-```json
-Customer deleted successfully.
+```
+Clothes Image deleted successfully.
 ```
 
 <br/>

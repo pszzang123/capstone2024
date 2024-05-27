@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers{email}`
+  `/api/customers/{email}`
 
   </td>
 </tr>
