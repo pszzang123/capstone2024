@@ -46,7 +46,7 @@
 <th>기능</th>
 </tr>
 
-<!--Cart-->
+<!--Cart-->v
 <tr>
 <td colspan="5">
 
@@ -1490,7 +1490,7 @@
 <tr>
   <td>
 
-  `/api/cart`
+  `/api/seller`
 
   </td>
   <td>
@@ -1503,34 +1503,14 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/createCart.md">장바구니 추가</a>
+    <a href="./api/seller/createSeller.md">판매자 가입</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/GET-green">
-  </td>
-  <td>
-    .
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/boolean-grey">
-  </td>
-  <td>
-    <a href="./api/cart/getCartByCustomerEmail.md">회원 장바구니 확인</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/cart`
+  `/api/seller/{email}`
 
   </td>
   <td>
@@ -1543,14 +1523,34 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/getAllCart.md">모든 장바구니 확인</a>
+    <a href="./api/seller/getSellerByEmail.md">판매자 확인</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/seller`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/seller/getAllSellers.md">모든 판매자 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/seller/{email}`
 
   </td>
   <td>
@@ -1563,14 +1563,14 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/updateCart.md">장바구니 수정</a>
+    <a href="./api/seller/updateSeller.md">판매자 정보 수정</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/seller/{email}`
 
   </td>
   <td>
@@ -1583,7 +1583,7 @@
     <img src="https://img.shields.io/badge/string-grey">
   </td>
   <td>
-    <a href="./api/cart/deleteCart.md">장바구니 제거</a>
+    <a href="./api/seller/deleteSeller.md">판매자 탈퇴</a>
   </td>
 </tr>
 <!--Seller-->
@@ -1602,7 +1602,7 @@
 <tr>
   <td>
 
-  `/api/cart`
+  `/api/sub_category`
 
   </td>
   <td>
@@ -1615,34 +1615,14 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/createCart.md">장바구니 추가</a>
+    <a href="./api/sub category/createSubCategory.md">서브 카테고리 추가</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/GET-green">
-  </td>
-  <td>
-    .
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/boolean-grey">
-  </td>
-  <td>
-    <a href="./api/cart/getCartByCustomerEmail.md">회원 장바구니 확인</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/cart`
+  `/api/sub_category/{subCategoryId}`
 
   </td>
   <td>
@@ -1655,34 +1635,54 @@
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <a href="./api/cart/getAllCart.md">모든 장바구니 확인</a>
+    <a href="./api/sub category/getSubCategoryId.md">서브 카테고리 확인</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/sub_category/major_category/{majorCategoryId}`
 
   </td>
   <td>
-    <img src="https://img.shields.io/badge/PUT-blue">
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
   </td>
   <td>
     <img src="https://img.shields.io/badge/JSON-purple">
   </td>
   <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <a href="./api/cart/updateCart.md">장바구니 수정</a>
+    <a href="./api/sub category/getSubCategoryByMajorCategoryId.md">주 카테고리에 포함된 서브 카테고리 확인</a>
   </td>
 </tr>
 
 <tr>
   <td>
 
-  `/api/cart/{email}/{id}`
+  `/api/sub_category`
+
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/GET-green">
+  </td>
+  <td>
+    .
+  </td>
+  <td>
+    <img src="https://img.shields.io/badge/JSON-purple">
+  </td>
+  <td>
+    <a href="./api/sub category/getAllSubCategories.md">모든 서브 카테고리 확인</a>
+  </td>
+</tr>
+
+<tr>
+  <td>
+
+  `/api/sub_category/{subCategoryId}`
 
   </td>
   <td>
@@ -1695,7 +1695,7 @@
     <img src="https://img.shields.io/badge/string-grey">
   </td>
   <td>
-    <a href="./api/cart/deleteCart.md">장바구니 제거</a>
+    <a href="./api/sub category/deleteSubCategory.md">서브 카테고리 제거</a>
   </td>
 </tr>
 <!--Sub Category-->
