@@ -309,3 +309,4 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
 2. 회원 가입 시 보안 적용
 3. 각 API에 권한 할당
 4. CI/CD 자동화
+5. AZURE, GCP 환경에서도 개발해보기
