@@ -89,7 +89,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td rowspan="2">장바구니 관리</td>
     <td>의류 등록/제거</td>
     <td rowspan="4">
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://youtu.be/J1QD045AY6w?si=ol-0yCsCDslxsUo9" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://youtu.be/ijnSymD3orA" style="text-decoration:none">
@@ -115,7 +115,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td rowspan="2">의류 검색</td>
     <td>이름 검색</td>
     <td rowspan="2">
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://youtu.be/kn0gpgToyzU?si=HSdp-J7oe1Jq9pL2" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <a href="https://youtu.be/Sykf3S4-LCo" style="text-decoration:none">
