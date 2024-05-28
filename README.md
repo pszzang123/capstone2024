@@ -10,7 +10,7 @@
 - Youtube
   - [Front-End (React-PC)]()
   - [Front-End (React-Mobile)]()
-  - [Front-End (IOS)]()
+  - [Front-End (IOS)](https://youtu.be/TC9KB3SaK5M)
   - [Front-End (Android)](https://www.youtube.com/watch?v=f7ISUhxcLwg)
 - Doc
   - [기능 구성도](#기능-구성-및-시연-동영상)
@@ -74,7 +74,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://youtu.be/azMG3bj1aTk" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
       <a href="https://www.youtube.com/watch?v=f7ISUhxcLwg" style="text-decoration:none">
@@ -93,7 +93,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://youtu.be/ijnSymD3orA" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
       <a href="https://www.youtube.com/watch?v=-BId9Ws8t_g" style="text-decoration:none">
@@ -119,7 +119,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://youtu.be/Sykf3S4-LCo" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
       <a href="https://www.youtube.com/watch?v=P7HSYhuJKAY" style="text-decoration:none">
@@ -138,12 +138,14 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
+      <!--
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
       </a>
       <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
+      -->
     </td>
   </tr>
   <tr>
@@ -191,7 +193,11 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
-    <td>.</td>
+    <td>
+      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+        <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+      </a>
+    </td>
   </tr>
   <tr>
     <td>김준기</td>
@@ -201,7 +207,11 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
-    <td>.</td>
+    <td>
+      <a href="https://www.youtube.com/watch?v=P7HSYhuJKAY" style="text-decoration:none">
+        <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
+      </a>
+    </td>
   </tr>
   <tr>
     <td>김필수</td>
@@ -211,7 +221,11 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white">
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
-    <td>.</td>
+    <td>
+      <a href="https://youtu.be/TC9KB3SaK5M" style="text-decoration:none">
+        <img src="https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white">
+      </a>
+    </td>
   </tr>
   <tr>
     <td>조성현</td>
