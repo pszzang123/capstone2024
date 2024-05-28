@@ -134,7 +134,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td rowspan="2">판매자 정보 관리</td>
     <td>판매자 가입</td>
     <td rowspan="7">
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://youtu.be/fSYLGonhruY?si=UGz19-EohsMLD74N" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
       <!--
