@@ -8,8 +8,7 @@
   - [Front-End (Flutter)](https://github.com/pszzang123/capstone2024/tree/flutter)
   - [Back-End (Spring boot)](https://github.com/pszzang123/capstone2024/tree/main)
 - Youtube
-  - [Front-End (React-PC)]()
-  - [Front-End (React-Mobile)]()
+  - [Front-End (React-PC&Mobile)](https://youtu.be/yfDMVUe1erU?si=JNSLw1rHPB1y7Mf_)
   - [Front-End (IOS)](https://youtu.be/TC9KB3SaK5M)
   - [Front-End (Android)](https://www.youtube.com/watch?v=f7ISUhxcLwg)
 - Doc
