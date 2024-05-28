@@ -281,4 +281,31 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
   </tr>
   <tr>
     <td>DOC</td>
-    <td>O</t행
+    <td>O</td>
+    <td>O</td>
+    <td>X</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>동영상</td>
+    <td>O</td>
+    <td>X</td>
+    <td>X</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td>Client</td>
+    <td>React (Web, Mobile)<br>IOS, Android</td>
+    <td>React (Web, Mobile)</td>
+    <td>React (Web, Mobile)</td>
+    <td>React (Web, Mobile)</td>
+  </tr>
+</table>
+
+<br/>
+
+## 📋9월 25일 한성공학경진대회 추가 발표 사항
+1. 소비자가 의류를 선택할 때 도움을 줄 'Lookbook' 기능 추가
+2. 회원 가입 시 보안 적용
+3. 각 API에 권한 할당
+4. CI/CD 자동화
