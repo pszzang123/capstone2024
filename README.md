@@ -170,7 +170,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
   </tr>
 </table>
 </div>
-
+<strong style="color: red;">🔴 붉은 점은 Capstone 발표에서 현장으로 시연 진행되는 기능입니다.</strong>
 <br/>
 
 ## 📋팀원별 역할
