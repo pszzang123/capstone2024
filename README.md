@@ -111,9 +111,9 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td>환불/주문취소 요청</td>
   </tr>
   <tr>
-    <td rowspan="2">검색 관리</td>
-    <td rowspan="2">의류 검색</td>
-    <td>이름 검색</td>
+    <td rowspan="2"><strong style="color: red;">검색 관리</strong></td>
+    <td rowspan="2"><strong style="color: red;">의류 검색</strong></td>
+    <td><strong style="color: red;">🔴 이름 검색</strong></td>
     <td rowspan="2">
       <a href="https://youtu.be/kn0gpgToyzU?si=HSdp-J7oe1Jq9pL2" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
@@ -127,7 +127,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     </td>
   </tr>
   <tr>
-    <td>카테고리 검색</td>
+    <td><strong style="color: red;">🔴 카테고리 검색</strong></td>
   </tr>
   <tr>
     <td rowspan="7">판매 관리</td>
