@@ -85,7 +85,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td>회원 가입/수정/탈퇴</td>
   </tr>
   <tr>
-    <td rowspan="4"><span style="color:red; font-weight:bold;">구매 관리</span></td>
+    <td rowspan="4"><strong style="color: red;">🔴 구매 관리</strong></td>
     <td rowspan="2">장바구니 관리</td>
     <td>의류 등록/제거</td>
     <td rowspan="4">
