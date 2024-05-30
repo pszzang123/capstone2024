@@ -85,9 +85,9 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td>회원 가입/수정/탈퇴</td>
   </tr>
   <tr>
-    <td rowspan="4"><strong style="color: red;">🔴 구매 관리</strong></td>
-    <td rowspan="2">장바구니 관리</td>
-    <td>의류 등록/제거</td>
+    <td rowspan="4"><strong style="color: red;">구매 관리</strong></td>
+    <td rowspan="2"><strong style="color: red;">장바구니 관리</strong></td>
+    <td><strong style="color: red;">🔴 의류 등록/제거</strong></td>
     <td rowspan="4">
       <a href="https://youtu.be/J1QD045AY6w?si=ol-0yCsCDslxsUo9" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
@@ -101,12 +101,10 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     </td>
   </tr>
   <tr>
-    <td>선택항목 구매</td>
+    <td><strong style="color: red;">🔴 선택항목 구매</strong></td>
   </tr>
   <tr>
-    <td rowspan="2">
-      구매내역 관리
-    </td>
+    <td rowspan="2">구매내역 관리</td>
     <td>배송 내역 관리</td>
   </tr>
   <tr>
