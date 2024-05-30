@@ -85,7 +85,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td>회원 가입/수정/탈퇴</td>
   </tr>
   <tr>
-    <td rowspan="4">구매 관리</td>
+    <td rowspan="4"><span style="color:red; font-weight:bold;">구매 관리</span></td>
     <td rowspan="2">장바구니 관리</td>
     <td>의류 등록/제거</td>
     <td rowspan="4">
@@ -104,7 +104,9 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
     <td>선택항목 구매</td>
   </tr>
   <tr>
-    <td rowspan="2">구매내역 관리</td>
+    <td rowspan="2">
+      구매내역 관리
+    </td>
     <td>배송 내역 관리</td>
   </tr>
   <tr>
