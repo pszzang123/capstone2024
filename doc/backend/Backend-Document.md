@@ -686,7 +686,7 @@
 <tr>
   <td>
 
-  `/api/comment/{email}/{commentId}`
+  `/api/comment/{email}/{clothesId}`
 
   </td>
   <td>
@@ -786,7 +786,7 @@
 <tr>
   <td>
 
-  `/api/comment/{email}/{commentId}`
+  `/api/comment/{email}/{clothesId}`
 
   </td>
   <td>

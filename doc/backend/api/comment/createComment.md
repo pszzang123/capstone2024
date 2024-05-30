@@ -46,31 +46,15 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
+    <td>customerEmail</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>clothesId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
+    <td>comment</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 </table>
@@ -79,13 +63,9 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "customerEmail": "",
+    "clothesId": ,
+    "comment": ""
 }
 ```
 
@@ -100,31 +80,15 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
+    <td>customerEmail</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>clothesId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
+    <td>comment</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 </table>
@@ -133,13 +97,9 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "customerEmail": "",
+    "clothesId": ,
+    "comment": ""
 }
 ```
 

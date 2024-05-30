@@ -1,4 +1,4 @@
-# 회원 탈퇴
+# 댓글 제거
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers/{email}`
+  `/api/comment/{email}/{commentId}`
 
   </td>
 </tr>
@@ -47,10 +47,10 @@
 
 ## Response
 
-#### 탈퇴 성공
+#### 댓글 제거 완료
 
 ```json
-Customer deleted successfully.
+Comment deleted successfully.
 ```
 
 <br/>

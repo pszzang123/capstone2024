@@ -10,7 +10,7 @@
 - Youtube
   - [Front-End (React-PC&Mobile)](https://youtu.be/yfDMVUe1erU?si=JNSLw1rHPB1y7Mf_)
   - [Front-End (IOS)](https://youtu.be/TC9KB3SaK5M)
-  - [Front-End (Android)](https://www.youtube.com/watch?v=f7ISUhxcLwg)
+  - [Front-End (Android)](https://www.youtube.com/watch?v=bP-Ri9yLzuo)
 - Doc
   - [기능 구성도](#기능-구성-및-시연-동영상)
   - [Rest API](./doc/backend/Backend-Document.md#rest-api)
@@ -193,7 +193,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
     <td>
-      <a href="https://github.com/pszzang123/capstone2024/blob/main/README.md" style="text-decoration:none">
+      <a href="https://youtu.be/yfDMVUe1erU?si=JNSLw1rHPB1y7Mf_" style="text-decoration:none">
         <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
       </a>
     </td>
@@ -207,7 +207,7 @@ React와 SpringBoot를 활용한 웹 및 모바일웹 쇼핑몰과 Flutter를 �
       <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
     </td>
     <td>
-      <a href="https://www.youtube.com/watch?v=P7HSYhuJKAY" style="text-decoration:none">
+      <a href="https://www.youtube.com/watch?v=bP-Ri9yLzuo" style="text-decoration:none">
         <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white">
       </a>
     </td>

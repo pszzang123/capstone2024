@@ -1,4 +1,4 @@
-# 회원 정보 확인
+# 회원이 의류에 작성한 댓글 확인
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers{email}`
+  `/api/comment/{email}/{clothesId}`
 
   </td>
 </tr>
@@ -54,31 +54,19 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
+    <td>customerEmail</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>clothesId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
+    <td>comment</td>
+    <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
+<tr>
+    <td>date</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 </table>
@@ -87,13 +75,10 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "customerEmail": "123",
+    "clothesId": 3,
+    "comment": "옷이 참 예뻐요!",
+    "date": "2024-05-30 11:54:52"
 }
 ```
 
