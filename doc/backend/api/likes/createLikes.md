@@ -1,4 +1,4 @@
-# 회원 가입
+# 좋아요 추가
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers`
+  `/api/like`
 
   </td>
 </tr>
@@ -46,32 +46,12 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
+    <td>customerEmail</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>clothesId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
-</tr>
-<tr>
-    <td>phone</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 </table>
 
@@ -79,13 +59,8 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "customerEmail": "",
+    "clothesId": 
 }
 ```
 
@@ -100,32 +75,12 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
+    <td>customerEmail</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>clothesId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
-</tr>
-<tr>
-    <td>phone</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 </table>
 
@@ -133,13 +88,8 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "customerEmail": "",
+    "clothesId": 
 }
 ```
 

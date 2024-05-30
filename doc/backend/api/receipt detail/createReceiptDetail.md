@@ -1,4 +1,4 @@
-# 회원 가입
+# 세부 영수증 추가
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers`
+  `/api/receipt_detail`
 
   </td>
 </tr>
@@ -46,32 +46,20 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>receiptId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
+    <td>detailId</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>quantity</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>status</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 </table>
 
@@ -79,13 +67,10 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "receiptId": ,
+    "detailId": ,
+    "quantity": ,
+    "status": 
 }
 ```
 
@@ -100,32 +85,24 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>name</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>streetAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>detailAddress</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
-</tr>
-<tr>
-    <td>zipCode</td>
+    <td>receiptDetailId</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
+    <td>receiptId</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>detailId</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>quantity</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>status</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 </table>
 
@@ -133,13 +110,11 @@
 
 ```json
 {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
+    "receiptDetailId": ,
+    "receiptId": ,
+    "detailId": ,
+    "quantity": ,
+    "status": 
 }
 ```
 

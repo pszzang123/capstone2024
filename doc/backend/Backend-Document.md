@@ -1102,26 +1102,6 @@
 <tr>
   <td>
 
-  `/api/major_category`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/POST-yellow">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <a href="./api/major category/createMajorCategory.md">주 카테고리 추가</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
   `/api/major_category/{majorCategoryId}`
 
   </td>
@@ -1156,26 +1136,6 @@
   </td>
   <td>
     <a href="./api/major category/getAllMajorCategory.md">모든 주 카테고리 확인</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/major_category/{id}`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/DELETE-red">
-  </td>
-  <td>
-    .
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/string-grey">
-  </td>
-  <td>
-    <a href="./api/major category/deleteMajorCategory.md">주 카테고리 제거</a>
   </td>
 </tr>
 <!--Major Category-->
@@ -1326,7 +1286,7 @@
 <tr>
   <td>
 
-  `/api/receipt_detail/{receiptDetailId}`
+  `/api/receipt_detail/{receiptId}`
 
   </td>
   <td>
@@ -1490,7 +1450,7 @@
 <tr>
   <td>
 
-  `/api/seller`
+  `/api/sellers`
 
   </td>
   <td>
@@ -1510,7 +1470,7 @@
 <tr>
   <td>
 
-  `/api/seller/{email}`
+  `/api/sellers/{email}`
 
   </td>
   <td>
@@ -1530,7 +1490,7 @@
 <tr>
   <td>
 
-  `/api/seller`
+  `/api/sellers`
 
   </td>
   <td>
@@ -1550,7 +1510,7 @@
 <tr>
   <td>
 
-  `/api/seller/{email}`
+  `/api/sellers/{email}`
 
   </td>
   <td>
@@ -1570,7 +1530,7 @@
 <tr>
   <td>
 
-  `/api/seller/{email}`
+  `/api/sellers/{email}`
 
   </td>
   <td>
@@ -1597,26 +1557,6 @@
 ### Sub Category
 
 </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/sub_category`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/POST-yellow">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/JSON-purple">
-  </td>
-  <td>
-    <a href="./api/sub category/createSubCategory.md">서브 카테고리 추가</a>
-  </td>
 </tr>
 
 <tr>
@@ -1676,26 +1616,6 @@
   </td>
   <td>
     <a href="./api/sub category/getAllSubCategories.md">모든 서브 카테고리 확인</a>
-  </td>
-</tr>
-
-<tr>
-  <td>
-
-  `/api/sub_category/{subCategoryId}`
-
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/DELETE-red">
-  </td>
-  <td>
-    .
-  </td>
-  <td>
-    <img src="https://img.shields.io/badge/string-grey">
-  </td>
-  <td>
-    <a href="./api/sub category/deleteSubCategory.md">서브 카테고리 제거</a>
   </td>
 </tr>
 <!--Sub Category-->

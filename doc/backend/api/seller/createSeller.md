@@ -1,4 +1,4 @@
-# 회원 가입
+# 판매자 가입
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers`
+  `/api/sellers`
 
   </td>
 </tr>
@@ -73,6 +73,10 @@
     <td>phone</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
+<tr>
+    <td>companyName</td>
+    <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
 </table>
 
 <br/>
@@ -85,7 +89,8 @@
     "streetAddress": "",
     "detailAddress": "",
     "zipCode": ,
-    "phone": ""
+    "phone": "",
+    "companyName": ""
 }
 ```
 
@@ -127,6 +132,10 @@
     <td>phone</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
+<tr>
+    <td>companyName</td>
+    <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
 </table>
 
 <br/>
@@ -139,7 +148,8 @@
     "streetAddress": "",
     "detailAddress": "",
     "zipCode": ,
-    "phone": ""
+    "phone": "",
+    "companyName": ""
 }
 ```
 

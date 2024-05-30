@@ -49,7 +49,7 @@
 
 #### 댓글 제거 완료
 
-```json
+```
 Comment deleted successfully.
 ```
 

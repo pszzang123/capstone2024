@@ -1,4 +1,4 @@
-# 회원 탈퇴
+# 판매자 탈퇴
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers/{email}`
+  `/api/sellers/{email}`
 
   </td>
 </tr>
@@ -49,8 +49,8 @@
 
 #### 탈퇴 성공
 
-```json
-Customer deleted successfully.
+```
+Seller deleted successfully.
 ```
 
 <br/>

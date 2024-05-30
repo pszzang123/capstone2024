@@ -1,4 +1,4 @@
-# 회원 탈퇴
+# 세부 영수증 제거
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers/{email}`
+  `/api/receipt_detail/{receiptDetailId}`
 
   </td>
 </tr>
@@ -49,8 +49,8 @@
 
 #### 탈퇴 성공
 
-```json
-Customer deleted successfully.
+```
+Receipt Detail deleted successfully.
 ```
 
 <br/>

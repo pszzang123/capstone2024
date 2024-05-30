@@ -49,7 +49,7 @@
 
 #### 탈퇴 성공
 
-```json
+```
 Customer deleted successfully.
 ```
 

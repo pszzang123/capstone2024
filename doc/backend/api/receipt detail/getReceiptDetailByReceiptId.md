@@ -1,4 +1,4 @@
-# 회원 정보 확인
+# 영수증에 포함된 세부 영수증 확인
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers{email}`
+  `/api/receipt_detail/{receiptId}`
 
   </td>
 </tr>
@@ -54,31 +54,47 @@
   <th>value type</th>
 </tr>
 <tr>
-    <td>email</td>
+    <td>receiptDetailId</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>customerEmail</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>password</td>
-    <td><img src="https://img.shields.io/badge/string-grey"></td>
+    <td>clothesId</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
     <td>name</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>streetAddress</td>
+    <td>color</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>detailAddress</td>
+    <td>size</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 <tr>
-    <td>zipCode</td>
+    <td>price</td>
     <td><img src="https://img.shields.io/badge/number-grey"></td>
 </tr>
 <tr>
-    <td>phone</td>
+    <td>imageUrl</td>
+    <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
+<tr>
+    <td>quantity</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>status</td>
+    <td><img src="https://img.shields.io/badge/number-grey"></td>
+</tr>
+<tr>
+    <td>date</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
 </table>
@@ -86,15 +102,21 @@
 <br/>
 
 ```json
-{
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
-}
+[
+    {
+        "receiptDetailId": ,
+        "customerEmail": "",
+        "clothesId": ,
+        "name": "",
+        "color": "",
+        "size": "",
+        "price": ,
+        "imageUrl": "",
+        "quantity": ,
+        "status": ,
+        "date": ""
+    }
+]
 ```
 
 <br/>

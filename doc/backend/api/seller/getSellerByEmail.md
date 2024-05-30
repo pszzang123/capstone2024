@@ -1,4 +1,4 @@
-# 회원 정보 확인
+# 판매자 확인
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers{email}`
+  `/api/sellers/{email}`
 
   </td>
 </tr>
@@ -81,6 +81,10 @@
     <td>phone</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
+<tr>
+    <td>companyName</td>
+    <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
 </table>
 
 <br/>
@@ -93,7 +97,8 @@
     "streetAddress": "",
     "detailAddress": "",
     "zipCode": ,
-    "phone": ""
+    "phone": "",
+    "companyName": ""
 }
 ```
 

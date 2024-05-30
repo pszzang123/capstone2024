@@ -1,4 +1,4 @@
-# 모든 회원 확인
+# 모든 판매자 확인
 
 ## 목차
 
@@ -19,7 +19,7 @@
   <td>API</td>
   <td>
 
-  `/api/customers`
+  `/api/sellers`
 
   </td>
 </tr>
@@ -81,21 +81,26 @@
     <td>phone</td>
     <td><img src="https://img.shields.io/badge/string-grey"></td>
 </tr>
+<tr>
+    <td>companyName</td>
+    <td><img src="https://img.shields.io/badge/string-grey"></td>
+</tr>
 </table>
 
 <br/>
 
 ```json
 [
-  {
-    "email": "",
-    "password": "",
-    "name": "",
-    "streetAddress": "",
-    "detailAddress": "",
-    "zipCode": ,
-    "phone": ""
-  }
+    {
+        "email": "",
+        "password": "",
+        "name": "",
+        "streetAddress": "",
+        "detailAddress": "",
+        "zipCode": ,
+        "phone": "",
+        "companyName": ""
+    }
 ]
 ```
 
