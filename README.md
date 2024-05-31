@@ -1,6 +1,7 @@
 
 <img src="./doc/logo/1715849181321-0.png"/>
 
+![KakaoTalk_20240531_173709286](https://github.com/pszzang123/capstone2024/assets/134257147/a51d30fa-0571-41d0-87f5-9e65f2f7a5bb)
 
 ## 📋PC, 모바일, 태블릿에서 원활하게 작동하는 쇼핑몰
 - Code
